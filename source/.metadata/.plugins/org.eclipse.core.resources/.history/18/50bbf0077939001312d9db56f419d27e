@@ -1,0 +1,9 @@
+package FMIndex;
+
+public class BWT {
+	public static void Sort(StringWrapper string){
+		
+		
+	}
+	
+}

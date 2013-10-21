@@ -1,0 +1,11 @@
+package FMIndex;
+
+public class BWT {
+	public static void PerformBTW(StringWrapper string){
+		
+		
+	}
+	
+	private static 
+	
+}

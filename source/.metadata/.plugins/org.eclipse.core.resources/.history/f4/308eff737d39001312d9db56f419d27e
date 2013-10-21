@@ -1,0 +1,30 @@
+package FMIndex;
+
+public class BWT {
+	
+	private static int[] pointers;
+	private static String inputString;
+	private static int partIndex;
+	private static int swapIndex;
+	private static int swapLength;
+	private static boolean swap;
+	private static char partitionCharacter;
+	private static char currentCharacter;
+	
+	public static void PerformBTW(StringWrapper inputString){
+		BWT.inputString = inputString.string;
+
+	}
+	
+	private static void Sort(int pstart, int pLength, int compIndex){
+		int a;
+		int b;
+		int c;
+		int d;
+		
+		if(pLength<=1)
+			return;
+		
+	}
+	
+}

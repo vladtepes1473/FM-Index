@@ -1,0 +1,11 @@
+package FMIndex;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		StringWrapper input = new StringWrapper();
+		
+	}
+
+}

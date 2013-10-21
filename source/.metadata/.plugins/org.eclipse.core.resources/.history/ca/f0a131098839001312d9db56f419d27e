@@ -1,0 +1,124 @@
+package FMIndex;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class BWT {
+	
+	private static int[] pointers;
+	private static String inputString;
+	private static int partIndex;
+	private static int swapIndex;
+	private static int swapLength;
+	private static char partitionCharacter;
+	private static char currentCharacter;
+	private static StringBuilder outputStringBuilder;
+	private static Deque queue;
+	
+	
+	public static void performBTW(StringWrapper inputString, StringWrapper outputString){
+		BWT.inputString = inputString.string;
+		int stringLength = BWT.inputString.length();
+		pointers = new int[stringLength];
+		for(int i = 0; i < stringLength; i++){
+			pointers[i] = i;
+		}
+		sort(0, stringLength, 0);
+		outputStringBuilder = new StringBuilder();
+		for(int i = 0; i < stringLength; i++){
+			outputStringBuilder.append(BWT.inputString.charAt((pointers[i]+stringLength-1)%stringLength));
+		}
+		outputString.string = outputStringBuilder.toString();
+	}
+	
+	private static void sort(int pstart, int pLength, int compIndex){
+		int a;
+		int b;
+		int c;
+		int d;
+		queue = new ArrayDeque<String>(); 
+		do{
+		if(pLength<=1)
+			return;
+		
+		partIndex = pstart + (int)(Math.random()*(double)pLength)%pLength;
+		swapElements(pstart, partIndex);
+		
+		partitionCharacter = inputString.charAt((pointers[pstart]+compIndex)%inputString.length());
+		
+		a=pstart + 1;
+		b = a;
+		c = pstart + pLength - 1;
+		d = c;
+		
+		while(b<=c){
+			do{
+				currentCharacter = inputString.charAt((pointers[b]+compIndex)%inputString.length());
+				if(b<=c && currentCharacter <= partitionCharacter){
+					if(currentCharacter == currentCharacter){
+						swapElements(a, b);
+						a++;
+					}
+					b++;
+				}
+			}while(b<=c&&currentCharacter <= partitionCharacter);
+			
+			do{
+				currentCharacter = inputString.charAt((pointers[c]+compIndex)%inputString.length());
+				if(b<=c&& currentCharacter >= partitionCharacter){
+					if(currentCharacter == partitionCharacter){
+						swapElements(c,d);
+						d--;
+					}
+					c--;
+				}
+			}while(b<=c&&currentCharacter>=partitionCharacter);
+			
+			if(b<=c){
+				swapElements(b, c);
+				b++;
+				c++;
+			}
+			
+		}
+		
+		swapLength = a-pstart;
+		swapLength = (swapLength <= (b-a)?swapLength:b-a);
+		for(swapIndex = 0; swapIndex< swapLength; swapIndex++){
+			swapElements(pstart+swapIndex, b - swapLength+swapIndex);
+		}
+		
+		swapLength = pLength - (d+1-pstart);
+		swapLength = (swapLength<=(d-c)? swapLength:d-c);
+		for(swapIndex = 0; swapIndex < swapLength; swapIndex++){
+			swapElements(b+swapIndex, pstart+pLength-swapLength+swapIndex);
+		}
+		
+		//sort(pstart, b-a, compIndex);
+		
+		queue.add(pstart);
+		queue.add(b-a);
+		queue.add(compIndex);
+		
+		if(compIndex<(inputString.length()-1)){
+			//sort(pstart+b-a,(a-pstart)+(pLength-(d+1-pstart)), compIndex+1);
+			queue.add(pstart+b-a);
+			queue.add((a-pstart)+(pLength-(d+1-pstart)));
+			queue.add(compIndex+1);
+		}
+		
+		//sort(pstart+pLength-(d-c), d-c, compIndex);
+		queue.add(pstart+pLength-(d-c));
+		queue.add(d-c);
+		queue.add(compIndex);
+		}while(!queue.isEmpty());
+		
+	}
+	
+	private static void swapElements(int firstIndex, int secondIndex){
+		int temp = pointers[firstIndex];
+		pointers[firstIndex] = pointers[secondIndex];
+		pointers[secondIndex] = temp;
+	}
+	
+}

@@ -1,0 +1,26 @@
+package FMIndex;
+
+public class BWT {
+	
+	private static int[] pointers;
+	private static String inputString;
+	private static int partIndex;
+	private static int swapIndex;
+	private static int swapLength;
+	private static boolean swap;
+	
+	
+	public static void PerformBTW(StringWrapper inputString){
+		BWT.inputString = inputString.string;
+		
+	}
+	
+	private static void Sort(){
+		int a;
+		int b;
+		int c;
+		int d;
+		
+	}
+	
+}

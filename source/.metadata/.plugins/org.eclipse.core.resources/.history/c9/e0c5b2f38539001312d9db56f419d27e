@@ -1,0 +1,29 @@
+package FMIndex;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Test {
+
+	public static void main(String[] args) {
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader("test.txt"));
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		StringWrapper input = new StringWrapper();
+		input.string = reader.
+		input.string = "abracadabra";
+		StringWrapper output = new StringWrapper();
+		BWT.performBTW(input, output);
+		
+		return;
+	}
+
+}

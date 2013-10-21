@@ -1,0 +1,20 @@
+package FMIndex;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Test {
+
+	public static void main(String[] args) {
+		BufferedReader reader = new BufferedReader("test.txt");
+		
+		StringWrapper input = new StringWrapper();
+		input.string = "abracadabra";
+		StringWrapper output = new StringWrapper();
+		BWT.performBTW(input, output);
+		
+		return;
+	}
+
+}

@@ -1,0 +1,18 @@
+package testcases;
+import FMIndex.*;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class testcases {
+
+	@Test
+	public void BWTTest1() {
+		String input = "#abracadabra";
+		StringWrapper inputString = new StringWrapper();
+		inputString.string = input;
+		StringWrapper outPutString = new StringWrapper();
+	}
+
+}

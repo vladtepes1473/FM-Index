@@ -1,0 +1,76 @@
+package FMIndex;
+
+public class BWT {
+	
+	private static int[] pointers;
+	private static String inputString;
+	private static int partIndex;
+	private static int swapIndex;
+	private static int swapLength;
+	private static char partitionCharacter;
+	private static char currentCharacter;
+	
+	public static void performBTW(StringWrapper inputString){
+		BWT.inputString = inputString.string;
+
+	}
+	
+	private static void sort(int pstart, int pLength, int compIndex){
+		int a;
+		int b;
+		int c;
+		int d;
+		
+		if(pLength<=1)
+			return;
+		
+		partIndex = pstart + (int)(Math.random()*(double)pLength)%pLength;
+		swapElements(pstart, partIndex);
+		
+		partitionCharacter = inputString.charAt((pointers[pstart]+compIndex)%inputString.length());
+		
+		a=pstart + 1;
+		b = a;
+		c = pstart + pLength + 1;
+		d = c;
+		
+		while(b<=c){
+			do{
+				currentCharacter = inputString.charAt((pointers[b]+compIndex)%inputString.length());
+				if(b<=c && currentCharacter <= partitionCharacter){
+					if(currentCharacter == currentCharacter){
+						swapElements(a, b);
+						a++;
+					}
+					b++;
+				}
+			}while(b<=c&&currentCharacter <= partitionCharacter);
+			
+			do{
+				currentCharacter = inputString.charAt((pointers[c]+compIndex)%inputString.length());
+				if(b<=c&& currentCharacter >= partitionCharacter){
+					if(currentCharacter == partitionCharacter){
+						swapElements(c,d);
+						d--;
+					}
+					c--;
+				}
+			}while(b<=c&&currentCharacter>=partitionCharacter);
+			
+			if(b<=c){
+				swapElements(b, c);
+				b++;
+				c++;
+			}
+			
+		}
+		
+	}
+	
+	private static void swapElements(int firstIndex, int secondIndex){
+		int temp = pointers[firstIndex];
+		pointers[firstIndex] = pointers[secondIndex];
+		pointers[secondIndex] = temp;
+	}
+	
+}
