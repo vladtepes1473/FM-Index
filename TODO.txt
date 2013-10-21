@@ -1,0 +1,20 @@
+Repozitorij je podijeljen na dva dijela:
+1. readings: mislio sam da tu pobacamo svu literaturu sto ju nademo, tako da imamo sve na jednom mjestu
+2. source: source kod projekta, napravio sam Java projekt i samo ga trebate skinut i ukljucit u Eclipse
+
+Za pocetak da nemamo bas prazan hod do srijede, tj. da iskoristimo i to vrijeme bilo bi super da:
+
+1. probate instalirat git, skinut repozitorij, i probale nesto uploadat na to (nadopisat nesto u ovu datoteku ili slicno)
+link na repozitorij je : https://github.com/vladtepes1473/FM-Index
+neki korisni linkovi:
+http://git-scm.com/
+http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository
+
+Commitat necete moc dok ne napravite svoj account na githubu i ne posaljete mi vas username, jer vam moram dodat dozvole za commit.
+
+2. probate skinut i pokrenut biolinux (ovo nije toliko bitno, jer necemo na tome raditi tako skoro,
+ bit ce nam bitnije kasnije kada cemo testirat program)
+
+3. kada bi jedna od vas proucila malo one FASTA fileove, i idealno napravila neki parser za citanje datoteka, (koliko sam skuzio FASTA se
+razlikuje samo po tome sto u prvom redu ima ">" sto oznacava neku opisnu liniju, no trebalo bi provjerit jel se to samo smije pojavit u prvom redu).
+
