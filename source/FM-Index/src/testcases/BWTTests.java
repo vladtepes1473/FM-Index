@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class testcases {
+public class BWTTests {
 
 	@Test
 	public void BWTTest1() {

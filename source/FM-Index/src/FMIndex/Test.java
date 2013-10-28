@@ -32,6 +32,12 @@ public class Test {
 		input.string = text;
 		StringWrapper output = new StringWrapper();
 		long startTime = System.currentTimeMillis();
+		ConcreteAlphabet a = new ConcreteAlphabet(input); 
+		Character c[] = a.getAllCharacters();
+		PrefixSumTable sum = new DictionaryPrefixSumTable(a);
+		for(Character ca : c){
+			System.out.println(ca + " " + sum.getCharacterPrefixSum(ca));
+		}
 		BWT.performBTW(input, output);
 		long stopTime = System.currentTimeMillis();
 	    long elapsedTime = stopTime - startTime;
