@@ -1,0 +1,17 @@
+Cisto neke male upute:
+
+-metode u javi se pisu sa prvim slovom lowercase: getNextInt, isNull itd... 
+Bilo bi super da se tog drzimo, da kod ne lici na dumbus (ja sam to vjerojatno vec nekoliko puta preksio,
+pa cu svakako ispravit)
+
+-komentari: bilo bi dobro pisat komentare odmah kad kodirate, al naravno to je naporno (pa i meni xD), al ono
+bilo bi dobro da imamo komentare za svaku klasu, svaku metodu (za ovo dvoje koristit javadoc, to se onda moze lijepo exportat)
+Ako netko ne zna kako se pisu takvi komentari, nek pogle u BWT.java, tamo sam nabrzaka nes napisao.
+Osim toga bilo bi dobro da pisete komentare za neki kod koji je slozeniji i nije jasan sam po sebi.
+
+-testiranje: bilo bi super da za svaku klasu sto napravimo napravimo jednu klasu koja ce imat unit testove za tu klasu.
+bilo bi dobro za svako ponasanje imat par unit testova, i posebno probajte smislit neke rubne slucajeve koje mozda
+nismo pokrili (prazan niz, isti znakovi) pa istestirajte s tim.
+
+evo ovo je ovako nabrzaka, pa ako se neceg sjetim dodam, ako jedna od vas ima kakve prijedloge na sto bi bilo dobro pazit,
+moze ih stavit ovdje.

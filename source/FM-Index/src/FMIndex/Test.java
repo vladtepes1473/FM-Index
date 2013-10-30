@@ -7,11 +7,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.BitSet;
 
 public class Test {
 
 	public static void main(String[] args) {
 		BufferedReader reader = null;
+		
+		BitSet bs = new BitSet(100000);
+		
 		try {
 			reader = new BufferedReader(new FileReader("test.txt"));
 			
