@@ -1,11 +1,11 @@
 package FMIndex;
 
-
-//@maja: nemam tu nekih komentara za ovu klasu
 public class WaveletTree implements OccTable {
 
+	WaveletNode root;
+	
 	public WaveletTree(StringWrapper string){
-		
+		root = new WaveletNode(string);
 	}
 	
 	

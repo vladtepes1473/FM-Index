@@ -22,10 +22,10 @@ package FMIndex;
  */
 public class RRR implements BitLookup {
 
-	public RRR(){
+	public RRR(Character pivot, StringWrapper string){
 		
 	}
-	
+
 	@Override
 	public int rank(Integer position) {
 		// TODO Auto-generated method stub

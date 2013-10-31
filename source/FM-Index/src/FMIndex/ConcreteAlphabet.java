@@ -1,5 +1,6 @@
 package FMIndex;
 
+import java.awt.RenderingHints.Key;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -31,6 +32,9 @@ public class ConcreteAlphabet implements Alphabet {
 	public Character[] getAllCharacters(){
 		return alphabet.keySet().toArray(new Character[0]);
 	}
-	
-	
+
+	@Override
+	public int size() {
+		return alphabet.keySet().size();
+	}
 }
