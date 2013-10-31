@@ -9,11 +9,17 @@ public class WaveletNode {
 	private BitLookup bitContent;
 	
 	public WaveletNode(StringWrapper string){
-		if(string.length() <= 1){
-			return;
-		}
 		ConcreteAlphabet alphabet = new ConcreteAlphabet(string);
-		int half = alphabet.size() / 2;
+		
+		int alphabetSize = alphabet.size();
+		if(alphabetSize <= 2)
+			return;
+		int half;
+		if(alphabetSize % 2 == 0)
+			half = alphabet.size() / 2 - 1;
+		else
+			half = alphabetSize / 2;
+		
 		int totalOccurencesSoFar = 0;
 		Character[] allCharacters = alphabet.getAllCharacters();
 		
@@ -35,14 +41,14 @@ public class WaveletNode {
 		StringBuilder buildOnes = new StringBuilder();
 		
 		for(int i = 0; i < string.length(); i++){
-			if(string.charAt(i) < pivotIndex)
+			if(string.charAt(i) < allCharacters[pivotIndex])
 				buildZeros.append(string.charAt(i));
 			else
 				buildOnes.append(string.charAt(i));
 		}
 		
 		zeros.string = buildZeros.toString();
-		ones.string = buildZeros.toString();
+		ones.string = buildOnes.toString();
 		
 		left = new WaveletNode(zeros);
 		right = new WaveletNode(ones);
