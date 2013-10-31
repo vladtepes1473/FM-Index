@@ -31,7 +31,8 @@ public class WaveletNode {
 		if( (string.length() - totalOccurencesSoFar) > 
 			(string.length() + alphabet.getOccurancesForCharacter(allCharacters[pivotIndex + 1]) - totalOccurencesSoFar) ){
 				pivotIndex ++;
-			}
+		}
+		
 		this.pivot = allCharacters[pivotIndex];
 		bitContent = new RRR(pivot, string);
 		
