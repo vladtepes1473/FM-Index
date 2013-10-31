@@ -7,4 +7,5 @@ public interface Alphabet {
 	public Integer getOccurancesForCharacter(Character c);
 	public Character[] getAllCharacters();
 	public int size();
+	public Alphabet[] splitAlphabet(Character pivot);
 }

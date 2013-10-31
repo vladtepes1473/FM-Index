@@ -2,11 +2,18 @@ package FMIndex;
 
 import java.awt.RenderingHints.Key;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
+
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
 
 public class ConcreteAlphabet implements Alphabet {
 
 	private Map<Character,Integer> alphabet;
+	
+	private ConcreteAlphabet(){
+		alphabet = new TreeMap<Character, Integer>();
+	}
 	
 	public ConcreteAlphabet(StringWrapper string){
 		alphabet = new TreeMap<Character, Integer>();
@@ -36,5 +43,25 @@ public class ConcreteAlphabet implements Alphabet {
 	@Override
 	public int size() {
 		return alphabet.keySet().size();
+	}
+
+	@Override
+	public Alphabet[] splitAlphabet(Character pivot) {
+		ConcreteAlphabet alphabet1 = new ConcreteAlphabet();
+		ConcreteAlphabet alphabet2 = new ConcreteAlphabet();
+		for(Entry<Character, Integer> pair : alphabet.entrySet()){
+			if(pivot<pair.getKey()){
+				alphabet1.alphabet.put(pair.getKey(), pair.getValue());
+			}
+			else{
+				alphabet2.alphabet.put(pair.getKey(), pair.getValue());
+			}
+		}
+		
+		Alphabet alphabets[] = new Alphabet[2];
+		
+		alphabets[0] = alphabet1;
+		alphabets[1] = alphabet2;
+		return alphabets;
 	}
 }
