@@ -57,8 +57,10 @@ public class WaveletNode {
 		zeros.string = buildZeros.toString();
 		ones.string = buildOnes.toString();
 		
-		left = new WaveletNode(zeros, alphabet.splitAlphabet(pivot)[0]);
-		right = new WaveletNode(ones, alphabet.splitAlphabet(pivot)[1]);
+		Alphabet[] splittedAlphabets = alphabet.splitAlphabet(pivot);
+		
+		left = new WaveletNode(zeros, splittedAlphabets[0]);
+		right = new WaveletNode(ones, splittedAlphabets[1]);
 	}
 	
 	public int getCharacterOcurrance(Character character, Integer position){
