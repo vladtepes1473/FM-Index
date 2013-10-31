@@ -8,12 +8,8 @@ public class WaveletTree implements OccTable {
 		root = new WaveletNode(string);
 	}
 	
-	
 	@Override
 	public int getCharacterOcurrance(Character character, Integer position) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
+		return root.getCharacterOcurrance(character, position);
+	}	
 }

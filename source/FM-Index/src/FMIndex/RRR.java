@@ -28,8 +28,10 @@ public class RRR implements BitLookup {
 
 	@Override
 	public int rank(Integer position) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(position == 0)
+			return 1;
+		else
+			return 2;
 	}
 
 }
