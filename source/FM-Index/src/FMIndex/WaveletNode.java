@@ -7,9 +7,9 @@ public class WaveletNode {
 	private WaveletNode right = null;
 	private Character pivot;
 	private BitLookup bitContent;
-	
-	public WaveletNode(StringWrapper string){
-		ConcreteAlphabet alphabet = new ConcreteAlphabet(string);
+	private Alphabet alphabet;
+	//TODO alphabet
+	public WaveletNode(StringWrapper string, Alphabet alphabet){
 		Character[] allCharacters = alphabet.getAllCharacters();
 		
 		int alphabetSize = alphabet.size();
@@ -57,8 +57,8 @@ public class WaveletNode {
 		zeros.string = buildZeros.toString();
 		ones.string = buildOnes.toString();
 		
-		left = new WaveletNode(zeros);
-		right = new WaveletNode(ones);
+		left = new WaveletNode(zeros, alphabet.splitAlphabet(pivot)[0]);
+		right = new WaveletNode(ones, alphabet.splitAlphabet(pivot)[1]);
 	}
 	
 	public int getCharacterOcurrance(Character character, Integer position){

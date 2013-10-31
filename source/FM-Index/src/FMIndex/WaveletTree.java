@@ -5,7 +5,7 @@ public class WaveletTree implements OccTable {
 	WaveletNode root;
 	
 	public WaveletTree(StringWrapper string){
-		root = new WaveletNode(string);
+		root = new WaveletNode(string, new ConcreteAlphabet(string));
 	}
 	
 	@Override
