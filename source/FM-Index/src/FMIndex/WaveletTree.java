@@ -4,8 +4,8 @@ public class WaveletTree implements OccTable {
 
 	WaveletNode root;
 	
-	public WaveletTree(StringWrapper string){
-		root = new WaveletNode(string, new ConcreteAlphabet(string));
+	public WaveletTree(StringWrapper string, Alphabet alphabet){
+		root = new WaveletNode(string, alphabet);
 	}
 	
 	@Override

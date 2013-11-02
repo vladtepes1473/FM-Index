@@ -72,10 +72,10 @@ public class RRR implements BitLookup {
 
 
 			
-		System.out.println(bitString.toString());
-		System.out.println(BS); 
-		System.out.println(SBS);
-		System.out.println("RANK: "+this.rank(15));
+		//System.out.println(bitString.toString());
+		//System.out.println(BS); 
+		//System.out.println(SBS);
+		//System.out.println("RANK: "+this.rank(15));
 
 	}
 

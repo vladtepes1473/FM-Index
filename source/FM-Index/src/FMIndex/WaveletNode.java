@@ -59,6 +59,7 @@ public class WaveletNode {
 		
 		Alphabet[] splittedAlphabets = alphabet.splitAlphabet(pivot);
 		
+
 		left = new WaveletNode(zeros, splittedAlphabets[0]);
 		right = new WaveletNode(ones, splittedAlphabets[1]);
 	}
@@ -67,13 +68,13 @@ public class WaveletNode {
 		int rank = bitContent.rank(position);
 		if(character < pivot){
 			if(left != null)
-				return left.getCharacterOcurrance(character,  position - rank);
+				return left.getCharacterOcurrance(character,  position - rank-1);
 			else
 				return position - rank;
 		}
 		else{
 			if(right != null)
-				return right.getCharacterOcurrance(character, rank);
+				return right.getCharacterOcurrance(character, rank-1);
 			else
 				return rank;
 		}

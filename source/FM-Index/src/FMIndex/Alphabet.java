@@ -8,4 +8,5 @@ public interface Alphabet {
 	public Character[] getAllCharacters();
 	public int size();
 	public Alphabet[] splitAlphabet(Character pivot);
+	public Integer getCharacterIndex(Character character);
 }

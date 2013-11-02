@@ -12,6 +12,7 @@ import java.util.BitSet;
 public class Test {
 
 	public static void main(String[] args) {
+		
 		BufferedReader reader = null;
 		
 		BitSet bs = new BitSet(100000);
@@ -27,14 +28,14 @@ public class Test {
 		StringWrapper input = new StringWrapper();
 		String text = null;
 		try {
-			text = new String(Files.readAllBytes(Paths.get("D:\\FM-Index\\source\\test.txt")));
+			text = new String(Files.readAllBytes(Paths.get("D:\\FM-Index\\source\\test1.txt")));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(text.length());
 		input.string = text;
-		StringWrapper output = new StringWrapper();
+		/*StringWrapper output = new StringWrapper();
 		long startTime = System.currentTimeMillis();
 		ConcreteAlphabet a = new ConcreteAlphabet(input); 
 		Character c[] = a.getAllCharacters();
@@ -45,7 +46,16 @@ public class Test {
 		BWT.performBTW(input, output);
 		long stopTime = System.currentTimeMillis();
 	    long elapsedTime = stopTime - startTime;
-	    System.out.println(elapsedTime);
+	    System.out.println(elapsedTime);*/
+		
+		StringWrapper sw = new StringWrapper();
+		sw.string = "$jajajaj sam ja i samo ja";
+		StringWrapper sw1 = new StringWrapper();
+		sw1.string = "AC";
+		
+		FMIndex fmindex = new FMIndex(input);
+		int count = fmindex.Count(sw1);
+		System.out.println(count);
 		return;
 	}
 
