@@ -15,7 +15,7 @@ public class BWTTests {
 		StringWrapper inputString = new StringWrapper();
 		inputString.string = input;
 		StringWrapper outputString = new StringWrapper();
-		BWT.performBTW(inputString, outputString);
+		BWT.performBWT(inputString, outputString);
 		
 		
 		Assert.assertEquals(outputString.string, expectedOutput);
@@ -29,7 +29,7 @@ public class BWTTests {
 		StringWrapper inputString = new StringWrapper();
 		inputString.string = input;
 		StringWrapper outputString = new StringWrapper();
-		BWT.performBTW(inputString, outputString);
+		BWT.performBWT(inputString, outputString);
 		
 		
 		Assert.assertEquals(outputString.string, expectedOutput);
@@ -44,7 +44,7 @@ public class BWTTests {
 		StringWrapper inputString = new StringWrapper();
 		inputString.string = input;
 		StringWrapper outputString = new StringWrapper();
-		BWT.performBTW(inputString, outputString);
+		BWT.performBWT(inputString, outputString);
 		
 		
 		Assert.assertEquals(outputString.string, expectedOutput);

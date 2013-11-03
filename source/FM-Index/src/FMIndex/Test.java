@@ -29,6 +29,7 @@ public class Test {
 		String text = null;
 		try {
 			text = new String(Files.readAllBytes(Paths.get("D:\\FM-Index\\source\\test1.txt")));
+			//text = new String(Files.readAllBytes(Paths.get("/Users/ljama/FM-Index/source/FM-Index/test.txt")));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

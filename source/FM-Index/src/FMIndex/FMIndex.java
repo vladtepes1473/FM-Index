@@ -10,7 +10,7 @@ public class FMIndex {
 		this.alphabet = new ConcreteAlphabet(string);
 		this.cTable = new DictionaryPrefixSumTable(this.alphabet);
 		StringWrapper bwtString = new StringWrapper();
-		BWT.performBTW(string, bwtString);
+		BWT.performBWT(string, bwtString);
 		this.occTable = new WaveletTree(bwtString, alphabet);
 		
 	}

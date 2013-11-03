@@ -1,9 +1,5 @@
 package FMIndex;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Stack;
-
 /**
  * Class for performing the BWT transformation
  */
@@ -23,7 +19,7 @@ public class BWT {
 	 * @param inputString the string wrapper on which the BWT should be performed
 	 * @param outputString the string wrapper where the transformed string will be saved
 	 */
-	public static void performBTW(StringWrapper inputString, StringWrapper outputString){
+	public static void performBWT(StringWrapper inputString, StringWrapper outputString){
 		BWT.inputString = inputString.string;
 		int stringLength = BWT.inputString.length();
 		pointers = new int[stringLength];

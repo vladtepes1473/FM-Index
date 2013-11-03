@@ -7,8 +7,6 @@ public class WaveletNode {
 	private WaveletNode right = null;
 	private Character pivot;
 	private BitLookup bitContent;
-	private Alphabet alphabet;
-	//TODO alphabet
 	public WaveletNode(StringWrapper string, Alphabet alphabet){
 		Character[] allCharacters = alphabet.getAllCharacters();
 		
@@ -68,13 +66,13 @@ public class WaveletNode {
 		int rank = bitContent.rank(position);
 		if(character < pivot){
 			if(left != null)
-				return left.getCharacterOcurrance(character,  position - rank-1);
+				return left.getCharacterOcurrance(character,  position + 1 - rank - 1);
 			else
-				return position - rank;
+				return position + 1 - rank;
 		}
 		else{
 			if(right != null)
-				return right.getCharacterOcurrance(character, rank-1);
+				return right.getCharacterOcurrance(character, rank - 1);
 			else
 				return rank;
 		}
