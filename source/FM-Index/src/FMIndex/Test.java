@@ -28,7 +28,7 @@ public class Test {
 		StringWrapper input = new StringWrapper();
 		String text = null;
 		try {
-			text = new String(Files.readAllBytes(Paths.get("D:\\FM-Index\\source\\test1.txt")));
+			text = new String(Files.readAllBytes(Paths.get("D:\\FM-Index\\source\\testdna.txt")));
 			//text = new String(Files.readAllBytes(Paths.get("/Users/ljama/FM-Index/source/FM-Index/test.txt")));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -52,7 +52,7 @@ public class Test {
 		StringWrapper sw = new StringWrapper();
 		sw.string = "$jajajaj sam ja i samo ja";
 		StringWrapper sw1 = new StringWrapper();
-		sw1.string = "AC";
+		sw1.string = "ATTA";
 		
 		FMIndex fmindex = new FMIndex(input);
 		int count = fmindex.Count(sw1);
