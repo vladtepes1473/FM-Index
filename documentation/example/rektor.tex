@@ -1,0 +1,1002 @@
+%\documentclass[times, utf8, diplomski]{fer}
+%\usepackage{booktabs}
+\documentclass[times, utf8, zavrsni, numeric, sort]{fer}
+\usepackage{booktabs, url, hyperref}
+\usepackage{verbatim}
+\usepackage{moreverb}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{epstopdf}
+
+\hypersetup{
+   colorlinks,
+   citecolor=black,
+   filecolor=black,
+   linkcolor=black,
+   urlcolor=black
+}
+
+
+%dodatak za programski kod
+\usepackage{listings}
+\usepackage{color}
+\usepackage{setspace}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\small\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+
+\begin{document}
+
+% TODO: Navedite naslov rada.
+\title{Izvedba algoritma za kompresiju medicinskih slikovnih podataka korištenjem grafičkog procesora s ciljem povećanja propusnosti i smanjenja utrošene energije}
+
+% TODO: Navedite vaše ime i prezime.
+\author{Marko Đurasević, Dino Šantl}
+
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+Ovaj rad je izrađen je na Zavodu za automatiku i računalno inženjerstvo Fakulteta elektrotehnike i računarstva pod vodstvom doc. dr. sc. Josipa Knezovića i predan je na natječaj za dodjelu Rektorove nagrade za najbolje studentske radove u akademskoj godini 2012./2013.
+\par \hfil
+\vspace*{\fill}
+
+\listoftables
+
+\listoffigures
+
+\tableofcontents
+
+\chapter{Uvod}
+
+Današnji informacijski sustavi koji se koriste u svim granama ljudskih djelatnosti pa tako i u medicini odlikuju se iznimnom složenošću. Potrebe za računalnom moći i pohrani velikih količina podataka svakim je danom sve veća. Fizičke granice procesora polako se dosežu. Zbog toga sve je više višeprocesorskih sustava u upotrebi. Za potpuno iskorištavanje računalne moći potrebni su dobro izvedeni paralelni algoritmi. Osim računalne moći jedna od popularnijih disciplina u računarstvu danas je upravljanje velikim količinama podataka. Umjesto spremanja podataka u sirovom formatu, koriste se razne vrste kompresija kako bi se što je moguće racionalnije iskoristio prostor za pohranu podataka. Usporedno s porastom računskih mogućnosti i zahtjeva današnjih sustava, postoji i sve veći problem utrošene energije koja je potrebna za njihov rad. Cilj je uštedjeti što više energije \cite{Tariq:12}. Upravljanje energijom postaje sve važnije pitanje za informatičke sustave.
+
+Bolnički informacijski sustavi su tipičan primjer složenog sustava. Jedna od glavnih karakteristika tog sustava je spremanje velikih količina podataka, najčešće vizualnih. Za osiguravanje kvalitetnog rada osoblja (korisnika sustava) potrebno je smanjiti nepotrebno vrijeme čekanja dohvata slika s udaljenih računala pomoću mreže. Jedan aspekt rješavanja navedenih problema je primjena kompresije podataka. Kompresijom se postiže ušteda prostora za pohranu podataka i veća propusnost podataka između računala. Važno svojstvo koje takav algoritam kompresije mora imati je kratko vrijeme izvođenja. Pojedine dijagnostičke metode generiraju veoma velike količine podataka. Tako primjerice studije magnetske rezonancije generiraju i do 4GB slikovnih podataka po pacijentu. Pretpostavimo da obavljanje jednog pregleda traje 30 minuta i da se uređaj koristi 8 sati dnevno (postoji tendencija da se oni koriste i više od tog vremena) dobivamo da se dnevno generira 64 GB slikovnih podataka dnevno, odnosno skoro 2 TB mjesečno.
+
+U ovom radu predlaže se izvedba metode za kompresiju slika bez gubitaka \emph{CBPC} \engl{Contextual and Blending Predictive Coder} predloženog u \cite{Knezovic:06, Knezovic:07, Knezovic:007}  za bolničke sustave. Radi se o metodi koja se zasniva na računski složenom predviđanju slikovnih elemenata na kauzalnom kontekstu susjednih elemenata korištenjem metode "miješanja" statičkih funkcija predviđanja. Postupak "miješanja" sastoji se u iscrpnom pretraživanju lokalnog područja kako bi se našli "slični" slikovni elementi nad kojima se vrši adaptacija statičkog skupa funkcija predviđanja \cite{Knezovic:07}. Ovaj dio metode odlikuje se velikom računskom složenošću, ali isto tako ima veliku količinu paralelizma među podatcima (slikovnim elementima).  Zahtjevi koji su postavljeni pred izvedbu su što bolje vrijeme izvođenja, što veća kompresija podataka, što je moguće veća ušteda energije. Cilj rada je pokazati da izvedba zadovoljava postavljene zahtjeve.
+
+Kao rješenje problema predložena je izvedba računski zahtjevnog koraka predviđanja korištenjem grafičkog procesora kao ubrzivača. Koncept korištenja grafičkih procesora kao ubrzivača u aplikacijama opće namjene je relativno novi pristup koji se pojavio razvojem računskih mogućnosti grafičkih procesora \cite{gpgpu, Owens:07, CUDAHOME, openclhome}.  U predloženoj izvedbi odabran je \emph{CUDA} programski model i okruženje. \emph{CUDA} je paralelna računalna platforma i programski model koji povećava performanse korištenjem računalne snage grafičkih procesora za opću namjenu \cite{CUDAHOME}. Razlog izvedaba za grafičke procesore je u tome što sve više računalnih sustava koristi grafičke procesore kao osnovnu komponentu. Grafički procesori omogućuju podatkovni paralelizam pa je očekivano da se postigne što je moguće manje vrijeme izvođenja. Iako grafičke kartice troše više električne energije, ukoliko se postigne dovoljno veliko ubrzanje može se smanjiti i sama potrošnja električne energije u usporedbi s običnim procesorima. Nadolazeći grafički procesori podržavaju uz izvođenje grafički-specifičnih operacija što im je primarna uloga podržavaju i mogućnosti izvođenja aplikacija opće namjene korištenjem programskih modela kao što su \emph{CUDA} i \emph{OpenCL}. Tako je moguće obaviti kompresiju slikovnih dijagnostičkih podataka na računalu koje se nalazi pri samom dijagnostičkom uređaju te tako komprimirane podatke spremiti u centralni repozitorij podataka. Na taj način postiže se ušteda u količini prometa preko mrežne infrastrukture bolničkog informacijskog sustava te se smanjuju zahtjevi za propusnost. Ove prednosti naročito dolaze do izražaja u telemedicinskim primjenama gdje postoji potreba prijenosa ne samo statičkih slikovnih podataka nego i video, trodimenzionalnih i višedimenzionalnih podataka \cite{Klapan:06, Sruk:02}.
+
+
+
+\chapter{Motivacija}
+\section{Bolnički informacijski sustavi}
+
+U današnje vrijeme sve se više ulaže u razvoj modernih informacijskih sustava koji se koriste u različitim sferama ljudske djelatnosti. Među njima se posebno ističu bolnički informacijski sustavi kojima se nastoji ostvariti jedinstven registar medicinskih podataka o pacijentima, brza i učinkovita razmjena medicinski bitnih podataka o pacijentima te ostale operacije koje imaju za cilj podizanje kvalitete cjelokupnog zdravstvenog sustava. Time se nastoji ostvariti da su svi podaci o pacijentima pohranjeni na jednom mjestu te su preko informacijskog sustava dostupni liječnicima na zahtjev. Podatci pacijenta više ne bi bili spremljeni u papirnatom obliku, već u obliku e-kartona, gdje bi bili pohranjeni svi podaci relevantni za pacijenta (primjerice povijest bolesti, recepti i slično). Osim toga, ovakav informacijski sustav treba omogućiti pohranu i brzu razmjenu dijagnostičkih podataka o pacijentima kako bi se rad cjelokupnog zdravstvenog sustava optimirao te se izbjegle nepotrebna ponavljanja dijagnostičkih postupaka koji su često iznimno skupi.
+
+Konceptualni prikaz bolničkog informacijskog sustava prikazan je na slici \ref{fig:med}. Središnji zdravstveni sustav predstavlja lokaciju na koju se spremaju svi podaci o pacijentima u obliku e-kartona, ali i njihovi radiološki nalazi. Svatko tko je unutar bolničkog sustava autoriziran za pristup podacima, može njima pristupiti putem medicinskog informacijskog sustava. Na taj način svi potrebni podaci o pacijentu su odmah dostupni liječnicima specijalistima. Na taj način provodi se centralizacija svih relevantnih medicinskih podataka o pacijentu na jedno jedinstveno mjesto.
+
+Kako su medicinski slikovni podaci često velikih veličina od nekoliko stotina \emph{MB}-a pa čak i nekoliko \emph{GB}, treba se te podatke moći pohraniti, ali ih i razmjenjivati na što efikasniji način. U tu svrhu razvijen je \emph{PACS} \engl{Picture Archiving and Communication System}. \emph{PACS} se bazira na medicinskim slikovnim podatcima, njihovom pohranjivanju, komunikacijskim tehnologijama, prikazu medicinskih slika i kliničkom radnom slijedu \cite{Huang:11}. On omogućava efikasno arhiviranje medicinskih slikovnih podataka, kao i njihov efikasan digitalni prijenos. Formati zapisivanja slika kao i njihovog prijenosa putem \emph{PACS}-a se temelje na standardima kao što su \emph{DICOM}\cite{dicom} \engl{Digital Imaging and Communications in Medicine} i \emph{NIfTI} \cite{nifti} \engl{Neuroimaging Informatics Technology Initiative}. \emph{DICOM} predstavlja standard kojim se propisuju načini pohranjivanja, prenošenja i rukovanja medicinskim slikovnim podacima. U njemu su propisani korišteni podatkovni formati, kao i komunikacijski protokoli.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=11cm]{slike/MED.png}
+\caption{Primjer bolničkog informacijskog sustava}
+\label{fig:med}
+\end{figure}
+
+U Republici Hrvatskoj se također želi postići visoki stupanj informatizacije zdravstva. U tu svrhu koristi se Centralni zdravstveni informacijski sustav Hrvatske (CEZIH). CEZIH-om se nastoje povezati sve liječničke ordinacije, osiguravatelje te razne medicinske ustanove. Veliki iskorak prema daljnjoj informatizaciji je učinjen 2011. godine kada je uveden e-recept. Broj izdanih e-recepata godišnje iznosi otprilike 50 milijuna \cite{strategija}. Iako je već veliki broj ordinacija i ljekarni povezan sa CEZIH-om, trenutačno još ne postoji međusobna informatička povezanost između bolnica kao ni jedinstven skup podataka koji se prate i šalju. Integracija bolničkih sustava i centralnog informatičkog sustava je tek u začetku i treba se vidjeti kada će ona biti ostvarena \cite{strategija}.
+
+Nacionalna strategija razvoja zdravstva u Hrvatskoj stavlja također fokus i na razvoj telemedicine \engl{telemedicine} \cite{strategija}. Jedan od elemenata telemedicine je i teleradiologija \engl{teleradiology}, odnosno pohrana i razmjena različitih radioloških slika pacijenata poput \emph{CT}-a i magnetske rezonancije \cite{Barneveld:10}. Na taj način radiolozi bi mogli pružati svoje usluge pacijentima bez potrebe da budu fizički u njihovoj blizini. Osim toga, teleradiologija bi omogućila i konzultaciju međusobno udaljenih liječnika vezanu uz interpretaciju raznih radioloških slika pacijenata \cite{Ross:09}.
+
+\section{Zeleno računarstvo}
+
+"Zeleno računarstvo" \engl{Green Computing} je pojam s kojim se danas sve više i više susrećemo. Pod tim pojmom podrazumijeva se istraživanje razvoja, korištenja računala, kao i zbrinjavanja  računalnog otpada s minimalnim ili nikakvim utjecajem na okoliš \cite{San:08}. "Zeleno računarstvo" je danas sve važniji koncept iz razloga što se proizvodi sve više računalnih komponenti i tako nastaje sve više računalnog otpada, kojeg je potrebno zbrinuti na prikladan način.
+
+No "zeleno računarstvo" se ne odnosi samo da zbrinjavanje računalnog otpada. Sve se više koriste veliki računalni informacijski sustavi koji naravno troše veliku količinu električne energije \cite{Zhang:10, Liu:09}. Upravo je jedan od ciljeva "zelenog računarstva" da se potrošnja takvih računalnih sustava što više minimizira. Naravno da smanjenje potrošnje ide i na ruku korisnicima takvih velikih informacijskih sustava, jer time smanjuju svoje troškove. Upravo iz navedenih razloga prilikom izgradnje takvih sustava, potrebno je voditi brigu o tome da se oni izgrade tako da se potrošnja što više smanji.
+
+Na uštedu električne energije se također može utjecati i načinom na koji su aplikacije izvedene. Naime, tu postoji mogućnost ubrzanja različitih i veoma računski zahtjevnih algoritama, čime se može smanjiti ukupno vrijeme izvođenja, a time i potrošnja električne energije. Također se sve više koristi i mogućnost paralelizacije programa, tako da se njihovi pojedini dijelovi izvode istodobno, kako bi se smanjilo ukupno trajanje izvođenja, što naravno opet može utjecati na potrošnju električne energije. Grafički procesori kao specijalizirane jedinice odlikuju se visokom energetskom učinkovitošću za izvođenje operacija nad velikom količinom podataka korištenjem paralelizma među podatcima. Na taj način moguće je i opće aplikacije koje obrađuju velike količine podataka ubrzati ali i optimirati njihovu potrošnju korištenjem grafičkih procesora kao ubrzivača u programskim modelima kao što su \emph{CUDA} i \emph{OpenCL} \cite{Keckler:11}.
+Upravo je to i jedan od ciljeva ovog rada. Nastoji se iskoristiti mogućnost paralelizacije računski zahtjevnog algoritma kompresije slike na grafičkim procesorima kako bi se osiguralo što kraće vrijeme izvođenje istog i tako pokušala smanjiti ukupna potrošnja električne energije. U šestom poglavlju bit će prikazani podaci o količini energije koju je moguće uštedjeti korištenjem paralelizirane inačice algoritma nasuprot serijske inačice.
+
+\section{Ubrzavanje algoritama grafičkim procesorima}
+
+Obični računalni procesori se brzinom radnog takta sve više približavaju svojim fizičkim ograničenjima. Zbog tog razloga, ali i zbog činjenice da su današnji procesori najčešće višejezgreni, sve se više pažnje pridaje paralelizaciji algoritama, radi postizanja ubrzanja njihovog izvršavanja.
+
+U posljednjih nekoliko godina sve se više razvija nova metoda paralelizacija algoritama, a to je izvođenje algoritama putem grafičkih kartica. Grafičke kartice su danas prisutne u gotovo svakom računalu i njihove performanse svakodnevno rastu, dok im se cijena polako smanjuje. Grafičke kartice su prije svega veoma zanimljive jer sadrže veliki broj procesorskih jezgri. Iako su te jezgre po svom radnom taktu dosta sporije od običnih procesora, njihova velika količina nam potencijalno omogućuje obradu velikih količina nezavisnih podataka paralelno, odnosno istovremeno. Zbog toga se veliki napori ulažu u izgradnju i poboljšanje tehnologija koje će omogućiti izvođenje općenitih algoritama na grafičkim karticama \engl{GPGPU - General-Purpose Computing on Graphics Processing Units}. Trenutno  dvije najpopularnije tehnologije koje se koriste u tu svrhu su \emph{OpenCL} \cite{openclhome}  i \emph{CUDA} \cite{CUDAHOME}. Osim ovih dviju navedenih tehnologija, Microsoft je nedavno izdao i svoju tehnologiju za \engl{GPGPU} pod nazivom \emph{C++ AMP} \cite{amp}, koja se nije još uspjela afirmirati, ali dokazuje kako je ovo područje još u razvoju i kako će se s vremenom pojavljivati sve nove i sve bolje tehnologije.
+
+Bez obzira što se radi o dosta novom području, već su se pojavile brojne izvedbe različitih algoritama izvedenih na grafičkim karticama kako bi se mogle isprobati mogućnosti paralelizacije i ubrzanja algoritama na njima. Tako su se primjerice već implementirali algoritmi za kompresiju i kodiranje u \emph{JPEG 2000} standardu \cite{jpeg2} kao i izvedba fraktalne kompresije za medicinske slike \cite{fractal}. U oba ova primjera pokazano je kako postoji veliki potencijal za primjenu \emph{GPGPU}-a za paralelizaciju i ubrzanje mnogih algoritama. Sve je popularnije primjena ovih tehnologija i za medicinske svrhe. Tako su grafičke kartice iskorištene za vizualizaciju i simulaciju medicinskih ultrazvukova na temelju \emph{CT} slikovnih podataka \cite{ctviz}, gdje su njihovim korištenjem postignute bolje performanse naspram klasičnih računalnih procesora. Proučavanje mogućnosti ubrzanja algoritama putem grafičkih procesora je jedna od glavnih motivacija i ovog rada. Kako grafičke kartice pružaju mogućnost obrade relativno velike količine podataka istodobno, razumno je algoritme koji se obavljaju na velikom količinom podataka, pokušati paralelizirati i ubrzati korištenjem grafičkih procesora.
+
+
+\chapter{Algoritam za kompresiju CBPC}
+
+U ovom poglavlju opisan je algoritam za kompresiju slika bez gubitaka predložen u \cite{Knezovic:06, Knezovic:07}. Dodatno, koristit će se adaptivna metoda predviđanja. Pri kompresiji medicinskih slika dosta često je potrebno osigurati da se iz kodirane slike može dobiti slika koja je istovjetna originalnoj slici dobivenoj na dijagnostičkom uređaju. Zbog toga se u takvim slučajevima koristi kompresija bez gubitaka. Stupanj kompresije ostvariv na ovaj način je znatno manji od stupnja kompresije s gubitcima. Međutim, savršena rekonstrukcija podataka ne dozvoljava korištenje metoda kompresije s gubitcima. U primjenama gdje se ipak žele ostvariti veći stupnjevi kompresije moguće je pojedine dijelove slike komprimirati bez gubitaka (dijagnostički bitne) a pojedine dijelove s gubitcima (dijagnostički nebitni dijelovi kao što su pozadina). Algoritam \emph{CBPC} spada u skupinu algoritama bez gubitaka a postoji mogućnost primjene u gore spomenutom hibridnom sustavu. Posljedice gubitka informacija na medicinskim slikama mogu dovesti do smrti pacijenta, zbog toga kao jedini ispravan i očit izbor je kompresija bez gubitaka. Biti će objašnjen samo postupak kodiranja. Za dekodiranje koristi se isti algoritam samo se koraci obavljaju obrnutim redoslijedom.
+
+
+\section{Kompresija slika}
+Kompresija slika danas zauzima posebno područje u teoriji kompresije. Razlog tome je specifičnost slike kao informacije. Pokazalo se da pristup kodiranju slika metodama koje se koriste za kodiranje teksta (klasični entropijski koderi ili metode rječnika) nije dobar, to je vidljivo na histogramima na slici \ref{fig:histogram}. Kada bi se koristila frekvencije pojavljivanja vrijednosti slikovnih elemenata tada bi izračunate vjerojatnosti pojavljivanja vrijednosti slikovnih elemenata bile ujednačene što ne dovodi do dobre kompresije. Cilj je dobiti što manju entropiju (izraz \ref{izraz:entropija}), a ujednačavanje vjerojatnosti dovodi do maksimalne entropije, što je suprotno željenom.
+
+\begin{equation}
+\label{izraz:entropija}
+H(X) = \sum_{i=1}^{N} p_{i} \cdot log(p_{i})
+\end{equation}
+
+Slikovni dvodimenzionalni podatci odlikuju se velikim stupnjem koreliranosti susjednih slikovnih elemenata. Skup susjednih slikovnih elementa koji su po vrijednosti slični tekućem, nepoznatom elementu, s aspekta entropijskog kodiranja sačinjava njegov kontekst. Ovisnost elementa slike o kontekstu u kojem se nalazi želi se iskoristi za kompresiju. Pri korištenju metoda predviđanja cilj je pronaći model koji će predvidjeti slikovni element na temelju slikovnih elemenata koji se nalaze u njegovoj blizini. Ako je model dobar tada će matematičko očekivanje pogreške biti 0. Uz to, histogram greške predviđanja (slika \ref{fig:histogram}) imat će šiljasti oblik što je idealno za kodiranje klasičnim entropijskim koderima.
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=10cm]{slike/histograms.eps}
+\caption{Prikaz histograma prilikom korištenja frekvencije pojavljivanja slikovnih elemenata i prilikom korištenja greške}
+\label{fig:histogram}
+\end{figure}
+
+Slika se može predstaviti matricom $I(i,j)$, gdje pojedini element matrice predstavlja vrijednost slikovnog elementa i vrijedi $0<i\leqslant H, 0<j\leqslant W$. Gdje su $H$ i $W$ visina odnosno širina slike. Algoritam za kompresiju koristi korak predviđanja slikovnih elemenata s ciljem uklanjanja statističke zalihosti prije samog entropijskog kodiranja. Slikovni elementi obrađuju se pojedinačno redoslijedom prikaza po recima a zatim po stupcima. Za svaki slikovni element izvršava se korak predviđanja koji na izlazu daje grešku predviđanja.  U ovom radu korištene su crno-bijele slike \engl{grayscale}. Na takvim slikama minimalna vrijednost slikovnog elementa je 0, a maksimalna 255. Algoritam se može jednostavno proširiti i na slike u boji s tri komponente pri čemu se svaka od komponenti obrađuje zasebno. Takva izvedba je ponovno prikladna za korištenje grafičkog procesora.
+
+\section{Koraci algoritma CBPC}
+Korišteni algoritam može se opisati (slika \ref{fig:blockshema}) u nekoliko glavna koraka \cite{Knezovic:007}:
+\begin{enumerate}
+	\item \textbf{Ulaz} - Učitavanje slikovnih podataka: učitavanje slike ili niza slika iz pojedine studije,
+	\item \textbf{PM - Predikcijsko modeliranje}: predviđanje trenutnog slikovnog elementa i računanje pogreške,
+	\item \textbf{CM - Kontekstualno modeliranje}: klasifikacija pogreške i generiranje različitih histograma za svaki razred pogreške,
+	\item \textbf{EC - Entropijsko kodiranje}: korištenje klasičnog načina kodiranja pogreške predikcije.
+	\item \textbf{Izlaz} - Spremanje komprimiranih podataka.
+\end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=13cm]{slike/CBPCB.eps}
+\caption{Prikaz koraka \emph{CBPCB} algoritma}
+\label{fig:blockdiagram}
+\end{figure}
+	
+	
+\subsection{Predikcijsko modeliranje}
+Predviđanje se temelji na vrijednostima slikovnih elemenata koji se nalaze u njegovom susjedstvu. Nadalje te elemente zvat ćemo regijama ili kontekstom slikovnog elementa. Potrebno je definirati regiju slikovng elementa. Ona može biti odabrana proizvoljno. Algoritam koji se opisuje koristi slijedni unazadni adaptivni model. To znači da se slika obrađuje po redcima. Kad završi obrada jednog retka kreće se na sljedeći. Ovakav način obrade idealan je za tokovni programski model. Izravna posljedica je ograničenje na definiranje regije slikovnog elementa. Slikovni element u svojoj regiji može imati bilo koje elemente koji su obrađeni prije njega. U konkretnom algoritmu koristi se regija prema slici \ref{fig:regija}, gdje su oznakama \emph{NN, NW, N NE, WW, W} označeni slikovni elementi koji se koriste kao regija za slikovni element na poziciji $(x,y)$.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.7]{slike/contexterrormodeltemplate_rektor.eps}
+\caption{Regija za slikovni element na poziciji $(x,y)$}
+\label{fig:regija}
+\end{figure}
+
+%TODO problem sa slikom nema nazive unutra iako su u svg-u
+\begin{figure}[htb]
+\centering
+\includegraphics[width=11cm]{slike/blockshema-josip.pdf}
+\caption{Blok shema rada algoritma}
+\label{fig:blockshema}
+\end{figure}
+
+Predviđanje se općenito računa kao:
+\begin{equation}
+\label{izraz:pred}
+\hat{I}(x,y) = \sum_{I(i,j)\in \Omega} a_{i,j} \cdot I(i,j)
+\end{equation}
+
+Pri tome dobivena greška predviđanja je:
+\begin{equation}
+e(x,y) = I(x,y) - \hat{I}(x,y)
+\end{equation}
+
+
+U izrazu \ref{izraz:pred} koeficijenti $a_{i,j}$ predstavljaju parametre linearnog modela predviđanja. S $\Omega$ označeni su svi slikovni elementi koji se nalaze u regiji. Statistička svojstva slikovnih elemenata bitno se mijenjaju od područja do područja. Ako se uzme predikcijska funkcija koja dobro predviđa u nekoj regiji, ona najčešće ne predviđa dobro na drugim regijama. Zato postoje različite predikcijske funkcije koje su specijalizirane za određene regije. Algoritam pretpostavlja da u različitim regijama na slici dominiraju različita svojstva ali pritom ne isključuje druga svojstva koja mogu biti prisutna. Zbog toga se posvećuje velika pažnja adaptaciji predikcijske funkcije kako bi se za različite regije mogle odabrati najbolje predikcijske funkcije, za razliku od nekih popularnih metoda kompresije slika bez gubitaka (\emph{CALIC, JPEG-LS} i sl.) gdje se koriste statičke predikcijske funkcije \cite{Wu:95, Wu:97, Weinberger:98}.
+
+Kvaliteta predviđanja ovisi o odabiru parametara $a_{i,j}$. Da bi predviđanje bilo uspješno za određene regije na slici postavljaju se sljedeća ograničenja na parametre $a_{i,j}$:
+
+\begin{itemize}
+\item \textbf{Glatka područja} - vrijednosti slikovnih elemenata su približno jednaki.
+\begin{equation}
+\label{izraz:glatko}
+\sum a_{i,j} = 1
+\end{equation}
+
+Izraz \ref{izraz:glatko} mora vrijediti jer ako su elementi u regiji slični, znači da i element za koji se predviđa vrijednost mora biti sličan kao i ostali u regiji. Većina slikovnih elemenata ima upravo regiju s tim svojstvom.
+
+\item \textbf{Područja s izraženom količinom šuma} - u ovom području je nemoguće predviđati slikovne elemente. U takvom slučaju potrebno je raditi što manju pogrešku. Pokazuje se da je za to potrebno minimizirati izraz:
+
+\begin{equation}
+\sum |a_{i,j}|
+\end{equation}
+
+Za minimiziranje tog izraza potrebno kao predviđanje dati srednju vrijednost elemenata iz pripadajuće regije.
+
+\item \textbf{Područje rubova i tekstura} - vizualno najbitniji dio slike \cite{Seemann:97}. Za predviđanje je potrebna adaptivna metoda.
+
+\end{itemize}
+
+Da bi predviđanje bilo uspješno potrebno je odrediti svojstva regije i prema tome iskoristiti predikcijsku funkciju. U ovom radu koristi se funkcija predikcije s miješanjem. Funkcija predikcije s miješanjem kombinira različite predikcijske funkcije kako bi se u određenoj regiji koristila sva svojstva. Greška pojedine predikcijske funkcije funkcije određuje koja su svojstva dominantnija u regiji, tj. ako je greška manja predikcijska funkcija ima veću važnost u konačnom predviđanju. U nastavku slijedi detaljan opis funckije predikcije s predviđanjem prema definiciji u \cite{Knezovic:06}.
+
+\subsection{Funkcija predviđanja s miješanjem \engl{blending}}
+
+Regija nekog slikovnog elementa može se prikazati u vektorskom obliku:
+
+\begin{equation}
+\mathbf{v_{i,j}}=(NN, NW, N, NE, WW, W)
+\end{equation}
+
+Vektorski uzorak $v_{i,j}$ sačinjen je od 6 najbližih susjednih elemenata označenih kao:
+\begin{itemize}
+\item N sjeverni element: $I(x, y-1)$
+\item W zapadni element: $I(x-1,y)$
+\item NN element iznad sjevernog elementa: $I(x, y-2)$
+\item WW element lijevo od zapadnog elementa: $I(x-2,y)$
+\item NW element iznad zapadnog elementa: $I(x-1,y-1)$
+\item NE element desno od sjevernog elementa: $I(x+1, y-1)$
+\end{itemize}
+
+Prethodno opisano označivanje koristi se često u publikacijama koje obrađuju tematiku kompresije slika bez gubitaka metodama predviđanja.
+
+Definira se područje $\Omega_{C}$ koje se naziva prozor pretraživanja. Prozor pretraživanja čine slikovni elementi koji su obrađeni i nalaze se u prozoru visine $R$ i širine $2R$ (slika \ref{fig:blockshema}).
+
+\begin{comment}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=9cm]{slike/blendpredictorcontext_rektor.eps}
+\caption{Prozor pretraživanja za slikovni element na poziciji $(x,y)$}
+\label{fig:celije}
+\end{figure}
+\end{comment}
+
+U prvom koraku funkcije predviđanja traže se takvi slikovni elementi čija je regija najmanje udaljena od regije trenutnog slikovnog elementa. Kako je regija predstavljena vektorom uzima se $M$ minimalnih  euklidskih udaljenosti prema izrazu:
+
+\begin{equation}
+D(x,y) = \left \|  \mathbf{v_{i,j}-\mathbf{v_{x,y}}}\right \|
+\end{equation}
+
+Pri čemu je regija za trenutni slikovni element (i,j), a $(x, y)$ su elementi u prozoru pretraživanja ($(x,y)\in \Omega_{C}$).
+Za skup od $M$ slikovnih elemenata čije su regije po udaljenosti od trenutnog elementa najmanje određen je kontekst za miješanje statičkih funkcija predviđanja $\Omega_{B}$. Za utvrđivanje udaljenosti slikovnih elemenata iz prozora pretraživanja koristi se euklidska udaljenost, ali može se primijeniti i neka druga.
+Definira se skup od $N$ predikcijskih funkcija $\left \{ f_{1}, f_{2}, ... , f_{N}\right \} $. Za svaku od funkcija izračunava se penalitet $G_{k}$. Penalitet se definira prema tome koliko loše predikcijska funkcija predviđa slikovne elemente u dobivenom kontekstu za miješanje (izraz \ref{izraz:kazna}).
+
+\begin{equation}
+\label{izraz:kazna}
+G_{k} = \frac{1}{M}\sum_{I(x,y)\in\Omega_{B}} (\hat{I_{k}}(x,y))-I(x,y))^{2}
+\end{equation}
+
+Gdje je $\hat{I_{k}}$ predviđanje funkcije $f_{k}$ za element u čeliji. Konačna funkcija predviđanja za tekući slikovni element računa se za trenutni element (i,j) računa se prema izrazu:
+
+\begin{equation}
+\label{izraz:mjesanje}
+\hat{I}(i,j) = \frac{\sum_{k=1}^{N}\frac{1}{G_{k}}\cdot \hat{I_{k}} (i,j)}{\sum_{k=1}^{N}\frac{1}{G_{k}}}
+\end{equation}
+
+Izraz \ref{izraz:mjesanje} naziva se funkcija predikcije s miješanjem. Iz izraza se može vidjeti da svaka predikcijska funkcija $f_{k}$ utječe na ukupan rezultat prema tome koliko griješi. Ako je greška manja predikcijska funkcija ima veći utjecaj. Ako se dogodi da penalitet $G_{k}$ jednak 0, tada se druge predikcijske funkcije ne uzimaju u obzir, nego je izraz za predviđanje slikovnog elementa jednak predikcijskoj funkciji $f_{k}$.
+
+U tablici \ref{tab:func_pred} prikazane su konkretne funkcije $f_{k}$ koje se koriste i njihove definicije.
+
+\begin{center}
+\captionof{table}{Funkcije predviđanja} \label{tab:func_pred}
+\begin{tabular}{| c | c |}
+\hline
+Funkcija predviđanja
+\\
+\hline
+$f_{N}=I(x,y-1)$
+\\
+\hline
+$f_{W}=I(x-1,y)$
+\\
+\hline
+$f_{NW}=I(x-1,y-1)$
+\\
+\hline
+$f_{NE}=I(x+1,y-1)$
+\\
+\hline
+$f_{GW}=2\cdot I(x,y-1) - I(x,y-2)$
+\\
+\hline
+$f_{GN}=2\cdot I(x-1,y) - I(x-2,y)$
+\\
+\hline
+$f_{PL}=I(x,y-1)+I(x-1,y)-I(x-1,y-1)$
+\\
+\hline
+\end{tabular}
+\end{center}
+
+Parametri koji se koriste u prema gore opisanom algoritmu su:
+\begin{itemize}
+\item Veličina regije pretraživanja - $R$
+\item Veličina vektorskog uzorka (konteksta) - $M$
+\item Skup predikcijskih funkcija - $f_{k}$ i dr.
+\end{itemize}
+Dodatno, kao simbol za kodiranje ne prosljeđuje se vrijednost pogreške, već se ona preslikava Potrebno je preslikati pogrešku tako da se održi šiljasta distribucija greške predviđanja. Moguće je i pronaći takvu funkciju preslikavanja da distribucija greške predviđanja bude pogodnija. Razlog je postizanje bolje kompresije klasičnim entropijskim kodiranjem \cite{Knezovic:06}.
+
+\subsection{Kontekstualno modeliranje greške predviđanja}
+Za ostvarivanje kompresije dovoljan bi bio i prvi korak. U prvom koraku kompresija je ostvarena na temelju svojstva slike, tj. redundantnih dijelova. Ako se pogreška prikaže u obliku slike, tako da na mjestu (x,y) nije vrijednost slikovnog elementa već pogreška, mogu se uočiti preostale strukturne zalihosti \cite{Knezovic:007}. Ovaj problem rješava se kontekstnim modeliranjem greške predviđanja u kojem se određuje kontekst u kojem se greška predviđanja pojavljuje. Za određivanje konteksta koristi se trenutni slikovni element i greška predviđanja neposredno prije obrađenog slikovnog elementa. Zbog podatkovnog paralelizma greška neposredno prije obrađenog slikovnog elementa se ne koristi u radu kako je predloženo u \cite{Knezovic:06}.
+
+
+Koristi se diskriminanta energije greške \cite{Wu:97} koja je definirana:
+
+\begin{equation}
+\Delta = d_{h} + d_{v} + 2*|e_{w}|
+\end{equation}
+
+Gdje su $d_{h}$ i $d_{v}$ procijene gradijenta u horizontalnom, odnosno u vertikalnom smjeru i računaju se kao:	
+
+\begin{equation}
+d_{h}=2 \cdot |W-WW| + |N-NW|
+\end{equation}
+
+\begin{equation}
+d_{v}=2 \cdot |W-NW| + |N-NN|
+\end{equation}
+
+Gdje velika slova predstavljaju konkretne vrijednosti slikovnih elemenata u regiji. Oznaka $e_{w}$ predstavlja pogrešku pretdhodno obrađenog slikovnog elementa.
+
+\begin{comment}
+Ovakav pristup je idealan za implementaciju u tokovnom programskom modelu, ali prilikom prilagodbe za grafičke kartice ovaj parametar je izostavljen, što ne utječe na ispravnost algoritma zbog toga što je sam postupak procjena (heuristika).
+\end{comment}
+
+Kao rezultat ovog postupka dobije se informacija koja govori koji histogram se koristi za kodiranje trenutnog slikovnog elementa. Ta informacija se zove kvantizirana energija. Kvantizirana energija se klasificira u 8 različithi vrijednosti kako je to predloženo na osnovu eksperimentalnih rezultata u \cite{Wu:97}. Ovih 8 vrijednosti predstavlja kontekst za kodiranje koji se prosljeđuje entropijskom koderu. Svaki kontekst u sebi sadrži distribuciju vjerojatnosti pojavljivanja greške predviđanja na osnovu koje se u konačnici generira kodna riječ u entropijskom kodiranju.
+
+\subsection{Entropijsko kodiranje}
+Entropijsko kodiranje koristi grešku predviđanja i njezin kontekst. Na temelju distribucije greške predviđanja određuju se k\^{o}dovi. Kao entropijski koder u ovome radu koristi se aritmetičko kodiranje. Mogu se koristi i drugi klasični načini entropijskog kodiranja. Kao drugi primjer klasičnog načina kodiranja je \emph{Huffmanovo} kodiranje. Problem \emph{Huffmanovog} kodiranja je u tome što su kodne riječi cjelobrojne duljine, što nije idealno za šiljaste distribucije (slika \ref{fig:histogram}).
+
+Kao izlaz ovog koraka dobije se tok binarnih podataka koji predstavljaju komprimirani niz slikovnih podataka iz ulaza.
+
+\subsection{Učinkovitost kompresije}
+Tablica \ref{tab:komp} prikazuje ostvarene stupnjeve kompresije algoritma CBPC te daje usporedbu sa nekoliko popularnih postojećih metoda kompresije slika bez gubitaka. U zagradama su prikazane vrijednosti potrebnog broja bitova po slikovnom elementu, odn. simbolu. Skup ispitnih slika sastoji se od 9 medicinskih dijagnostičkih slika dobivenih različitim metodama, a prikazan je na slici \ref{fig:med_slike}. Ovaj skup slika se često koristi u publikacijama za usporedbu ostvarenih stupnjeva kompresije. Algoritam CBPC ostvaruje najbolji stupanj kompresije (najmanji potreban prosječan broj bitova po slikovnom elementu). Međutim, potrebno je napomenuti da se poboljšanja u stupnju kompresije ostvaruju pomoću veće računske složenosti algoritma u odnosu na uspoređene algoritme. Na primjer, norma za kompresiju slika bez gubitaka JPEG--LS koristi jako jednostavnu nelinarnu funkciju predviđanja \cite{Weinberger:98}.
+
+\begin{center}
+\captionof{table}{Usporedba algoritama za kompresiju} \label{tab:komp}
+\begin{tabular}{| c | c | c | c | c |}
+\hline
+Slika & CALIC & JPEG-LS & JPEG 2000 & CBPC
+\\
+\hline
+CR chest & 3.40 (2.35) & 3.35 (2.39) & 3.17(2.52) & 3.52 (2.27)
+\\
+\hline
+CT abdo & 3.52 (2.27) & 4.23 (1.89) & 3.09 (2.59) & 4.17 (1.92)
+\\
+\hline
+CT brain & 6.45 (1.24) & 6.20 (1.29) & 5.63 (1.42) & 7.27 (1.10)
+\\
+\hline
+CT lomb & 3.62 (2.21) & 3.42 (2.34) & 3.36 (2.38) & 3.69 (2.17)
+\\
+\hline
+MR head & 1.87 (4.28) & 1.80 (4.44) & 1.79 (4.47) & 1.91 (4.19)
+\\
+\hline
+MR head1 & 1.80 (4.44) & 1.73 (4.62) & 1.70 (4.71) & 1.85 (4.32)
+\\
+\hline
+MR knee & 1.61 (4.97) & 1.57 (5.10) & 1.57 (5.10) & 1.63 (4.91)
+\\
+\hline
+OT an7 & 2.16 (3.70) & 2.18 (3.67) & 2.02 (3.96) & 2.21 (3.62)
+\\
+\hline
+OT colon & 2.49 (3.21) & 2.50 (3.2) & 2.32 (3.45) & 2.58 (3.10)
+\\
+\hline
+Geom. Mean & 2.72 (2.94) & 2.71 (2.95) & 2.52 (3.17) & 2.86 (2.80)
+\\
+\hline
+
+\end{tabular}
+\end{center}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=9cm]{slike/medset.jpg}
+\caption{Medicinske slike korištene za ispitivanje performansi algoritama}
+\label{fig:med_slike}
+\end{figure}
+
+
+
+\chapter{Programski model za grafičke procesore \emph{CUDA}}
+Cilj \emph{CUDA} arhitekture je omogućiti korištenje grafičke kartice za opću namjenu. Za korištenje \emph{CUDA}-e potrebno je koristiti grafičku karticu koja je podržana takvom arhitekturom što nužno znači da grafička kartica mora biti proizvedena od tvrtke \emph{NVIDIA}. Za programiranje grafičkih procesora uz \emph{CUDA} okruženje popularno je i \emph{OpenCL} okruženje. \emph{OpenCL} nešto je općenitije okruženje jer osim grafičkih kartica podržava i razne druge paralelne arhitekture. Za razliku od \emph{CUDA} okruženja u kojemu ipak treba voditi računa o arhitekturi grafičke kartice, \emph{OpenCL} okruženje je na višem apstraktnom nivou. Pozitivna strana je lakše programiranje i prenosivost programa, a negativna strana je što se ne može direktno utjecati na sklopovsku podršku koju grafičke kartice pružaju \cite{Gaster:2012}. U nastavku rada koristi se \emph{CUDA} okruženje.
+
+Za programiranje u \emph{CUDA} okruženju potrebno je koristiti neki od omogućenih programskih jezika. U ovom radu korišten je \emph{C/C++} programski jezik a njegovo proširenje za \emph{CUDA} okruženje naziva se \emph{CUDA C}. U nastavku rada pretpostavlja se njegovo korištenje.
+
+Kao i u drugim paralelnim okruženjima tako je i za \emph{CUDA} okruženje potrebno poznavati apstraktnu arhitekturu. Apstrakcija arhitekture omogućava lakšu prenosivnost aplikacija između različitih sklopovskih arhitektura grafičkih kartica, odnosno različitih generacija. Na slici \ref{fig:cuda_arh} prikazana je \emph{CUDA} arhitektura. Ovako prikazana arhitektura može se razložiti na dva modela - programski i memorijski model.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=10cm]{slike/cuda_memory.jpg}
+\caption{Prikaz \emph{CUDA} arhitekture}
+\label{fig:cuda_arh}
+\end{figure}
+
+\section{Programski model}
+Programski model definira na koji se način paralelno izvode instrukcije. \emph{CUDA} programski model definira tri razine izvođenja. Najviša razina je \emph{grid}\footnote{Koristi se engleski naziv zbog sličnosti engleskih i hrvatskih riječi koje se koriste u tom kontekstu: \emph{thread} i \emph{dretva} te \emph{block} i \emph{blok}, kako bi se \emph{grid} mogao prevesti s \emph{mreža} to dovodi do određene nejasnoće prilikom pregledavanja literature na engleskom jeziku.}. Pri pozivu funkcije \engl{kernel} na grafičkoj kartici pokreće se točno jedan \emph{grid}. \emph{Grid} se sastoji od blokova. Paralelne instrukcije se izvode u dretvama \engl{thread}. Dretve se nalaze unutar blokova. Ograničenja za broj dretvi i blokova definirana su za svaku grafičku karticu posebno. Dretve u istim blokovima mogu komunicirati preko dijeljene memorije, dok dretve u različitim blokovima za komunikaciju trebaju koristiti globalnu memoriju. Pristup globalnoj memoriji je sporiji od pristupa dijeljenoj memoriji. Stoga prilikom izvedbe programa treba voditi računa da se podatci koji se dijele među dretvama nalaze u dijeljenoj memoriji.
+
+Za razliku od klasičnog poziva funkcije koja se izvodi na centralnoj procesnoj jedinici (\emph{CPU}), za poziv funkcije na grafičkoj karitici potrebno je koristiti nešto drugačju sintaksu koja je definirana u programskom modelu \emph{CUDA}. Osim parametara funkcije potrebno je navesti koliko blokova i koliko dretvi će biti pokrenuto. Primjer je poziva funkcije addVector u programskom k\^{o}du \ref{kod:cuda-kernel}. Broj potrebnih blokova prenosi se kao predložak \emph{blockno} u pozivu, a broj potrebnih dretvi kao predložak \emph{threadno} u pozivu. Argumenti \emph{vectorA}, \emph{vectorB} i \emph{res} predstavljaju ulazne vektore koje je potrebno obraditi te rezultatni vektor preko kojeg se vraća rezultat.
+
+\begin{singlespace}
+\begin{lstlisting}[caption={Poziv funkcije na grafičkoj kartici},label=	{kod:cuda-kernel}, language = {C}]
+  		addVector<<<blockno, threadno>>>(vectorA, vectorB, res);
+
+\end{lstlisting}
+
+\end{singlespace}
+
+
+\section{Memorijski model}
+Memorijski model definira vrste memorija koje se mogu koristit prilikom programiranja. Vrste memorija se razlikuju u dosegu pristupa i vremenu pristupa kako je pikazano na slici \ref{fig:cuda_arh}.
+
+\subsection{Registri}
+Registri se mogu koristiti unutar samo jedne dretve. Svaki kooprocesor ima vlastite registre. Sve operacije koje se obavljaju, kao operande koriste vrijednosti koje su zapisane u registu, što znači da je prije obavljanja operacije potreban dohvat podataka u registar. Registri nisu vidljivi u programskom modelu. Oni se koriste implicitno što znači da nije moguće unaprijed odrediti koji podaci će koristiti registre. \emph{CUDA} programski model nastoji sve lokalne varijable čuvati u registrima. Razlog je što su registri memorija s najmanjim vremenom pristupa podacima.
+
+\subsection{Lokalna memorija}
+Lokalna memorija se koristi unutar jedne dretve i nju koriste sve varijable koje su definirane unutar iste dretve. Fizički su podaci spremljeni na \emph{DRAM} memoriji koja se nalazi na grafičkoj kartici (globalna memorija). Lokalni podatci za koje više nema mjesta u registrima spremaju se u lokalnu memoriju. Ako se za lokane varijable ne koriste registri, vrijeme pristupa je isto kao i za globalnu memoriju. U novjim verzijama \emph{CUDA} okruženja ovaj nedostatak nastoji se popraviti tako što se lokalna memorija fizički odvaja od globalne memorije pa postaje nešto brža \cite{CUDAHOME}.
+
+\subsection{Dijeljena memorija}
+Dijeljena memorija je zajednička svim dretvama unutar bloka. Vrijeme pristupa je duže od pristupa registrima ali kraće od pristupa globalnoj memoriji. Dijeljena memorija omogućuje komunikaciju između dretvi u istom bloku. Osim same komunikacije dijeljena memorija omogućuje sinkronizaciju između dretvi. Za korištenje dijeljene memorije pri deklaraciji varijable potrebno je staviti oznaku "\emph{\_\_shared\_\_}".
+
+\subsection{Globalna memorija}
+Globalna memorija je namjenjena za razmjenu podataka između grafičke kartice i centralne procesne jedinice. Ova memorija je najsporija memorija u memorijskom modelu. Vrijeme pristupa je i za nekoliko redova veličina veće od dijeljene memorije \cite{CUDAHOME}. Dobra strana globalne memorije je što je ona veća od svih ostalih. Pristup globalnoj memoriji može se ostvariti prosljeđivanjem pokazivača ili se može deklarirati varijabla s ključnom riječi "\emph{\_\_device\_\_}".
+
+\subsection{CPU memorija}
+Memorija centralne procesorske jedinice nije vezana za grafičku karticu. Ona se pojavljuje u \emph{CUDA} modelu kako bi se pokazala veza između grafičke kartice i ostatka računalnog sustava kada je potrebno prenijeti podatke iz radne meorije (CPU memorije) u memoriju grafičkog podsustava i obratno. Izmjena između memorija centralne procesorske jedinice i grafičke kartice obavlja se prije obrade podataka na grafičkoj kartici i nakon obrade podataka na grafičkoj kartici kako bi se rezultati mogli dalje obrađivati na centralnoj procesorskoj jedinici.
+
+\section{Detalji CUDA okruženja važni za izvedbu}
+\subsection{Razmjena memorije}
+Prije pokretanja računskih operacija na grafičkom procesoru potrebno je prenijeti potrebne podatke iz radne memorije. Postoji više načina na koje se podaci mogu proslijediti grafičkoj kartici. Najčešće se upotrebljava sinkrono kopiranje podataka. Prije pokretanja funkcija na grafičkoj kartici potrebno je alocirati globalnu memoriju te u nju s posebnom naredbom kopirati podatke. U programskom k\^{o}du \ref{kod:cuda-memcpy} prikazan je primjer postupka. Deklarira se pokazivač u memoriji procesora. Pozivom funkcije \emph{cudaMalloc} alocira se blok u globalnoj memoriji grafičkog sustava u kojeg će se prenijeti podaci iz radne memorije. Pri tome prvi argument predstavlja pokazivač na početak bloka memorije, dok drugi argument predstavlja veličinu prostora kojeg je potrebno zauzeti. Nakon toga je u alociranu memoriju na grafičkom sustavu potrebno kopirati podatke iz radne memorije. Za to se koristi funkcija \emph{cudaMemcpy}. Njezin prvi argument predstavlja pokazivač na memorijsku lokaciju u koju će se kopirati podaci, drugi argument lokaciju bloka iz kojeg će se kopirati podaci, treći argument veličinu bloka podataka koji će se kopirati, dok četvrti parametar predstavlja zastavicu koja označuje kopiraju li se podaci iz globalne memorije grafičkog sustava u radnu memoriju ili obrnuto. Kad je to obavljeno, funkcija na grafičkoj kartici može biti pokrenuta. Nakon završetka funkcije potrebno je dobivene izlaze kopirati u memoriju procesora. Koristi se ista funkcija kao i za obrnuti postupak samo što se navede drugi parametar. Konačno je naredbom \emph{cudaFree} potrebno osloboditi zauzetu globalnu memoriju na grafičkim sustavima. Funkcija prima jedan argument, i to pokazivač na početak bloka podataka kojeg je potrebno osloboditi.
+
+\begin{singlespace}
+\begin{lstlisting}[caption={Razmjena podataka između memorija},label=	{kod:cuda-memcpy}, language = {C}]
+  int *pictureCuda; //pokazivac na globalnu memoriju graficke kartice
+  cudaMalloc((void **) &pictureCuda, sizeof(int)*width*height); //alokacija globalne memorije
+  cudaMemcpy(pictureCuda, pixels, sizeof(int)*width*height, 			 cudaMemcpyHostToDevice); //kopiranje iz memorije procesora u globalnu memoriju graficke kartice
+
+... //pozivi funkcija koje obavljaju racunske operacije nad primljenim podatcima
+
+cudaMemcpy(newPixels, pictureCuda, sizeof(int)*width*height, cudaMemcpyDeviceToHost); //kopiranje iz globalne memorije graficke kartice u memoriju procesora
+cudaFree(pictureCuda); //oslobadanje globalne memorije na grafickoj kartici
+
+\end{lstlisting}
+
+\end{singlespace}
+
+Osim sinkronog posoji i asinkroni prijenos podataka. Za postizanje takve komunikacije potrebno je korisititi malo drugačije funkcije. Umjesto standardnih funkcija za alokaciju memorije na memoriji centralne procesne jedinice koristi se funkcija iz \emph{CUDA} okruženja: \emph{cudaHostAlloc}. Operacijski sustav jamči da memorija rezervirana na ovakav način neće biti straničena. U svakom trenutku fizička adresa je očuvana. Zbog toga se za kopiranje memorije koristi \emph{DMA} \engl{Direct memory access}. Posljedica je veoma brza razmjena memorije centralne procesne jedinice i grafičke kartice. Funkcija koja kopira memoriju je \emph{cudaMemcpyAsync}. Samo ako je memorija na centralnoj procesnoj jedinici zauzeta s funkcijom \emph{cudaHostAlloc} može se koristiti asinkrona funkcija za kopiranje. Pojam asinkrone funkcije odnosi se na trenutak kopiranja memorije. Pri sinkronom načinu kopiranja završetak funkcije jamči da je prijenos podataka obavljen. Asinkrone funkcije samo daju oznaku da je potrebno kopirati podatke, ali kada će to biti nije određeno. Asinkrone funkcije mogu se iskoristiti za ostvarivanje programskog cijevovoda \engl{pipeline}. Okruženje \emph{CUDA} nudi \emph{Stream} tehniku poziva funkcija na grafičkoj kartici. Ideja je da se u isto vrijeme izvodi funkcija na grafičkoj kartici i da se kopira memorija na grafičku karticu koja će biti korištena prilikom poziva slijedeće funkcije. Za \emph{Stream} tehniku potrebno je koristiti asinkrone funkcije.
+
+\subsection{Sinkronizacija}
+Kada više dretvi djeluje nad istom memorijom, za postizanje determinizma potrebna je sinkronizacija. U \emph{CUDA} okruženju postoji više mehanizama sinkronizacija \cite{cudaguide}. Najčešće se koristi sinkronizacija između dretvi koje se nalaze u istom bloku \emph{\_\_syncthreads()}. Za sinkronizaciju svih dretvni koristi se funkcija \emph{\_\_threadfence()} i ona je znatno sporija jer koristi globalnu memoriju. Ova metode umeću barijeru u sve dretve na mjestu poziva pa će dretve nastaviti izvođenej tek nakon što sve dostignu do navedene barijere. Za sinkronizaciju funkcije koje izvodi procesor i dretvi na grafičkim karticama koristi se funkcija \emph{cudaThreadSynchronize()}. Nakon što funkcija koja se izvodi na procesoru pozove navedenu funkciju, procesor čeka grafičku karticu da obavi posao koji ima.
+
+\subsection{Optimizacija pristupa memoriji}
+Pravilnim korištenjem \emph{CUDA} okruženja može se dobiti logički ispravna aplikacija. Problem je što se ne jamči ubrzanje. Definirani programski model i memorijski model ne omogućuju direktno upravljanje optimizacijama. Za ubrzanje aplikacije nekad je dovoljno postići samo logičku ispravnost te se ubrzanje očituje u paralelnoj arhitekturi. Ali ponekad se dogodi da je paralelizirana aplikacija sporija od serijske. Problem je najčešće u memoriji i nedovoljnom poznavanju mehanizama koji se kriju iza upravljanja memorijom.
+
+Za \emph{CUDA} okruženje biti će objašnjen mehanizam koja može ubrzati aplikaciju a pomoću njega biti će objašnjeni neki rezultati na kraju ovoga rada.
+
+Programski gledano dretve u blokovima se izvršavaju paralelno, ali na sklopovlju (grafičkoj karitici) to nije tako. Svaki blok se stastoji od skupine \emph{warp}-ova koji se mogu fizički paralelno izvoditi. Jedan \emph{warp} sastoji se od 32 dretve. Često je bitnji pojam \emph{half-warp} koji označava nakupinu od 16 dretvi.
+
+\subsubsection{Spajanje dohvata globalne memorije \engl{Coalescing}}
+
+Poželjno svojstvo algoritama koji su napisani za programski model \emph{CUDA} jest da dretve dohvaćaju globanu memoriju prema svojem identifikacijskom broju i to tako da dretva $i$ dohvaća podatak na lokaciji $k\cdot i$ a dretva $i+1$ na lokaciji $k \cdot (i+1)$ i tako redom, gdje je $k$ prirodni broj. Ovakav pristup globalnoj memoriji u sklopovlju grafičkog procesora spaja se u jedan dohvat, što znatno skraćuje vrijeme pristupa globalnoj memoriji, a samim time i ubrzava rad cjelokupnog programa. Za različite verzije arhitekture globalni pristup je poboljšavan, pa tako u novjim verzijama nije potrebno da dretve pristupaju prema svojoj identifikaciji već je dovoljno da razlika adresa memorijskih lokacija ne bude veća od 16, kako bi dohvat podatka bio lokaliziran u \emph{half-warp}-ovima.
+
+
+\chapter{Izvedba algoritma CBPC korištenjem programskog modela \emph{CUDA}}
+U ovom poglavlju bit će detaljno opisana izvedba prethodno opisanog algoritma za kompresiju slika bez gubitaka.
+
+Kao što je navedeno u jednom od prijašnih poglavlja algoritam se izvodi u ovim koracima (slika \ref{fig:blockdiagram}).
+\begin{enumerate}
+	\item \textbf{Ulaz} - Učitavanje slikovnih podataka: učitavanje slike ili niza slika iz pojedine studije
+	\item \textbf{PM - Predikcijsko modeliranje}: predviđanje trenutnog slikovnog elementa i računanje pogreške
+	\item \textbf{CM - Kontekstualno modeliranje}: klasifikacija pogreške i generiranje različitih distribucija za svaki razred pogreške
+	\item \textbf{EC - Entropijsko kodiranje}: korištenje klasičnog načina kodiranja pogreške predikcije.
+	\item \textbf{Izlaz} - Spremanje komprimiranih podataka
+\end{enumerate}
+
+\begin{center}
+\captionof{table}{Prikaz postotaka vremena izvođenja ovisno o koraku algoritma} \label{tab:profile}
+\begin{tabular}{| c | c |}
+\hline
+Korak algoritma & Vrijeme izvođenja (\%)
+\\
+\hline
+Ulaz & 6.71
+\\
+\hline
+PM & 84.69
+\\
+\hline
+CM & 1.84
+\\
+\hline
+EC & 5.05
+\\
+\hline
+Izlaz & 1.71
+\\
+\hline
+\end{tabular}
+\end{center}
+
+Tablica \ref{tab:profile} prikazuje koliko je koji korak algoritma zahtjevan. Najzahtjevniji dio je predikcijsko modeliranje. Zbog toga se taj korak odabire za paralelizaciju.
+
+\section{Ciljevi izvedbe}
+Glavni cilj ove izvedbe algortima za kompresiju je ubrzanje središnjeg dijela algoritma, odnosno dijela algoritma koji se odnosi na predviđanje slikovnih elemenata. Razlog tome je što taj korak algoritma najzahtjevniji (tablica \ref{tab:profile}). Ubrzanje se ostvaruje paralelizacijom na grafičkom procesoru. Razlog odabira grafičkog procesora kao sklopovlja na kojem se algoritam izvršava je u tome što je predviđanje slikovnih elemenata moguće ostvariti podatkovnom paralelizacijom, a rad grafičkih procesora upravo se zasniva na podatkovnom paralelizmu, \emph{SIMD}. \engl{Single Instruction Multiple Data}.
+
+Prije izvedbe algoritma postavljeni su zahtjevi koji su morali biti ostvareni. Bitan zahtjev postavljen pri izvedbi je prenosivost izvornog programa prema novim generacijama grafičkih procesora koji podržavaju programski model \emph{CUDA}. Kako bi se održala jednostavnost korišten je tokovni programski model. Tokovni programski model omogućuje brzi uvid u komponente algoritma te pojednostavnjuje prenošenje algoritma na druga okruženja i arhitekture. Tokovni model prikazuje se pomoću usmjerenog grafa gdje su čvorovi aktori, odnosno računski posao, a veze komunikacija između aktora.
+Paralelizacija algoritama na grafičkim procesorima često zahtjeva optimiranje do najmanjih detalja. Takvim programiranjem dobiva se veliko ubrzanje ali složenost i razumljivost programskog k\^{o}da pada. Tokovni programski model predstavlja kompromis između ta dva zahtjeva.
+
+Kako je glavna ideja kompresija podataka, izvedba za grafičke procesore ne smije narušiti stupanj kompresije. Problem koji bi mogao narušavati supanj kompresije je sama arhitektura grafičke kartice, te je pojedine operacije potrebno modificirati kako bi algoritam mogao biti izvodljiv.
+
+Glavni zahtjev u izvedbi je ostvarenje ubrzanja u odnosu na serijsku izvedbu algoritma. Na taj način bi se omogućila njegova upotreba u stvarnim aplikacijama. Dodatno, upotrebom grafičkih procesora kao ubrzivača omogućeno je komprimiranje podataka na računalima koji se nalaze uz dijagnostičke uređaje. To znači da se preko mrežne infrastrukture informacijskog sustava prenose manje količina podataka a samim time ostvaruju se uštede u zahtjevanoj propusnosti. Cilj koj mora biti ostvaren a da izvedba ima dodanu vrijednost je ušteda električne energije. Skup svih navedenih ciljeva čini izvedbu pogodnu za bolničke sustave ali i za druge slične sustave.
+
+
+\section{Arhitektura modela}
+Izvedba algoritma sastoji se od dva glavna dijela: paraleliziranog i neparaleliziranog. Kako je navedeno, u neparalelizirani dio spadaju elementi izvedbe koji se brinu za učitavanje slike, spremanje slike te entropijsko kodiranje (aritmetički koder). Neparalelizirani (serijski) dio  ostvaren je korištenjem programskog jezika C++, i taj dio se neće detaljnije razmatrati u ovom radu. Paralelizirani dio izvedbe, kao što je već i prije napomenuto, odnosi se na predviđanje vrijednosti slikovnih elemenata. U nastavku razmotriti će se aritektura sustava (algoritma). Tokovni programski model koji je korišten za izvedbu prikazan je na slici \ref{fig:tokmod}. Prikazan je dio algoritma koji se paralelizira. Na slici je prikazan trivijalan tokovni model (nema grananja) i zbog toga je pogodan za izvođenje na grafičkim procesorima. Čvorovi u grafu prikazuju operacije koje se moraju obaviti nad svakim slikovnim elementaom. Važno je da se koraci obavljaju pravilnim redoslijedom. Podatkovna paralelizacija izvedena je tako što se prikazani tokovni model obavlja paralelno na različitim grafičkim koprocesorima i nad nezavisnim slikovnim elementima.
+
+%TODO
+%stvaranje regija slikovnih elemenata
+%dohvat regija slikovnih elemenata
+%stavaranje čelija slikovnih elemenata
+%predviđanje vrijednosti slikovnih elemenata
+%izračunavanje pogreške predviđanja
+%priprema rezultata za entropijsko kodiranje
+\begin{figure}[htb]
+\centering
+\includegraphics[width=7cm]{slike/tokmod.png}
+\caption{Tokovni model}
+\label{fig:tokmod}
+\end{figure}
+
+Ulaz u tokovni model je vrijednost slikovnog elementa koji se nalazi na slici. Nad pojedinim slikovnim elementom obaviti će se operacije zadanim redoslijedom. Unutar tokovnog modela osim vrijednosti slikovnog elementa koriste se i druge strukture podataka (regija slikovnih elemenata, kontekst za mješanje predikcijskih funkcija). Kao izlaz iz tokovnog modela dobije se greška predviđanja, njezin kontekst i simbol koji je potrebno kodirati entropijskim koderom (entropijski koder koristi sve izlazne podatke).
+
+Programski model \emph{CUDA} okruženja zahtjeva organizaciju programa u blokovima i dretvama. Granulacija korištena pri izvedbi je na razini slikovnog elementa, što znači da se slikovni elementi pripajaju pojedinim dretvama te svaka dretva brine o pojedinom slikovnom elementu. Ideja je da se svaka dretva brine o pojedinom slikovnom elementu. Nakon što se slika učita u globalnu memoriju grafičke kartice, ona ostaje tamo do kraja izvođenja algoritma. Kako je broj blokova i dretvi ograničen (ovisno o veličini globalne memoriji i generaciji grafičke kartice), slika se ne obrađuje paralelno u potpunosti. Izvedba je izvedena tako da se dimenzije podslike koja se potpuno paralelno obrađuje može dinamički mijenjati. Razlog tome je ostvarivanje optimizacije prema broju dretvi i blokova što je opisano u sljedećem podpoglavlju.
+
+Poziv modula koji izvršava korak predviđanja na grafičkoj kartici prvo pokreće potrebne inicijalizacijske radnje kako bi sve bilo pripremljeno za grafičku karticu. Nakon toga kreće paralelna obrada podslika. Programski k\^{o}d \ref{kod:tokmod} prikazuje kako je ostvarena funkcija za izvođenje grafičkom procesoru korištenjem navedenog tokovnog programskog modela.
+
+\begin{singlespace}
+\begin{lstlisting}[caption={Glavna funkcija koja se izvodi na grafičkom procesoru},label=	{kod:tokmod}, language = {C}]
+ PixelRegionProducer(widthOffset, heightOffset, pixels, symbols, width, height, templsize, radius, cellsize, cpr);
+
+  __threadfence();
+
+  PopulateCells(widthOffset, heightOffset, pixels, symbols, width, height, templsize, radius, cellsize, cpr);
+
+  PredictorPenalty(widthOffset, heightOffset, width, height, cpr);
+
+  ComputePredictionPenaltiesAndContext(widthOffset, heightOffset, width, height, cellsize, cpr, symbols);
+\end{lstlisting}
+
+\end{singlespace}
+
+U trećem retku vidljivo je korištenje globalne sinkronizacije. Ona je potrebna zbog toga što funkcija koja stvara regije slikovnih elemenata (\emph{PixelRegionProducer}) koristi podatke iz slikovnih elemenata za koje dretva nije zadužena. Kako se radi o nedestruktivnim operacijama čitanja podataka iz drugih dretvi, ali da bi se osigurala konzistentnost u slijedećm koraku potrebna je sinkronizacija. Između ostalih funkcija ona nije potrebna.
+
+\section{Optimizacija}
+Nakon što je algoritam predikcije paraleliziran i tako postignuto već određeno ubrzanje, postoje još neki dodatni faktori koje je potrebno razmotriti prilikom izvedbe. Kako je u trećem poglavlju navedeno, prilikom poziva funckije koja se izvodi na grafičkim procesorima potrebno je specificirati broj dretvi i broj blokova za izvođenje te funkcije. Iako se to čini kao jednostavan problem, jer je intuitivno da će se veće ubrzanje postići ukoliko se pokrene što više dretvi na što više blokova, empirijski rezultati su pokazali da to ne mora nužno biti tako. Stoga se kao problem prilikom izvedbe javlja i optimizacija broja blokova i dretvi s kojima se pokreće funkcija na grafičkim procesorima. Ako se pokaže da je optimizacija broja blokova teži k relativno malom broju, potrebno je probati da li korištenje sinkronizacije unutar jednog bloka (koja je brža zbog korištenja dijeljene memorije) daje bolje rezultate. Najčešće se to ne dogodi jer broj blokova nadoknadi vrijeme sinkronizacije. Ovdje se ova optimizacija spominje kao jednostavan način poboljšanja vremena izvođenja.
+U šestom poglavlju biti će objašnjeno za koje se vrijednosti tih parametara dobivaju najbolja vremena izvršavanja.
+
+To nije jedina mogućnost optimizacije. Ova izvedba se uvelike temelji na tokovnom programskom modelu, koji je prilagođen za \emph{SIMD} model. Naravno da se izvedba može još više prilagoditi za specifičnosti \emph{CUDA} modela i tako bi se moglo ostvariti dodatno ubrzanje (primjerice smanjivanjem pristupa globalnoj memoriji korištenjem optimizacije pristupa). Time bi se nažalost izgubilo na jasnoći, jednostavnosti i modularnosti pogramskog k\^{o}da te bi se smanjila mogućnost za održivost programskog k\^{o}da u budućnosti. Upravo zbog tih razloga trenutno se nije krenulo na daljnje prilagođavanje izvedbe u \emph{CUDA} modelu.
+
+
+\begin{singlespace}
+\begin{lstlisting}[caption={Glavna funkcija koja se izvodi na grafičkom procesoru},label=	{kod:host}, language = {C}]
+
+  for(int j = 0 ; j < height ; j += stepY)
+  	for(int i = 0 ; i < width ; i += stepX)
+    {
+  		runAlgorithm<<<stepY,stepX>>>(i, j, pictureCuda, cudaSymbols, width, height, templsize, radius, cellsize, pixelRegionCuda);
+    }
+
+\end{lstlisting}
+\end{singlespace}
+
+Programski k\^{o}d \ref{kod:host} pokazuje kako se poziva funckija na grafičkoj kartici. Koriste se parametri \emph{stepY} i \emph{stepX} za određivanje visine i širine podslike koja se u potpunosti paralelno obrađuje. Naziv funkcije koja se izvršava na grafičkoj kartici je \emph{runAlgorithm}. Sintaksa poziva pokazuje da se radi o funkciji za grafičku karticu. Unutar trostrukih šiljastih zagrada navodi se broj blokova i dretvi koji će biti pokrenuti za paralelno izvođenje. Algoritam je dizajniran tako da svaki blok predstavlja jedan redak slike, a dretva određeni slikovni element u tome redu.
+
+
+
+\chapter{Rezultati}
+
+
+
+
+
+\section{Ispitivanje}
+
+Izvođenje promijenjenog programa \emph{CBPC} ispitano je na 5 različitih studija medicinskih slikovnih podataka. Tablica \ref{tab:studije} prikazuje osnovna svojstva korištenih studija. Svi slikovni podaci su pohranjeni u formatu \emph{PGM} i imaju veličinu od 512x512 piksela (izvedba naravno ne ovisi o veličini slike). Primjer jedne medicinske slike prikazan je na slici \ref{tab:primjerslike}. Za svaku od studija izmjereno je trajanje izvođenja algoritma kao i potrošnja električne energije potrebna za komprimiranje pojedine studije. Osim navedene izvedbe, nad ovim podacima provedena su testiranja i sa serijskom izvedbom algoritma, kao i izvedbom u kojoj je predikcijski model izveden u programskom jeziku \emph{StreamIt} \cite{Thies:PhD:09} i paraleliziran za izvođenje na višejezgrenom procesoru \cite{Knezovic:12}, radi mogućnosti njihove međusobne usporedbe.
+\begin{center}
+\captionof{table}{Ispitne studije} \label{tab:studije}
+\begin{tabular}{| c | c | c |}
+\hline
+Naziv studije & Broj slika & Veličina studije [MB]
+\\
+\hline
+mr-breast-dm & 2534 & 486,43
+\\
+\hline
+mr-breast & 2241 & 559,53
+\\
+\hline
+mr-pelvis & 383 & 95,76
+\\
+\hline
+ct-mix & 3003  & 750,79
+\\
+\hline
+ot & 1373 & 343,27
+\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=7cm]{slike/66059859.PNG}
+\caption{Primjer medicinske slike}
+\label{tab:primjerslike}
+\end{figure}
+
+
+Osim navedenih ispitivanja i međusobne usporedbe o potrošnji i ubrzanju, provedena su još neka dodatna ispitivanja nad ovim izvedbama. Tako je primjerice ispitano kako veličina slike utječe na vrijeme potrebno za njeno komprimiranje za svaku od ovih izvedaba. Nadalje, provedena je usporedba brzine izvršavanja za dvije različite generacije grafičkih kartica te je prikazano kako se napredak grafičkih kartica odražava na postignuto ubrzanje. U konačnici je provedeno ispitivanje i o tome kako brzina izvođenja na grafičkim karticama ovisi o tome s kolikim je brojem blokova i dretvi pokrenuto izvršavanje algoritma.
+
+U tablici \ref{tab:komponente} mogu se vidjeti informacije o komponentama kao i verzijama programskih alata koji su korišteni tijekom ispitivanja gore navedenih izvedbi algoritma za kompresiju.
+
+\begin{center}
+\captionof{table}{Konfiguracija ispitnog računala} \label{tab:komponente}
+\begin{tabular}{| c | c |}
+\hline
+Operacijski sustav & Ubuntu 11.04
+\\
+\hline
+Procesor & Intel Core2 Quad Q9400 @ 2.66GHz (4 jezgre)
+\\
+\hline
+Radna memorija & 8 GB
+\\
+\hline
+Grafička kartica & nVidia GeForce GTX 550 Ti
+\\
+\hline
+Alternativna grafička kartica & nVidia GeForce 9800 GT
+\\
+\hline
+Verzija \emph{GCC} prevoditelja & 4.6.1
+\\
+\hline
+Verzija  \emph{CUDA} prevoditelja & 4.2
+\\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\begin{comment}
+Testiranja su vođena na računalu s operacijskim sustavom Ubuntu 11.04. Za testove je bio korišten četverojezgreni procesor Intel Core2 Q9400 sa radnim taktom od 2.66GHz i radnom memorijom od 8GB. Grafička kartica koja je korištena za provođenje testova jest nVidia GeForce GTX 550 Ti. Osim te kartice korištena je još i grafička kartica nVidia GeForce 9800 GT za usporedbu performansi između različitih generacija grafičkih kartica. Tijekom testiranja, na računalu je bio pokrenut samo algoritam za kompresiju,  kako bi se mogli dobiti što relevantniji rezultati. Verzija \emph{GCC} programskog prevoditelja koja je korišrena za prevođenje svih implementacija jest 4.6.1. Verzija \emph{CUDA} programskog prevoditelja koja je bila korištena za eksperimente jest 4.2.
+\end{comment}
+
+U idućim poglavljima biti će detaljnije uspoređeni rezultati koji su dobiveni po pojedinim kategorijama.
+
+\section{Vrijeme izvođenja}
+
+\subsection{Vrijeme izvođenja kompresije nad studijama}
+
+Jedan od važnijih kriterija ocjene pojedine izvedbe je brzina izvođenja komprimiranja nad čitavim studijima. Kako je u tablici \ref{tab:studije} pokazano u prethodnom poglavlju, veličina pojedinih studija može biti i do nekoliko stotina MB i sadržavati nekoliko tisuća slika. Dakle radi se o velikoj količini podataka koju je potrebno obraditi. Zbog toga je vrlo bitno u kojem se vremenskom intervalu može obaviti komprimiranje jedne velike količine podataka.
+
+Na slici \ref{tab:brzinastudija} prikazani su dobiveni rezultati za vrijeme izvođenja svih gore navedenih izvedbi za 5 pripremljenih studija. Sa \emph{StreamGate} označena je izvedba koja koristi programski jezik \emph{StreamIt} za paralelizaciju predikcijskog modela na višejezgrenom procesoru - u našem slučaju na 4 jezgre procesora računalnog sustava koji je korišten u ispitivanjima.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=11cm]{slike/brzinastudija.png}
+\caption{Rezultati trajanja izvođenja algoritma na pojedinim izvedbama u minutama}
+\label{tab:brzinastudija}
+\end{figure}
+
+
+Kao što je iz grafičkog prikaza rezultata vidljivo, izvedba algoritma na grafičkim koprocesorima (\emph{CUDA}) pokazuje veoma dobra ubrzanja naspram serijske izvedbe, ali i paralelne izvedbe, koja se izvodi na jezgrama procesora opće namjene bez korištenja grafičkog koprocesora, bazirane na tokovnom podatkovnom modelu (\emph{StreamGate}). U izvedbi korištenjem grafičkih procesora postignuto je srednje ubrzanje od otprilike 2.5 puta u odnosu na početnu, serijsku izvedbu. Iako ovo ubrzanje na prvi pogled ne djeluje pretjerano veliko, mora se ipak uzeti u obzir činjenica da je ova izvedba izvedena prateći tokovni programski model i kako nisu obavljene dodatne prilagodbe algoritma ili optimizacije koda koje bi najvjerojatnije rezultirale dodatnim ubrzanjem ove izvedbe, a što je predviđeno za buduća istraživanja. Svakako treba uzeti u obzir i ograničenja u paralelnoj učinkovitosti cjelokupnog algoritma. Iako je skalabilnost razmotrena u sklopu ovog rada u smislu poboljšanja koje donose nove generacije grafičkih procesora, detaljnija analiza skalabilnosti samoga algoritma je svakako potrebna prije nego što se krene u dodatne pokušaje paralelizacije.
+
+U tablici \ref{tab:studcomp} prikazana su vremena potrebna za kompresiju svake pojedine studije izražene u minutama. Za provedene ispitne studije postignuta je prilično velika ušteda u vremenu potrebnom za obradu. Tako za studiju mr-breast-dm može vidjeti da je serijskoj izvedbi potrebno otprilike četrdeset minuta, dok je  izvedbi na grafičkim procesorima potrebno svega sedamnaest minuta.
+\begin{center}
+\captionof{table}{Brzina kompresije po studijama} \label{tab:studcomp}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Naziv studije & CUDA izvedba & StreamGate izvedba & Serijska izvedbe
+\\
+\hline
+mr-breast-dm & 16.7 & 34.6  & 41.02
+\\
+\hline
+mr-breast & 15.02 & 31.23 & 36.51
+\\
+\hline
+mr-pelvis & 2.45 & 5.16 & 6.13
+\\
+\hline
+ct-mix & 18.85 & 40.78 & 47.33
+\\
+\hline
+ot & 8.93 & 18.73 & 21.97
+\\
+\hline
+\end{tabular}
+\end{center}
+
+Također se iz grafičkog prikaza može vidjeti da \emph{StreamGate} izvedba ne postiže neke puno bolje rezultate od serijske izvedbe. Razlog tome je da je serijska izvedba visoko optimirana. Prilikom prevođenja \emph{StreamIt} programa, generira se program u programskom jeziku \emph{C} koji je gotovo u potpunosti orijentiran na paralelno izvođenje.  Naravno da takav generirani \emph{C} program nije optimiziran kao što je serijska izvedba i zbog toga se uvelike gubi na brzini. Osim toga \emph{StreamGate} izvedba očekuje veliku količinu podataka na ulazu kako bi se prekrila dodatna vremena potrebna za kreiranje sinkronizaciju i terminiranje dretvi na centralnoj procesorskoj jedinici. Ovaj nedostatak dolazi do izražaja upravo kod obrade slika manjih dimenzija, kao što su slike u ovim studijima. Bolja strategija za \emph{StreamGate} izvedbu bi bila da se učita niz slika te da se odjendom pokrene njihova obrada. Bez obzira na sve navedeno, postignuto ubrzanje nije uopće zanemarivo te bi se sigurno moglo postići i još veće ubrzanje kada bi se ta izvedba dodatno prilagodila.
+
+\subsection{Ovisnost vremena izvođenja o veličini slike}
+
+%TODO: promjeniti na slici Sekunde u Vrijeme/s, Pikeli u Sirina x Visina slike izrazeno u broju slikovnih elemenata (engl. pixel).
+\begin{figure}[htb]
+\centering
+\includegraphics[width=12cm]{slike/velicinaslike.png}
+\caption{Rezultat trajanja izvođenja u ovisnosti o veličine slike}
+\label{fig:vrijeme_velicina}
+\end{figure}
+
+
+Grafovi na slici \ref{fig:vrijeme_velicina} prikazuju ovisnost vremena izvođenja algoritma o veličini slike. Mjerenje je izvršeno za sve tri izvedbe. Izvedba na grafičkoj kartici postiže najbolje rezultate. Zanimljivo je što za male slike (manje od \emph{150x150}) serijska izvedba najbolja. Razlog zbog kojeg izvođenje na grafičkoj kartici traje najduže je u tome što vrijeme potrebno za kopiranje radne memorije procesora u globalnu memoriju grafičke kartice oduzima više vremena od same izvedbe algoritma. Serijska izvedba sve podatke ima u radnoj memoriji i nije potrebno dodatno kopiranje. \emph{StreamGate} verzija za male slike ima slično vrijeme izvođenja kao i serijska izvedba. Kako i \emph{StreamGate} verzija ne koristi dodatno kopiranje može se zaključiti da je zaista problem u izvedbi za grafičku karticu kopiranje memorije. U praksi se najčešće ne pojavljuju ovako male slike pa pretdhodno razmatranje u praksi nije toliko važno. Dodatno, uz manje dimenzije slike, postoji mogućnost da se grafičkom procesoru pošalje slijed slika kako bi se optimirao prijenos podataka odnosno povećao na zadovoljavajuću veličinu. To je moguće ostvariti s obzirom na činjenicu da se medicinske studije sastoje od velikog broja slika. Ali općenito je važno uočiti problem koji posjeduju grafičke izvedbe - vrijeme kopiranja memorije može biti puno veće od vremena izvođenja samog algoritma. Za veće slike vrijeme kopiranja memorije prekriva se vremenom izvođenja algoritma.
+
+\subsection{Ovisnost vremena izvođenja o broju dretvi i blokova}
+
+Jedna od bitnih stvari koje je potrebno napraviti prilikom izrade programa koji će se obavljati grafičkim karticama u programskom modelu \emph{CUDA}, jest odrediti broj blokova i dretvi za optimalno izvršavanje programa. To je bitan korak jer o odabiru ovih parametara uvelike ovise performanse izvođenja. Odabirom krivih vrijednosti može se dobiti vrijeme izvođenja koje je nekoliko puta dulje od optimalnog vremena izvođenja. Stoga veliku pažnju potrebno posvetiti traženju optimalnih vrijednosti za broj blokova i broj dretvi, kako bi se postigle bolje performanse.
+
+Nažalost traženje optimalnih parametara se svodi na isprobavanje svih smislenih kombinacija za vrijednosti broja blokova i dretvi te usporedbom dobivenih vremena za pojedine ispitne podatka. Dodatni problem predstavlja i činjenica da parametri koji su optimalni za jednu grafičku karticu ne moraju biti i optimalni za druge grafičke kartice. Time se dovodi u pitanje prenosivost ovakve izvedbe, jer bi se za svaku grafičku karticu trebalo ponovo odrediti broj blokova i dretvi. Na svu sreću pokazalo se  da za isprobane grafičke kartice ti parametri nisu previše odstupali jedni od drugih, a vremena izvođenja između njih nisu bitno različita. Primjerice za grafičku karticu GTX 550 (nova generacija) dobiveni su optimalne veličine od 3 bloka i 248 dretvi, dok su za karticu GT 9800 (stara generacija \emph{CUDA} kartica) dobivene veličine iznosile 1 blok i 256 dretvi. Vrijeme izvođenja paraleliziranog dijela algoritma, na jednoj medicinskoj slici, za parametre od 3 bloka i 248 dretvi na grafičkoj kartici GTX iznosilo je 0.300024 dok bi za parametre od 1 bloka i 256 dretvi iznosilo 0.354034. Dakle vidi se da razlika postoji, ali ona nije toliko velika da bi značajnije utjecala na vrijeme izvođenja. U daljnjem radu, ako bi se uspio prikupiti veći broj takvih ispitivanja za različite modele grafičkih kartica, mogla bi se odrediti heuristička metoda koja bi na temelju svojstava grafičke kartice mogla procijeniti broj blokova za pokretanje programa  s ciljem dobivanja što boljih performansi. Ovdje je bitno napomenuti da "optimalan" raspored računskih jedinica za izvođenje na grafičkom procesoru (broj blokova i dretvi) uvelike ovisi i o rasporedu podataka kojima pristupaju dretve odnosno o dekompoziciji podataka koju je programer načinio prilikom izvedbe programa. To znači da je dosta teško automatizirati ovaj korak određivanja konfiguracije pa on ovisi o iskustvu programera u korištenju programskog modela.
+
+Na slici \ref{fig:blokovi} prikazan je graf koji pokazuje kako se vrijeme izvođenja ponaša za promjenu broja blokova, dok se broj dretvi drži konstantnim (u ovom slučaju broj dretvi je postavljen na 248, što predstavlja optimum za ispitanu grafičku karticu). Ovi rezultati dobiveni su izvođenjem na grafičkoj kartici GTX 550. Kako se iz slike može vidjeti brzina izvođenja se prvo smanjuje dok ne dosegne optimum za veličinu od tri bloka, a nakon toga počinje sve brže rasti te dolazi do degradacije performansi. Očito je da se nakon određenog broja blokova (u ovom slučaju tri) počinje događati zagušenje te da su dretve sve više blokirane i zbog toga dolazi do sve većeg opadanja performansi.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=11cm]{slike/drtblok.png}
+\caption{Rezultat trajanja izvođenja s obzirom na broj korištenih blokova}
+\label{fig:blokovi}
+\end{figure}
+
+
+
+Slika \ref{fig:dretve} s druge strane prikazuje kako promjena broja dretvi utječe na performanse izvođenje ako se blokovi drže konstantnima. Ovo ispitivanje je također provedeno na grafičkoj kartici nVidia GeForce 550 GTX. Prikazani su rezultati za tri odabrane veličine bloka (1, 3 i 7) a za svaki od tih blokova prikazana su vremena izvođenja za broj dretvi od 50 do 512. Manji broj dretvi od 50 po bloku nije poželjno uzimati jer vrijeme izvođenja veoma brzo raste. Razlog tome je što se izvedba algoritma počinje sve više ponašati kao serijska izvedba, odnosno obrađuju se manje količine slikovni elemenata u isto vrijeme. Tako bi se primjerice za veličinu od jednog bloka i jedne dretve ova izvedba ponašala u potpunosti serijski, samo što bi njena izvedba trajala mnogo dulje od trajanje stvarne serijske izvedbe bez pomoći grafičkog koprocesora. Na grafu se može vidjeti kako se za mali broj dretvi postižu najlošija vremena. Također je vidljivo da za veći broj blokova ta vremena jesu nešto manja, što je i logično s obzirom da će se pokrenuti više dretvi zbog veće količine blokova. Kako se broj dretvi povećava, tako se i vrijeme izvođenja počinje smanjivati. No to smanjivanje traje samo do određenog broja dretvi (za ove primjere otprilike 200-250) te se nakon toga vrijeme izvođenja počinje ponovo povećavati. To je iz razloga što se stvori preveliki broj dretvi, a kao što je opisano u poglavlju 4.3.3. dretve se samo prividno izvršavaju paralelno, ali je sklopovski ograničeno koliko se dretvi unutar jednog bloka u isto vrijeme može izvršavati. Vidljivo je da za veličinu od tri bloka i za broj dretvi veći od otprilike 100, postižu se najbolje performanse što se brzine izvedbe tiče. Najlošije performanse se s druge strane dobivaju za broj od sedam blokova.
+
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=10cm]{slike/blokovi.png}
+\caption{Rezultat trajanja izvođenja s obzirom na broj korištenih dretvi}
+\label{fig:dretve}
+\end{figure}
+
+\subsection{Usporedba različitih grafičkih procesora}
+Na slici \ref{fig:verzija_kartica} prikazana su vremena izvođenja algoritma za pojedinu generaciju grafičke kartice. Za relativnu usporedbu u grafu je prikazano i vrijeme izvođenja za serijsku izvedbu. Vidljivo je da vrijeme izvođenja na novijoj generaciji grafičkih kartica nije pretjerano bolje ako se uzima relativna mjera s obzirom na serijsku izvedbu. Izvedba algoritma za grafičku karticu trebala bi biti skalabilna. Načelno to i je jer postiže nešto bolje rezultate. Razlog zašto rezultati nisu još bolji je činjenica da je za dizajniranje algoritma korišteno načelo jednostavnosti i modularnosti. Zbog toga se izgubilo na skalabilnosti. Iako u praksi to znači da novije generacije grafičkih kartica neće jako poboljšati vremena izvođenja, izvedba u postojeći sustav biti će lakša. U budućem radu nastojati će se optimizirati postojeći programski k\^{o}d čime će se postići bolja skalabilnost.
+
+%TODO: zamijeniti imena grafickih kartica.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=11cm]{slike/batch.png}
+\caption{Rezultati trajanja izvođenja u ovisnosti generaciji grafičkih kartica}
+\label{fig:verzija_kartica}
+\end{figure}
+
+
+Na slici \ref{fig:verzija_kartica_pixel_time} prikazana je ovisnost vremena o veličini slike za pojedine generacije grafičkih kartica za studiju mr-breast-dm. Vidljivo je da novija generacija grafičkih kartica postiže nešto bolje rezultate, što je i očekivano. Na malim slikama nema velike razlike u vremenima izvođenja, ali u praksi ta činjenica nije važna jer se takve slike veoma rijetko komprimiraju.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=13cm]{slike/grfusp.png}
+\caption{Rezultati trajanja izvođenja u ovisnosti generaciji grafičkih kartica i veličini slike}
+\label{fig:verzija_kartica_pixel_time}
+\end{figure}
+
+
+\section{Potrošnja energije}
+
+U današnje vrijeme nastoji se sve više smanjiti potrošnju električne energije od strane različitih računalnih sustava. Kako se za paralelne izvedbe algoritama koristi više računalnih resursa, postavlja se logično pitanje, na koji način se to odražava na razinu potrošnje električne energije tijekom postupka komprimiranja. Naravno da ako pojedina izvedba troši dvostruko više električne energije od neke druge izvedbe, mada bila bolja po brzini izvođenja, upitna je njena iskoristivost u realnim informacijskim sustavima. Upravo zbog takvih razloga mjerena je i potrošnja pojedinih izvedbi koja je dobivena tijekom komprimiranja medicinskih studija.
+
+Na slici \ref{tab:juli} prikazana je potrošnja električne energije koja je dobivena tijekom izvođenja programa nad ispitnim studijama. Iz rezultata je moguće zaključiti da za manje studije nema velike razlike između potrošnje među različitim izvedbama. No, za veće studije pokazuje se da izvedba na grafičkim procesorima postiže puno manju potrošnju od ostale dvije izvedbe. Iako grafičke kartice troše više snage od procesora, i samim time povisuju potrošnju, zbog značajno manjeg vremena izvođenja, konačan utrošak energije je manji. S druge strane je vidljivo da je potrošnja \emph{StreamGate} izvedbe nešto veća od serijske izvedbe. Razlog tome jest da su prilikom izvođenja \emph{StreamGate} iskorištene sve procesorske jezgre, dok je kod serijske iskorištena samo jedna, pa je zbog toga i potrošnja veća. Kako vrijeme izvođenja \emph{StreamGate} izvedbe nije puno manje od serijske izvedbe, veća prosječna potrošnja uzrokuje da ukupna potrošnja bude također nešto veća od serijske izvedbe.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=13cm]{slike/potjul.png}
+\caption{Potrošena energija prilikom komprimiranja pojedine studije}
+\label{tab:juli}
+\end{figure}
+
+Za mjerenje potrošnje korišten je utični mjerač energije tip UP-M1. Naravno da se na ovaj način potrošnja ne može odrediti s apsolutnom točnošću i da će postojati određene greške prilikom mjerenja, ali predstavlja dovoljno dobru metodu mjerenja uz pomoć koje se može odrediti okvirna potrošnja pojedinih izvedbi algoritama.
+Iz prikazanih rezultata može se zaključiti kako korištenjem grafičkih procesora možemo, osim vremena izvođenja, smanjiti i ukupnu utrošenu energiju za kompresiju podataka u odnosu na serijsku izvedbu algoritma koja ne koristi grafičku karticu.
+
+
+
+\section{Kompresija}
+
+Kako se ipak radi o algoritmu za komprimiranje podataka, potrebno je ocijeniti koji je stupanj kompresije dobiven upotrebom ovog algoritma. U tablici \ref{tab:kompr} su prikazani rezultati dobiveni kompresijom svake od testnih studija. Može se vidjeti kako je potrebni prostor za spremanje komprimiranih studija redovito više nego dvostruko manji. Naravno kompresija će uvelike ovisiti i o svojstvima medicinskih slika. Primjerice, kompresija će biti puno bolja ako na slikama postoje veća područja crne boje. Upravo takvo svojstvo nerijetko i imaju medicinske slike, što svakako pogoduje tome da se za njih postiže bolja kompresija.
+
+\begin{figure}
+\begin{center}
+\captionof{table}{Rezultati kompresije nad  ispitnim studijama} \label{tab:kompr}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Naziv studije & Veličina (MB) & Komp. veličina (MB) & Stupanj kompresije
+\\
+\hline
+mr-breast-dm & 486.43 & 198.00  & 2.4567
+\\
+\hline
+mr-breast & 559.53 & 229.47 & 2.4384
+\\
+\hline
+mr-pelvis & 95.76 & 27.47  & 3.4860
+\\
+\hline
+ct-mix & 750.79 & 201.54 & 3.7253
+\\
+\hline
+ot & 343.27 & 147.86 & 2.3216
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=11cm]{slike/kompresija.png}
+\caption{Rezultati kompresije nad pojedinim studijama}
+\label{tab:kompresija}
+\end{figure}
+
+
+
+Iz prikazanih rezultata na slici \ref{tab:kompresija} vidljivo je da se komprimiranjem medicisnkih slikovnih podataka korištenjem ovog algoritma može uštedjeti više od polovice njihove veličine. No nije to jedina prednost uporabe komprimiranih podataka u bolničkim informacijskim sustavima. U takvim sustavima se veoma često javlja potreba za dohvaćanjem podataka iz centralnog sustava. Među te podatke često spadaju i velike količine slikovnih medicinskih podataka. Logično je zaključiti da se komprimiranjem podataka može postići njihov puno brži dohvat i tako smanjiti i opterećenost mreže koja se za to koristi.
+
+
+
+
+
+
+\section{Propusnost}
+Problem koji javlja zbog prijenosa velike količine podataka preko mreže direktno je rješen kompresijom podataka. Rezultati za propusnost direktno slijede rezultate za kompresiju. Može se napraviti analiza prema tablici \ref{tab:kompr}. Pretpostavlja se da se unutar bolničkog sustava koristi lokalna mreža. Propusnost koja mreža nudi obično je 10 \emph{Mbps}. To je samo teorijski maksimum jer zbog stanja u mreži može biti i puno manja. Tablica \ref{tab:time_kompr} prikazuje uštedu vremena za dohvaćanje različitih vrsta medicinskih slika (nazivi prema studijama). Neka se za svaku vrstu dohvaća 5 \emph{GB} podataka odjednom (veličina originalnih slika). Rezultati su grubo izračunati, te je njihov cilj samo da prikažu da značajna razlika u vremenu prenošenja podataka postoji.
+
+\begin{center}
+\captionof{table}{Ušteda vremena korištenjem kompresije} \label{tab:time_kompr}
+\begin{tabular}{| c | c | c | c |}
+\hline
+Naziv studije & Dohvat studije (min) & Dohvat kompr. studije (min) & Razlika (min)
+\\
+\hline
+mr-breast-dm & 68 & 27 & 41
+\\
+\hline
+mr-breast & 68 & 28 & 40
+\\
+\hline
+mr-pelvis & 68 & 20 & 48
+\\
+\hline
+ct-mix & 68 & 18 & 50
+\\
+\hline
+ot & 68 & 29 & 39
+\\
+\hline
+\end{tabular}
+\end{center}
+
+Isto tako, razmatramo li propusnost predložene izvedbe u odnosu na serijsku izvedbu algoritma, možemo za navedene testne studije prikazati rezultate u tablici \ref{tab:propusnost}. Prikazane su mogućnosti propusnosti svih izvedbi algoritma CBPC obzirom na veličinu ulaznih podataka koju je moguće obraditi u jedinici vremena. Očekivano, izvedba pomoću grafičkog procesora kao ubrzivača ostvaruje najveću propusnost u odnosu na ostale dvije izvedbe, što ju čini prihvatljivom za realne primjene u današnjim i budućim računalima koji će imati grafičke podsustave koji su kompatibilni sa nekim od programskih modela za operacije opće namjene kao što su CUDA ili OpenCl.
+
+\begin{center}
+\captionof{table}{Okvirna propusnost izvedbe u kB/s} \label{tab:propusnost}
+\begin{tabular}{| c | c | c | c | c | c |}
+\hline
+Naziv studije & Veličina (MB) & CUDA & SG & Serial 
+\\
+\hline
+mr-breast-dm & 486,43 & $\approx$ 485 & $\approx$ 234 & $\approx$ 197
+\\
+\hline
+mr-breast & 559,53 & $\approx$ 621 & $\approx$ 298 & $\approx$ 255
+\\
+\hline
+mr-pelvis & 95,76 & $\approx$ 651 & $\approx$ 308 & $\approx$ 260
+\\
+\hline
+ct-mix & 750,79 & $\approx$ 663 & $\approx$ 306 & $\approx$ 264
+\\
+\hline
+ot & 343,27 & $\approx$ 640 & $\approx$ 305 & $\approx$ 260
+\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\begin{comment}
+
+\chapter{Programski jezik \emph{StreamIt}}
+\section{Tokovni programski model}
+
+\begin{figure}[htb]
+\centering
+%\includegraphics[width=7cm]{slike/streamGraph.png}
+\caption{Primjer grafa tokovnog modela \cite{st2006}}
+\label{fig:stream-graph}
+\end{figure}
+
+\subsection{Filtri}
+Glavni gradivni element u \emph{StreamIt} jeziku je filtar. Filtar
+\begin{singlespace}
+  \begin{lstlisting}[caption={Upravljanje memorijom},label={kod:cuda-mem}, language = {C}]
+cudaMalloc( (void**) &devMem1, N * sizeof(int) );
+cudaMalloc( (void**) &devMem2, N * sizeof(int) );
+cudaMalloc( (void**) &ret, N * sizeof(int) );
+...
+cudaMemcpy(devMem1, A, N * sizeof(int), cudaMemcpyHostToDevice ); 	
+cudaMemcpy(devMem2, B, N * sizeof(int), cudaMemcpyHostToDevice ); 	
+...
+zbroji<<<N, 1>>>(devMem1, devMem2, ret);
+...
+cudaMemcpy(C, ret, N * sizeof(int), cudaMemcpyDeviceToHost ); 	
+...
+cudaFree(devMem1);
+cudaFree(devMem2);
+cudaFree(ret);
+  \end{lstlisting}
+\end{singlespace}
+\end{comment}
+
+\chapter{Zaključak}
+
+U sklopu ovog rada izveden je algoritam za kompresiju  slikovnih medicinskih podataka bez gubitaka, korištenjem grafičkih procesora. Ciljevi ove izvedbe su svakako postizanje što većeg stupnja kompresije, uz što manje trajanje izvođenja algoritma i potrošnju električne energije. Izrađena izvedba je uspoređena sa serijskom izvedbom algoritma, kao i s izvedbom pomoću programskog jezika \emph{StreamIt}, koja navedeni algoritam paralelizira za izvođenje na višejezgrenom procesoru. Sve tri izvedbe su ispitane nad 5 reprezentativnih studija medicinskih slikovnih podataka te su uspoređeni dobiveni rezultati brzine izvođenja i potrošnje električne energije. Izrađena izvedba je pokazala bolje rezultate u vremenu izvođenja (otprilike 2.5 puta bolje od serijske izvedbe) i potrošnji električne energije (otprilike 1.5 puta manje potrošnja od serijske izvedbe) od ostale dvije izvedbe. Potrebno je također uzeti u obzir da je vrijeme izvedbe moguće još dodatno poboljšati  posebnim prilagodbama nad algoritmom i dodatnim optimizacijama programskog koda. Dobiveni stupnjevi kompresije su pokazali kako se korištenjem komprimiranih podataka dobivaju značajne uštede u potrebnom podatkovnom prostoru za pohranu medicinskih slikovnih podataka, ali i propusnosti prilikom prijenosa tih podataka. Nadalje, brzina izvođenja ove izvedbe je ispitana na dvije generacije grafičkih kartica za jednu studiju te su uspoređena njihova međusobna vremena izvođenja. Pokazano je kako se sa korištenjem grafičke kartice novije generacije postiže nešto bolja vremena izvođenja, no njihova razlika nije odviše velika.
+
+Cilj ove izvedbe algoritma za kompresiju medicinskih slikovnih elemenata bez gubitaka jest da se ona integrira u postojeće, ali i buduće moderne medicinske sustave za pohranu slikovnih podataka (\emph{PACS}) i na taj način poboljšaju performanse tih sustava u smislu brzine prijenosa podataka, propusnosti i energetske učinkovitosti.. Kako je u medicinskim sustavima potrebno pohraniti velike količine podataka, ali također te podatke i razmjenjivati putem mreže, javlja se potreba za dobrim kompresijskim algoritmima.
+
+Navedena izvedba sa svojim prethodno opisanim svojstvima i prednostima predstavlja sasvim dobar izbor za integraciju u buduće medicinske sustave koji će se razvijati u Hrvatskoj. Dodatno, predloženi pristup korištenja grafičkih procesora za računski zahtjevne operacije može se primijeniti i u drugim aspektima medicinskih slikovnih aplikacija, kao što su pred-dijagnostička analiza slike, segmentacija objekata u računalom potpomognutoj dijagnostici i sl. Sve ove aplikacije danas je moguće učinkovito izvesti na paralelnim računalnim sustavima kao što su grafički procesori.
+
+\bibliography{literatura}
+%\bibliographystyle{fer} promijena za citiranje po redu ieeetr
+\bibliographystyle{unsrt}
+
+\begin{sazetak}
+U današnje vrijeme složenih informacijskih sustava postoji potreba za paralelnim programima koji se izvode na višeprocesorskim računalnim sustavima.
+Veoma popularan način ubrzavanja algoritama ostvaruje se pomoću grafičkih procesora (GPGPU, engl. General Purpose Computing on Graphics Processing Unit).
+Prednost korištenja grafičkih procesora je u tome što se često nalaze u računalnom sustavu kao osnovna komponenta. U današnjim bolničkim
+informacijskim sustavima postoji velik broj različitih dijagnostičkih uređaja koji generiraju iznimne količine slikovnih podataka (MR, CT, RTG).
+Dobiveni podaci pohranjuju se u elektroničkom obliku u podatkovne centre u kojima je potrebno optimirati kapacitet i potrošnju električne energije.
+Dodatno, dijagnostički podaci se razmjenjuju elektroničkim putem između klijentskih dijagnostičkih uređaja i centralnog sustava.
+Zbog toga je potrebna kompresija kako bi se smanjili zahtjevi za podatkovnim prostorom te ubrzao prijenos podataka.
+
+U ovom radu opisana je izvedba algoritma za kompresiju medicinskih slika prilagođena za
+izvođenje na grafičkim procesorima. Ciljevi izvedbe nisu samo smanjenje zahtjeva u pohrani medicinskih slikovnih podataka i poboljšanje vremena
+izvođenja nego i potrošnje električne energije te mogućnost primjene u postojećim i budućim bolničkim informacijskim sustavima. Algoritam za kompresiju
+zasniva se na računski zahtjevnom modelu predviđanja slikovnih elemenata te kontekstualnom kodiranju dobivene greške predviđanja. Navedeni model
+odlikuje se iznimnom količinom podatkovnog paralelizma pa je zbog toga ovaj korak izveden na grafičkom procesoru računalnog sustava.
+Izvedba je uspoređena sa serijskom izvedbom istog algoritma i s izvedbom koja je prilagođena za izvođenje na
+višejezgrenim procesorima korištenjem tokovnog programskog jezika. Napravljena je usporedba  vremena izvođenja algoritma i potrošnje električne energije.
+Pomoću predložene izvedbe  postignuto je ubrzanje te ušteda u utrošenoj energiji što je eksperimentalno utvrđeno na studiji
+medicinskih dijagnostičkih slika.
+\pagebreak
+\kljucnerijeci{kompresija medicinskih slikovnih podataka, metode kompresije bez gubitaka, paralelizacija računskh zahtjevnih aplikacija, programski model za programiranje grafičkih procesora, "zeleno" računarstvo, tokovni programski model}
+
+\end{sazetak}
+\newpage
+% TODO: Navedite naslov na engleskom jeziku.
+\engtitle{Implementation of Medical Visual Data Compression Algorithm on GPU for Increased Throughput and Reduced Energy Consumptionl}
+\begin{abstract}
+In today's complex information systems there is a growing need for parallel programs for multiprocessor environments.
+A very popular way to improve the execution time of algorithms is to use graphics processing units (GPGPU). GPUs are common components in computer systems,
+which is a great advantage for their usage in parallelisation. There are many different diagnostical devices which are used in today's hospital information systems (MR, CT, RTG).
+The data is stored in electronical format in data centers where there is a need for optimizing the storage costs, throughput and consumption of electrical energy.
+Additionally, the diagnostic data is transmitted through network between client diagnostic devices and the central system. Because of these reasons there is a need for
+compressing the data to lower the needs of data storage and data transmission.
+
+ In this paper an algorithm for compressing medical images on GPUs is described.
+The objectives of this implementation are not only to reduce the demands of storing medical pictures and to improve the execution time, but to reduce the consumption
+of electrical energy and to provide a possibility for integration with existing and future hospital information systems.
+The algorithm for compression is based on a computationally complex prediction model of pixels and a contextual coding of the given prediction errors.
+The above model excels in great amount of data parallelism because of which this step is then implemented on GPUs.
+The above implementation is compared with a serial implementation of the same algorithm and with an implementation
+in a stream programming model which is adjusted for a multiprocessor environment. A comparative analysis between the above mentioned implementations
+based on execution time and electrical energy consumption has been made. Experimental results show that a decrease in execution speed and savings in
+consumption of electrical energy has been achieved through the use of the proposed implementation.
+
+\keywords{Medical Visual Data Compression, Lossless Coding Parallelization, Data-Intensive Computing, Green Computing, General Purpose GPU Programming, Streaming Programming Model}
+\end{abstract}
+
+\end{document}

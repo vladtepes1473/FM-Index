@@ -1,0 +1,8 @@
+-u onoj RRR strukturi promijeniti short u byte
+-popraviti izgradnju wavelet stabla, tako da dijeli nizove s obzirom na broj pojavljivanja
+-dokumentirati kod
+-pregledati kod (svi sve) i pronaci mjesta gdje bi se nesto moglo poboljati
+-napisati dokumentaciju
+-napraviti testiranja
+-pronaci serial za jprofiler
+-napraviti parser za datoteke (one FASTA fileove i ostalo)

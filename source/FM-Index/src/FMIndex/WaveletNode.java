@@ -21,10 +21,10 @@ public class WaveletNode {
 		}
 		int half;
 		if(alphabetSize % 2 == 0)
-			half = alphabet.size() / 2 - 1;
+			half = alphabet.size() / 2 ;
 		else
-			half = alphabetSize / 2;
-		
+			half = alphabetSize / 2 + 1;
+		/*
 		int totalOccurencesSoFar = 0;
 		
 		int pivotIndex;
@@ -36,6 +36,8 @@ public class WaveletNode {
 			(string.length() + alphabet.getOccurancesForCharacter(allCharacters[pivotIndex + 1]) - totalOccurencesSoFar) ){
 				pivotIndex ++;
 		}
+		*/
+		int pivotIndex = half;
 		
 		this.pivot = allCharacters[pivotIndex];
 		bitContent = new RRR(pivot, string);
@@ -57,9 +59,19 @@ public class WaveletNode {
 		
 		Alphabet[] splittedAlphabets = alphabet.splitAlphabet(pivot);
 		
-
+		string = null;
+		buildZeros = null;
+		buildOnes=null;
+		
+		System.gc();
+		
 		left = new WaveletNode(zeros, splittedAlphabets[0]);
+		zeros = null;
+		System.gc();
 		right = new WaveletNode(ones, splittedAlphabets[1]);
+
+		ones = null;
+		System.gc();
 	}
 	
 	public int getCharacterOcurrance(Character character, Integer position){

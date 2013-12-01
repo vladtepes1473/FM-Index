@@ -37,7 +37,6 @@ public class RRR implements BitLookup {
 		l = calculateL(string.length(), 2);	 
 		if (l==0) l=1; // xD -> l bude nula kada je duljina niza jedan znak, kasnije problem s dijeljenjem
 		short bsCounter = 0;
-		
 		// creating bitString using given string
 		for (int i=0, n=string.length() ; i<n ; i++) { 
 			
@@ -45,11 +44,14 @@ public class RRR implements BitLookup {
 			c = Character.toUpperCase(c);
 			pivot = Character.toUpperCase(pivot);
 			
+
+			
 			int bitValue = 0;
 		    if (c>=pivot) {
 		    	bitString.set(i,true);		
 		    	bitValue = 1;
 		    } 
+		    
 		    
 		    bsCounter += bitValue;
 		    if ((i%l)==l-1) { // time for new bucket
@@ -69,6 +71,9 @@ public class RRR implements BitLookup {
 		    	bsCounter = 0;
 		    }
 		}
+		
+		string = null;
+		System.gc();
 
 
 			

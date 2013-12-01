@@ -13,7 +13,7 @@ public class BWT {
 	private static char partitionCharacter;
 	private static char currentCharacter;
 	private static StringBuilder outputStringBuilder;
-	
+	private boolean tru = true;
 	/**
 	 * Performs the BWT on the given string
 	 * @param inputString the string wrapper on which the BWT should be performed
@@ -21,6 +21,8 @@ public class BWT {
 	 */
 	public static void performBWT(StringWrapper inputString, StringWrapper outputString){
 		BWT.inputString = inputString.string;
+		inputString.string = null;
+		System.gc();
 		int stringLength = BWT.inputString.length();
 		pointers = new int[stringLength];
 		for(int i = 0; i < stringLength; i++){
@@ -32,6 +34,11 @@ public class BWT {
 			outputStringBuilder.append(BWT.inputString.charAt((pointers[i]+stringLength-1)%stringLength));
 		}
 		outputString.string = outputStringBuilder.toString();
+		inputString= null;
+		pointers = null;
+		outputStringBuilder= null;
+		BWT.inputString = null;
+		System.gc();
 	}
 	
 	private static void sort(int pstart, int pLength, int compIndex){
