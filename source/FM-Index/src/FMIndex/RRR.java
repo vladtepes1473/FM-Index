@@ -3,41 +3,33 @@ package FMIndex;
 import java.util.ArrayList;
 import java.util.BitSet;
 
-
-/*
- * @maja,matea
- * kao sto reko, mislim da je bolje da ova struktura
- * sadrzi bitset i da samo ona obavlja pretrazivanje
- * 
- * Ali me sad muci jedna stvar, a to je konstruktor
- * Sto mu predati?
- * Ako mu predamo bitset, on mora ponovo prolazit kroz
- * bit set da izracuna pojavljivanja za pretince i nadpretince
- * 
- * Ako mu predamo String (tj. stringwrapper)i pivota, onda on moze
- * sam izgradivati bitset i odma racunati broj jedinica 
- * (time bi trebali dobiti manju slozenost!!!!), ali mi to s
- * objektno orjentirane strane ne drzi bas vodu (zasto bi ta struktura
- * trebala znati kako mora gradit bitset).
- * 
- *Ja sam vise za ovu drugu opciju, ali eto, zanima me vase misljenje.
- * 
+/**
+ * Class that implements compressed representation for the bit sequence
+ * enabling O(1) rank queries
  */
 public class RRR implements BitLookup {
 
 	private BitSet bitString = new BitSet();
 	private int bitStringLength;
-	private int l;
-	private ArrayList<Short> BS = new ArrayList<Short>(); // bucket string
-	private ArrayList<Integer> SBS = new ArrayList<Integer>(); // super-bucket string
+	private int bucketSize;
+	private ArrayList<Byte> BS = new ArrayList<Byte>(); 
+	private ArrayList<Integer> SBS = new ArrayList<Integer>(); 
 	
+	/**
+	 * Constructs bit sequence (bitString), buckets and super buckets for given string and pivot character
+	 * @param pivot character used as pivot for creating bit sequence from given string
+	 * @param string string that needs to be converted into bit sequence
+	 */
 	public RRR(Character pivot, StringWrapper string){
 		
 		bitStringLength = string.length(); 
-		l = calculateL(string.length(), 2);	 
-		if (l==0) l=1; // xD -> l bude nula kada je duljina niza jedan znak, kasnije problem s dijeljenjem
-		short bsCounter = 0;
-		// creating bitString using given string
+		bucketSize = calculateBucketSize(string.length(), 2);	 
+		
+		byte bsCounter = 0; // number of the set bits (bits with value 1) from the last filled super bucket
+		
+		/*
+		 *  Creation of the bit sequence bitString using given string
+		 */
 		for (int i=0, n=string.length() ; i<n ; i++) { 
 			
 			Character c = string.charAt(i); 
@@ -45,8 +37,11 @@ public class RRR implements BitLookup {
 			pivot = Character.toUpperCase(pivot);
 			
 
-			
 			int bitValue = 0;
+			/*
+			 * If the string character is numerically larger or equal to pivot character,
+			 * it is represented with 1 (default value of the BitSet bitString is 0)
+			 */
 		    if (c>=pivot) {
 		    	bitString.set(i,true);		
 		    	bitValue = 1;
@@ -54,20 +49,33 @@ public class RRR implements BitLookup {
 		    
 		    
 		    bsCounter += bitValue;
-		    if ((i%l)==l-1) { // time for new bucket
-		    	BS.add(bsCounter); // save value for old bucket
+		    /*
+		     * If the bucket is full, save the value of the bsCounter as a bucket value in the list of all buckets BS
+		     */
+		    if ((i%bucketSize)==bucketSize-1) {
+		    	BS.add(bsCounter); 
 		    }
 
 		    
-		    if ((i%(l*l))==(l*l)-1) { // time for new super-bucket
+		   /*
+		    * If the super bucket is full, save super bucket value in the list of all super buckets SBS
+		    * After saving super bucket value, set bsCounter to zero because after the super bucket is created,
+		    * counting the number of set bits must start from beginning
+		    */
+		    if ((i%(bucketSize*bucketSize))==(bucketSize*bucketSize)-1) { 
 		    	int newSBSValue;
+		    	/*
+		    	 * If there are already some super buckets in the SBS list, value of the new super bucket is 
+		    	 * sum of the value of the last saved super bucket and the number of set bits (counting from
+		    	 * the last super bucket).
+		    	 */
 		    	if (!SBS.isEmpty()) {
 		    		newSBSValue = SBS.get(SBS.size()-1) + bsCounter;
 		    		}
 		    	else {
 		    		newSBSValue = bsCounter;
 		    	}
-		    	SBS.add(newSBSValue); // save value for old super-bucket
+		    	SBS.add(newSBSValue); 
 		    	bsCounter = 0;
 		    }
 		}
@@ -75,43 +83,53 @@ public class RRR implements BitLookup {
 		string = null;
 		System.gc();
 
-
-			
-		//System.out.println(bitString.toString());
-		//System.out.println(BS); 
-		//System.out.println(SBS);
-		//System.out.println("RANK: "+this.rank(15));
-
 	}
 
 	
-	private int calculateL(Integer bitStringLength, Integer logarithmBase) {
-		return (int)( Math.log(bitStringLength)/Math.log(logarithmBase) );
+	/**
+	 * Calculates bucket size 
+	 * @param bitStringLength length of the bit sequence
+	 * @param logarithmBase 
+	 * @return
+	 */
+	private int calculateBucketSize(Integer bitStringLength, Integer logarithmBase) {
+		
+		int size = (int)( Math.log(bitStringLength)/Math.log(logarithmBase) );
+		
+		/* Due to usage of logarithm, when the bitStringLength is equal 1,
+		 * calculated bucket size will be 0, so it is necessary to manually 
+		 * change bucket size value to 1 */
+		if (size == 0) 
+			size = 1;
+		
+		return size;
 	}
 	
 	
 	@Override
 	public int rank(Integer position) {
-		/*if(position == 0)
-			return 1;
-		else
-			return 2;*/
 		
 		int superBucketRank;
 		int bucketRank;
 		int bitRank=0;
 		
-		int SBSindex = (position+1)/(l*l) - 1 ;
-		if (SBSindex == -1) {  // nema prvog super-bloka
+		/*
+		 * Get rank value from the super bucket
+		 */
+		int SBSindex = (position+1)/(bucketSize*bucketSize) - 1 ;
+		if (SBSindex == -1) {  // first super bucket is not created yet
 			superBucketRank = 0; 
 		}
 		else {
 			superBucketRank = SBS.get(SBSindex);
 		}
 		
-		
-		int BSindex = (position+1)/l - 1 ;
-		if (BSindex == -1  || (BSindex+1)%l == 0 ) {    // nema još nitijednog punog bloka ili se napunio cijeli super-bucket
+		/*
+		 * Get rank value from the bucket
+		 */
+		int BSindex = (position+1)/bucketSize - 1 ;
+		if (BSindex == -1  || (BSindex+1)%bucketSize == 0 ) {    
+			// no bucket is filled yet, or the super bucket is just filled 
 			bucketRank = 0; 
 		}
 		else {
@@ -119,28 +137,31 @@ public class RRR implements BitLookup {
 		}
 		
 	
-		
-		if ((position+1)%l == 0){ // zadnji bit u bloku, tj napunio se bucket
+		/*
+		 * Get rank value from the part of the sequence that is not covered with bucket or super bucket
+		 */
+		if ((position+1)%bucketSize == 0){ 
+			// the last bit in the bucket which means that one bucket is filled and its value already added to rank
 			bitRank = 0;
 		}
 		else {
-			int beginIndex = (BSindex+1)*l; 
+			int beginIndex = (BSindex+1)*bucketSize; 
 			bitRank = getBitRank(bitString.get(beginIndex, position+1));
-			//bitRank = bitString.get(beginIndex, position+1).cardinality();
-
 		}
 			
 
-		//System.out.println("superBucketRank: "+superBucketRank);
-		//System.out.println("bucketRank: "+bucketRank);
-		//System.out.println("bitRank: "+bitRank);
 		int rank = superBucketRank + bucketRank + bitRank;
 		return rank;
 		
 		
 	}
 	
-
+	
+	/**
+	 * Returns rank value of the given bit sequence
+	 * @param bitSubString bit sequence for which rank is calculated
+	 * @return rank value of the given bit sequence
+	 */
 	private int getBitRank(BitSet bitSubString) {	
 		return bitSubString.cardinality();
 		
