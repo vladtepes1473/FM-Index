@@ -100,10 +100,10 @@ public class WaveletNode {
 	}
 	
 	/**
-	 * Gets character occurrance to given position.
+	 * Gets character occurrence to given position.
 	 * @param character
 	 * @param position
-	 * @return occurrance of given character 
+	 * @return occurrence of given character 
 	 */
 	public int getCharacterOcurrance(Character character, Integer position){
 		int rank = bitContent.rank(position);

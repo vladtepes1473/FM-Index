@@ -5,6 +5,9 @@ package FMIndex;
  */
 public class BWT {
 	
+	/*
+	 * Static fields used by the algorithm
+	 */
 	private static int[] pointers;
 	private static String inputString;
 	private static int partIndex;
@@ -13,7 +16,7 @@ public class BWT {
 	private static char partitionCharacter;
 	private static char currentCharacter;
 	private static StringBuilder outputStringBuilder;
-	private boolean tru = true;
+	
 	/**
 	 * Performs the BWT on the given string
 	 * @param inputString the string wrapper on which the BWT should be performed
@@ -24,11 +27,17 @@ public class BWT {
 		inputString.string = null;
 		System.gc();
 		int stringLength = BWT.inputString.length();
+		
+		// We initialize the array of integer pointers on the string 
 		pointers = new int[stringLength];
 		for(int i = 0; i < stringLength; i++){
 			pointers[i] = i;
 		}
+		
+		//Perform the multikey quicksort
 		sort(0, stringLength, 0);
+		
+		
 		outputStringBuilder = new StringBuilder();
 		for(int i = 0; i < stringLength; i++){
 			outputStringBuilder.append(BWT.inputString.charAt((pointers[i]+stringLength-1)%stringLength));
@@ -37,10 +46,16 @@ public class BWT {
 		inputString= null;
 		pointers = null;
 		outputStringBuilder= null;
-		BWT.inputString = null;
 		System.gc();
 	}
 	
+	
+	/**
+	 * Sorts the BWT strings using the Mulitkey Quicksort
+	 * @param pstart Start index of the array which will be sorted
+	 * @param pLength Length of the array which will be sorted
+	 * @param compIndex Index of the string by which we are currently sorting all the BWT strings
+	 */
 	private static void sort(int pstart, int pLength, int compIndex){
 		int a;
 		int b;
@@ -113,6 +128,11 @@ public class BWT {
 		sort(pstart+pLength-(d-c), d-c, compIndex);	
 	}
 	
+	/**
+	 * Swaps two elements in the pointer array
+	 * @param firstIndex Index of the first pointer
+	 * @param secondIndex Index of the second pointer
+	 */
 	private static void swapElements(int firstIndex, int secondIndex){
 		int temp = pointers[firstIndex];
 		pointers[firstIndex] = pointers[secondIndex];

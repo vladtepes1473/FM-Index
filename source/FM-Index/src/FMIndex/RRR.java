@@ -12,7 +12,7 @@ public class RRR implements BitLookup {
 	private BitSet bitString = new BitSet();
 	private int bitStringLength;
 	private int bucketSize;
-	private ArrayList<Byte> BS = new ArrayList<Byte>(); 
+	private ArrayList<Short> BS = new ArrayList<Short>(); 
 	private ArrayList<Integer> SBS = new ArrayList<Integer>(); 
 	
 	/**
@@ -25,7 +25,7 @@ public class RRR implements BitLookup {
 		bitStringLength = string.length(); 
 		bucketSize = calculateBucketSize(string.length(), 2);	 
 		
-		byte bsCounter = 0; // number of the set bits (bits with value 1) from the last filled super bucket
+		short bsCounter = 0; // number of the set bits (bits with value 1) from the last filled super bucket
 		
 		/*
 		 *  Creation of the bit sequence bitString using given string
@@ -37,7 +37,7 @@ public class RRR implements BitLookup {
 			pivot = Character.toUpperCase(pivot);
 			
 
-			int bitValue = 0;
+			short bitValue = 0;
 			/*
 			 * If the string character is numerically larger or equal to pivot character,
 			 * it is represented with 1 (default value of the BitSet bitString is 0)

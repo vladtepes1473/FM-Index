@@ -10,6 +10,11 @@ public class StringWrapper {
 
 	public String string;
 	
+	
+	/**
+	 * Returns the string enclosed in the StringWrapper class
+	 * @return Length of the string
+	 */
 	public int length(){
 		return string.length();
 	}
@@ -26,6 +31,11 @@ public class StringWrapper {
 		return new StringWrapper[]{first, second};
 	}
 	
+	/**
+	 * Returns the character at the specified position in the string
+	 * @param index Index of the requested character
+	 * @return Character at the given position
+	 */
 	public char charAt(int index){
 		return string.charAt(index);
 	}

@@ -3,12 +3,19 @@ package FMIndex;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Represents the prefix sum table
+ *
+ */
 public class DictionaryPrefixSumTable implements PrefixSumTable {
 
 	private Map<Character, Integer> table;
 	private Integer[] occurance;
 	
-	
+	/**
+	 * Builds the prefix sum table on the given alphabet
+	 * @param alphabet Alpgabet on which the prefix sum table will be built
+	 */
 	public DictionaryPrefixSumTable(Alphabet alphabet){
 		table = new TreeMap<Character, Integer>();
 		Integer sum = 0;
