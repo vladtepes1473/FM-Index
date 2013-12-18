@@ -1,0 +1,44 @@
+Dokumentacija:
+
+1. Uvod	(Maja)
+	- opisati problem -> brzo pretraživanje teksta
+	- opisati generalnu ideju FM-indexa
+
+2. Pomoćni algoritmi - svi algoritmi koje koristimo izvan konteksta FM-indexa
+	- MK - quicksort (Marko)
+	- Wavelet tree (Maja)
+	- RRR (Matea)
+	- BWT (Maja)
+
+3. FM-index općenito (uglavnom Matea, ako joj treba pomoć žali se Maji :D)
+
+4. Implementacija FM-indexa (opet, uglavnom Matea, ako joj treba pomoć žali se Maji :D)
+	- opisati čitavu implementaciju -> kako su korištene strukture, kako surađuju, kako sve skupa radi
+	- navesti nedostatke ove implementacije u javi
+
+5. Testiranje (Marko)
+
+6. Zaključak (Maja)
+
+7. Literatura (mostly s git-a + ako nađemo nešto novo) (vjerojatno Marko)
+
+---------------------------------------------------------------------------------------------------------
+
+Dodatne napomene, misli, prijedlozi za izradu dokumentacije:
+
+1. Prilikom pisanja ODMAH staviti literaturu. Što više literature, to bolje :D naravno, ne Wikipedija - članci i knjige su najbolji izbor!
+
+2. Poželjno prvo napisati prve dijelove, za zagrijavanje :)
+
+3. Što god napišeš, odmah baci na git da se zna da si vrijedan!
+
+4. Spellcheck. Spellcheck everything.
+
+--------------------------------------------------------------------------------------------------------
+
+Ostale napomene vezane za projekt / TO-DO:
+
+1. Parser za FASTA fajlove. (još se ne zna tko?)
+2. Naći serial za JProfiler (Maja)
+3. Eksperimenti (Marko)
+4. Češljanje interneta za rezultatima FM-indexa (svi!)
