@@ -111,7 +111,7 @@ public class RRR implements BitLookup {
 		
 		int superBucketRank;
 		int bucketRank;
-		int bitRank=0;
+		int bitRank = 0;
 		
 		/*
 		 * Get rank value from the super bucket
