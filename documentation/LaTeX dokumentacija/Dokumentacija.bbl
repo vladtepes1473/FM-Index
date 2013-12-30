@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+
+\bibitem{wavelet}
+J.~Vitter R.~Grossi, A.~Gupta.
+\newblock High-order entropy-compressed text indexes.
+\newblock {\em In Proceedings of the 14th annual ACM-SIAM symposium on Discrete
+  algorithms}, pages 841--850, 2003.
+
+\bibitem{rrr1}
+S.~Srinivasa~Rao R.~Raman, V.~Raman.
+\newblock Succinct indexable dictionaries with applications to encoding k-ary
+  trees and multisets.
+\newblock {\em SODA}, pages 233--242, 2002.
+
+\bibitem{rrr2}
+Gonzalo~Navarro Francisco~Claude.
+\newblock Practical rank/select queries over arbitrary sequences.
+
+\bibitem{bwt1}
+David~J. Burrows, Michael;~Wheeler.
+\newblock A block sorting lossless data compression algorithm.
+\newblock {\em Technical Report 124, Digital Equipment Corporation}, 1994.
+
+\end{thebibliography}

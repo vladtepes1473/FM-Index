@@ -1,0 +1,13 @@
+\select@language {croatian}
+\contentsline {chapter}{\numberline {1}Uvod}{2}{chapter.1}
+\contentsline {chapter}{\numberline {2}Pomo\IeC {\'c}ni algoritmi}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Wavelet stablo}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Konstruiranje wavelet stabla}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Konstruiranje wavelet stabla}{4}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}RRR struktura}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Konstruiranje RRR strukture}{6}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Izra\IeC {\v c}unavanje broja jedinica u nizu}{6}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Burrows-Wheeler transformacija}{7}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Algoritam transformacije}{7}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Rekonstrukcija originalnog teksta iz BWT transformacije}{8}{subsection.2.3.2}
+\contentsline {chapter}{\numberline {3}Literatura}{9}{chapter.3}

@@ -1,0 +1,94 @@
+\section{Wavelet stablo}
+
+Wavelet stablo (engl. \textit{wavelet tree}) je podatkovna struktura koja tekstualni niz organizira u hijerarhiju nizova nula i jedinica - \textit{bit-vektora}. Ova struktura omogućuje pronalazak broja pojavljivanja do nekog indeksa u nizu - \textit{ranga} nekog znaka sa složenošću od O(log n), gdje je n veličina abecede danog tekstualnog niza. 
+Stablo se izgrađuje rekurzivno, razdijeljujući abecedu u parove podabeceda. Nakon izgradnje stabla, svaki list odgovara jednom znaku abecede, dok ostali unutarnji čvorovi označavaju da li pojedini znak teksta pripada prvoj ili drugoj podabecedi.
+Ukoliko se bit-vektori koji izgrađuju stablo pohrane u RRR strukturu (koja je opisana u idućem poglavlju), moguće je da se memorijsko zauzeće smanji s obzirom na originalno stablo koje ne koristi RRR strukturu.
+
+
+\subsection{Konstruiranje wavelet stabla}
+
+Wavelet stablo pretvara dovedeni niz u balansirano binarno stablo bit-vektora, gdje se dio znakova, koji pripadaju prvoj polovici dane abecede, kodira kao 0, a drugi dio kao 1. Iako se na prvi pogled čini kako ovo unosi nejednoznačnost u dekodiranju sadržaja stabla, to ipak nije tako. Naime, prelaskom u slijedeću razinu, prva polovica abecede iz prethodne razine ponovno se dijeli na dva dijela te se njeni znakovi ponovo kodiraju kao 0 ili 1. Postupak se rekurzivno nastavlja sve dok se abeceda ne sadrži samo dva znaka, koji se tada jednoznačno kodiraju; prvi s 0, a drugi s 1. 
+Originalna podjela ulazne abecede koju su predložili Grossi, Grupta i Vitter \cite{wavelet}  abecedu uvijek dijeli na dva jednaka dijela. Podjela abecede koja je implementirana u sklopu ovog projekta razlikuje se od originalne. Naime, kako bi se ujednačila veličina podijeljenih abeceda, a time i memorijsko zauzeće strukture, abecede se dijele na osnovu učestalosti pojavljivanja pojedinog znaka abecede unutar ulaznog niza. U ovoj implementaciji, abeceda se dijeli na prvom znaku čiji broj pojavljivanja u ulaznog nizu, zbrojen s ukupnim brojem pojavljivanja svih znakova koji su u abecedi njegovi prethodnici, veći ili jednak polovici veličine ulaznog niza.
+Na slici \ref{usporedba} prikazana je usporedba izgradnje stabla originalnim (gore) i ovdje implementiranim postupkom (dolje). Abeceda ulaznog niza je {a,b,c,d}. Broj pojavljivanja znaka a je 4, znaka b 1, znaka c 5, a znaka d 10 puta. Veličina ulaznog niza iznosi 20. U prvom slučaju, ulazna abeceda dijeli se na podabecede {a,b} i {c,d}, dok se u drugom slučaju abeceda dijeli na {a,b,c} i {d}. Razlog tomu je što je zbroj broja pojavljivanja znakova a, b i c jednak polovici veličine ulaznog niza.
+Razlog zašto je ovaj način memorijski efikasniji objašnjen je u idućem poglavlju iz razloga što ovisi o RRR strukturi koja pohranjuje bit-vektore stabla.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{./pictures/Waveletusporedba.jpg}
+\caption{Razlika između originalnog i ovdje implementiranog wavelet stabla}\label{usporedba}
+\end{figure}
+
+
+
+\subsection{Konstruiranje wavelet stabla}
+Slika \ref{query} prikazuje primjer pronalaska ranga unutar wavelet stabla. Točnije, primjer pronalazi rang znaka c na poziciji 9. U prvom koraku, budući da znamo da je slovo c kodirano s 0, brojimo nule do indeksa 9. Nakon što smo pronašli 7 nula, spuštamo se u slijedeću razinu stabla - u lijevu granu, iz razloga što je znak c kodiran s 0. Sada, u ovoj grani, budući da je znak c kodiran s 1, brojimo koliko ima jedinica u prvih 7 znakova. Važno je primjetiti kako u ovom koraku ustvari idemo do indeksa 6, a ne 7. Nakon što su pronađene 4 jedinice, spuštamo se u iduću razinu, u desnu granu, te brojimo jedinice do četvrtog znaka (indeks 3). U ovoj razini, ujedno i posljednjoj razini stabla, do četvrtog znaka prebrojavamo 3 jedinice iz čega zaključujemo da je rang znaka c na poziciji 9 jednak 3.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{./pictures/Waveletquery.jpg}
+\caption{Razlika između originalnog i ovdje implementiranog wavelet stabla}\label{query}
+\end{figure}
+
+
+\section{RRR struktura}
+RRR struktura je struktura koja za dani niz nula i jedinica proizvoljne duljine vraća broj postavljenih jedinica do određene pozicije. Općenito, za dobivanje broja jedinica u nizu nula i jedinica, potrebno je proći kroz cijeli niz i provjeravati svaki element niza. Takvo prebrojavanje niza odvija se u linearnoj vremenskoj složenosti O(n) gdje je n duljina niza. RRR strukturom se ukupan broj jedinica do određene pozicije u nizu može izračunati u konstantnom vremenu O(1). Također, korištenjem RRR strukture se postiže i implicitna kompresija. 
+
+Ideja RRR strukture je da se inicijalno nad nizom konstruiraju blokovi (engl. \textit{buckets}) i nadblokovi (engl. \textit{superbuckets}) u kojima se pohranjuju brojevi jedinica za određene intervale niza. Na taj način se izbjegava pregledavanje cijelog dijela niza u potrazi za brojem jedinica, već je potrebno pregledati samo mali dio niza i određene vrijednosti pohranjene u blokovima i nadbloku. 
+
+RRR struktura implementirana u ovom projektu se djelomično razlikuje od originalne RRR strukture koju su predložili Raman, Raman and Rao \cite{rrr1}. U originalnoj RRR strukturi niz je podijeljen u blokove tako da je svaki blok predstavljen parom (SB,B) te su definirane dodatne tri tablice\cite{rrr2}. Implementacija u ovom projektu je nešto drugačije izvedena, ali je zadržala izračun broja jedinica u nizu u konstantnom vremenu te je opisana u nastavku teksta.
+
+\subsection{Konstruiranje RRR strukture}
+U ovoj implementaciji RRR strukture, niz duljine n se dijelio u blokove veličine l i nadblokove veličine $l^2$, a vrijednost l se pritom izračunavala kao logaritam duljine niza, tj. $l=log_2 n$. Stvorena su polja BS i SBS veličina floor($n/l$) i floor($n/l^{2}$) za pohranjivanje vrijednosti blokova i nadblokova. Za stvaranje RRR strukture potrebno je proći kroz cijeli niz znamenki. Brojač jedinica je inicijalno postavljen na nula i povećava se kada se prolaskom kroz niz naiđe na element koji ima vrijednost 1. Kada se prođe kroz l elemenata niza, vrijednost brojača pohranjuje se u polje BS kao zbroj vrijednosti stvorenih blokova u još neispunjenom nadbloku. To znači da se blokovi u jednom nadploku pune kumulativno. Kada se prođe $l^2$ elemenata niza, vrijednost novog nadbloka jednaka je zbroju vrijednosti prošlog nadbloka (ako postoji) i vrijednosti brojača, odnosno zadnjeg konstruiranog bloka. Nakon izračuna vrijednosti nadbloka brojač se postavlja ponovo na vrijednost nula. Primjer ispunjenih vrijednosti u poljima BS i SBS dan je \ref{rrr1}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{./pictures/rrr1.jpg}
+\caption{Ispunjene vrijednosti u poljima BS i SBS}\label{rrr1}
+\end{figure}
+
+Ukoliko se osvrnemo na primjer wavelet stabla prikazanim u prethodnom poglavlju (\ref{usporedba}), lako možemo izračunati da, ukoliko stablo izgrađujemo originalnim algoritmom, ukupna veličina izgrađenih polja BS i SBS jednaka je 17. Ako se stablo izgradi dijeljenjem abecede na osnovi broja pojavljivanja znakova unutar ulaznog niza, ukupna veličina izgrađenih BS i SBS polja iznosi 14. Već na ovako malom primjeru zamjećuje se poprilična razlika između dobivenih veličina polja BS i SBS.
+
+
+\subsection{Izračunavanje broja jedinica u nizu}
+Broj jedinica u nizu se izračunava kao zbroj vrijednosti zadnjeg popunjenog nadbloka i bloka do zadane pozicije te broja jedinica u ostatku niza koji nije obuhvaćen blokom. Zbog načina punjenja blokova i nadblokova, kod računanja ukupnog broja pojavljivanja jedinica u nizu do određene pozicije potrebno je pripaziti na određene situacije. Ako se tražena pozicija nalazi na mjestu u nizu jednakom $k\cdot l^2$, onda je broj pojavljivanja jedinica u podnizu jednak samo vrijednosti nadbloka, a ako se pozicija nalazi na mjestu u nizu $k\cdot l$, to znači da je vrijednost broja jedinica u podnizu dan ili samo nadblokom (ranije naveden slučaj) ili zbrojem vrijednosti nadbloka i bloka, te nema dijela niza koji nije obuhvaćen blokom/nadblokom za koji treba dodatno provjeravati vrijednosti znamenki. U ostalim slučajevima se vrijednostima zadnjeg popunjenog nadbloka i bloka pridodaje broj jedinica u dijelu niza od zadnjeg popunjenog bloka do pozicije do koje se traži izračun broja pojavljivanja jedinica u podnizu, i to je jedini dio u računanju kada je potrebno slijedno prolaziti kroz elemente niza prebrajajući pojavljivanje jedinica.
+
+U nastavku je opisan postupak izračunavanja broja jedinica za primjer niza prikazanog slikom \ref{rrr2}. Neka se želi izračunati broj pojavljivanja jedinica do pozicije 17. elementa niza (uključujući). Zadnji popunjeni nadblok moguće je pronaći formulom $ind\_nadblok = \lfloor pozicija/l^2 \rfloor = \lfloor 17/9 \rfloor = 1$, a zadnji popunjeni blok formulom $ind\_blok = \lfloor pozicija/l \rfloor = \lfloor 17/3 \rfloor = 5$. Broj pojavljivanja jedinica u ostatku podniza računa se provjeravanjem broja jedinica u dijelu niza od pozicije $ind\_blok\cdot l+1$ do tražene pozicije (uključujući). U ovom primjeru potrebno je provjeriti pojavljivanje jednica u još dva elementa niza, 16. i 17. elementu, čime se dobiva vrijednost dodatnih jedinica dodatne = 2. Ukupan broj pojavljivanja jedninica u nizu do 17. elementa niza se izračunava kao ukupno  = $SBS(ind_nadblok) + BS(ind_blok) + dodatno = 5 + 1 + 2 = 8$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{./pictures/rrr2.jpg}
+\caption{Ispunjene vrijednosti u poljima BS i SBS}\label{rrr2}
+\end{figure}
+
+
+\section{Burrows-Wheeler transformacija}
+Burrows-Wheeler transformacija (skraćeno BWT) \cite{bwt1}, služi za kompresiju tekstualnog niza na osnovi pronalaska ponavljajućih uzoraka unutar njega. Ova transformacija je reverzibilna i ne iziskuje pohranu dodatnih podataka za rekonstrukciju originalnog niza. Osim ovoga, prilikom BWT transformacije, ni jedan znak originalnog niza se ne mijenja. Dodatna prednost je činjenica da se za transformaciju (osim dodavanja znaka \$) ne proširuje ulazna abeceda. Ukoliko ulazni niz sadrži više jednakih podnizova, velika je vjerojatnost da će transformirani niz sadržavati uzastopne nizove jednakih znakova, što kasnije uvelike pogoduje njegovom komprimiranju.
+
+\subsection{Algoritam transformacije}
+Algoritam transformacije provodi se u 4 koraka:
+
+\begin{enumerate}
+  \item Na kraj teksta postavlja se znak \$ koji označava kraj te je, leksikografski gledano, najmanji znak ulazne 			abecede.
+  \item Stvara se matrica svih različitih cikličkih pomaka niza dobivenog nakon 1. koraka.
+  \item Matrica iz koraka 2 se sortira u leksikografskom poretku.
+  \item Dobivena transformacija isčitava se iz poslijednjeg stupca matrice dobivene u koraku 3.
+
+\end{enumerate}
+
+Tijek algoritma za riječ "banana" prikazan je na slici \ref{bwt1}. Vidi se kako je BWT transformacija te riječi jednaka annb\$aa. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{./pictures/bwt.jpg}
+\caption{Ispunjene vrijednosti u poljima BS i SBS}\label{bwt1}
+\end{figure}
+
+\subsection{Rekonstrukcija originalnog teksta iz BWT transformacije}
+Matrica dobivena u 3. koraku algoritma poslužiti će za rekonstrukciju originalnog teksta iz dane BWT transformacije. Naime, ta matrica ima svojstvo da u svakom njenom retku, zadnji znak prethodi prvom znaku u istom retku matrice u originalnom tekstu. To znači, da je za rekonstrukciju izvornog teksta dovoljan samo prvi i zadnji stupac te matrice. Budući da je poznatno da tu matricu čine sve permutacije ulaznog niza i to sortiranog, jednostavno se može rekonstruirati prvi stupac - jednostavno se uzmu i sortiraju svi znakovi danog transformiranog niza. Budući da znamo da je posljednji znak u nizu znak \$, lako je iz prvog i zadnjeg stupca matrice rekonstruirati originalni niz. Na slici \ref{bwt2} prikazan je postupak rekonstrukcije originalnog niza (sivi brojevi na desnoj strani označavaju broj koraka).
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{./pictures/reverseBWT.jpg}
+\caption{Ispunjene vrijednosti u poljima BS i SBS}\label{bwt2}
+\end{figure}
