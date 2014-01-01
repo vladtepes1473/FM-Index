@@ -1,3 +1,37 @@
+\section{Burrows-Wheeler transformacija}
+Burrows-Wheeler transformacija (skraćeno BWT) \cite{bwt1}, služi za kompresiju tekstualnog niza na osnovi pronalaska ponavljajućih uzoraka unutar njega. Ova transformacija je reverzibilna i ne iziskuje pohranu dodatnih podataka za rekonstrukciju originalnog niza. Osim ovoga, prilikom BWT transformacije, ni jedan znak originalnog niza se ne mijenja. Dodatna prednost je činjenica da se za transformaciju (osim dodavanja znaka \$) ne proširuje ulazna abeceda. Ukoliko ulazni niz sadrži više jednakih podnizova, velika je vjerojatnost da će transformirani niz sadržavati uzastopne nizove jednakih znakova, što kasnije uvelike pogoduje njegovom komprimiranju.
+
+\subsection{Algoritam transformacije}
+Algoritam transformacije provodi se u 4 koraka:
+
+\begin{enumerate}
+  \item Na kraj teksta postavlja se znak \$ koji označava kraj te je, leksikografski gledano, najmanji znak ulazne 			abecede.
+  \item Stvara se matrica svih različitih cikličkih pomaka niza dobivenog nakon 1. koraka.
+  \item Matrica iz koraka 2 se sortira u leksikografskom poretku.
+  \item Dobivena transformacija isčitava se iz poslijednjeg stupca matrice dobivene u koraku 3.
+
+\end{enumerate}
+
+Tijek algoritma za riječ "banana" prikazan je na slici \ref{bwt1}. Vidi se kako je BWT transformacija te riječi jednaka annb\$aa. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{./pictures/bwt.jpg}
+\caption{Ispunjene vrijednosti u poljima BS i SBS}\label{bwt1}
+\end{figure}
+
+\subsection{Rekonstrukcija originalnog teksta iz BWT transformacije}
+Matrica dobivena u 3. koraku algoritma poslužiti će za rekonstrukciju originalnog teksta iz dane BWT transformacije. Naime, ta matrica ima svojstvo da u svakom njenom retku, zadnji znak prethodi prvom znaku u istom retku matrice u originalnom tekstu. To znači, da je za rekonstrukciju izvornog teksta dovoljan samo prvi i zadnji stupac te matrice. Budući da je poznatno da tu matricu čine sve permutacije ulaznog niza i to sortiranog, jednostavno se može rekonstruirati prvi stupac - jednostavno se uzmu i sortiraju svi znakovi danog transformiranog niza. Budući da znamo da je posljednji znak u nizu znak \$, lako je iz prvog i zadnjeg stupca matrice rekonstruirati originalni niz. Na slici \ref{bwt2} prikazan je postupak rekonstrukcije originalnog niza (sivi brojevi na desnoj strani označavaju broj koraka).
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{./pictures/reverseBWT.jpg}
+\caption{Ispunjene vrijednosti u poljima BS i SBS}\label{bwt2}
+\end{figure}
+
+
+
 \section{Wavelet stablo}
 
 Wavelet stablo (engl. \textit{wavelet tree}) je podatkovna struktura koja tekstualni niz organizira u hijerarhiju nizova nula i jedinica - \textit{bit-vektora}. Ova struktura omogućuje pronalazak broja pojavljivanja do nekog indeksa u nizu - \textit{ranga} nekog znaka sa složenošću od O(log n), gdje je n veličina abecede danog tekstualnog niza. 
@@ -20,7 +54,7 @@ Razlog zašto je ovaj način memorijski efikasniji objašnjen je u idućem pogla
 
 
 
-\subsection{Konstruiranje wavelet stabla}
+\subsection{Upiti nad wavelet stablom}
 Slika \ref{query} prikazuje primjer pronalaska ranga unutar wavelet stabla. Točnije, primjer pronalazi rang znaka c na poziciji 9. U prvom koraku, budući da znamo da je slovo c kodirano s 0, brojimo nule do indeksa 9. Nakon što smo pronašli 7 nula, spuštamo se u slijedeću razinu stabla - u lijevu granu, iz razloga što je znak c kodiran s 0. Sada, u ovoj grani, budući da je znak c kodiran s 1, brojimo koliko ima jedinica u prvih 7 znakova. Važno je primjetiti kako u ovom koraku ustvari idemo do indeksa 6, a ne 7. Nakon što su pronađene 4 jedinice, spuštamo se u iduću razinu, u desnu granu, te brojimo jedinice do četvrtog znaka (indeks 3). U ovoj razini, ujedno i posljednjoj razini stabla, do četvrtog znaka prebrojavamo 3 jedinice iz čega zaključujemo da je rang znaka c na poziciji 9 jednak 3.
 
 \begin{figure}[H]
@@ -61,34 +95,3 @@ U nastavku je opisan postupak izračunavanja broja jedinica za primjer niza prik
 \end{figure}
 
 
-\section{Burrows-Wheeler transformacija}
-Burrows-Wheeler transformacija (skraćeno BWT) \cite{bwt1}, služi za kompresiju tekstualnog niza na osnovi pronalaska ponavljajućih uzoraka unutar njega. Ova transformacija je reverzibilna i ne iziskuje pohranu dodatnih podataka za rekonstrukciju originalnog niza. Osim ovoga, prilikom BWT transformacije, ni jedan znak originalnog niza se ne mijenja. Dodatna prednost je činjenica da se za transformaciju (osim dodavanja znaka \$) ne proširuje ulazna abeceda. Ukoliko ulazni niz sadrži više jednakih podnizova, velika je vjerojatnost da će transformirani niz sadržavati uzastopne nizove jednakih znakova, što kasnije uvelike pogoduje njegovom komprimiranju.
-
-\subsection{Algoritam transformacije}
-Algoritam transformacije provodi se u 4 koraka:
-
-\begin{enumerate}
-  \item Na kraj teksta postavlja se znak \$ koji označava kraj te je, leksikografski gledano, najmanji znak ulazne 			abecede.
-  \item Stvara se matrica svih različitih cikličkih pomaka niza dobivenog nakon 1. koraka.
-  \item Matrica iz koraka 2 se sortira u leksikografskom poretku.
-  \item Dobivena transformacija isčitava se iz poslijednjeg stupca matrice dobivene u koraku 3.
-
-\end{enumerate}
-
-Tijek algoritma za riječ "banana" prikazan je na slici \ref{bwt1}. Vidi se kako je BWT transformacija te riječi jednaka annb\$aa. 
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.2]{./pictures/bwt.jpg}
-\caption{Ispunjene vrijednosti u poljima BS i SBS}\label{bwt1}
-\end{figure}
-
-\subsection{Rekonstrukcija originalnog teksta iz BWT transformacije}
-Matrica dobivena u 3. koraku algoritma poslužiti će za rekonstrukciju originalnog teksta iz dane BWT transformacije. Naime, ta matrica ima svojstvo da u svakom njenom retku, zadnji znak prethodi prvom znaku u istom retku matrice u originalnom tekstu. To znači, da je za rekonstrukciju izvornog teksta dovoljan samo prvi i zadnji stupac te matrice. Budući da je poznatno da tu matricu čine sve permutacije ulaznog niza i to sortiranog, jednostavno se može rekonstruirati prvi stupac - jednostavno se uzmu i sortiraju svi znakovi danog transformiranog niza. Budući da znamo da je posljednji znak u nizu znak \$, lako je iz prvog i zadnjeg stupca matrice rekonstruirati originalni niz. Na slici \ref{bwt2} prikazan je postupak rekonstrukcije originalnog niza (sivi brojevi na desnoj strani označavaju broj koraka).
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.2]{./pictures/reverseBWT.jpg}
-\caption{Ispunjene vrijednosti u poljima BS i SBS}\label{bwt2}
-\end{figure}

@@ -10,7 +10,7 @@ public interface PrefixSumTable {
 	 * @param c Character for which the prefix sum will be calculated
 	 * @return Prefix sum of the character
 	 */
-	public Integer getCharacterPrefixSum(Character c);
+	public Integer getCharacterPrefixSum(byte c);
 	
 	/**
 	 * Gets the prefix sum of the character on the given index

@@ -6,19 +6,19 @@ import java.util.TreeMap;
 
 public class ConcreteAlphabet implements Alphabet {
 
-	private Map<Character,Integer> alphabet;
-	private Map<Character, Integer> characterPositions;
+	private Map<Byte,Integer> alphabet;
+	private Map<Byte, Integer> characterPositions;
 	
 	private ConcreteAlphabet(){
-		alphabet = new TreeMap<Character, Integer>();
-		characterPositions = new TreeMap<Character, Integer>();
+		alphabet = new TreeMap<Byte, Integer>();
+		characterPositions = new TreeMap<Byte, Integer>();
 	}
 	
 	public ConcreteAlphabet(StringWrapper string){
-		alphabet = new TreeMap<Character, Integer>();
-		characterPositions = new TreeMap<Character, Integer>();
-		char[] array = string.string.toCharArray();
-		for(Character c : array){
+		alphabet = new TreeMap<Byte, Integer>();
+		characterPositions = new TreeMap<Byte, Integer>();
+		byte[] array = string.string;
+		for(byte c : array){
 			if(alphabet.containsKey(c)){
 				alphabet.put(c, alphabet.get(c)+1);
 			}
@@ -26,22 +26,22 @@ public class ConcreteAlphabet implements Alphabet {
 				alphabet.put(c, 1);
 			}
 		}
-		Character[] charArray = getAllCharacters();
+		Byte[] charArray = getAllCharacters();
 		for(int i = 0; i < charArray.length; i++ ){
 			characterPositions.put(charArray[i], i);
 		}
 	}
 	
-	public boolean containsCharacter(Character c){
+	public boolean containsCharacter(Byte c){
 		return alphabet.containsKey(c);
 	}
 	
-	public Integer getOccurancesForCharacter(Character c){
+	public Integer getOccurancesForCharacter(Byte c){
 		return alphabet.get(c);
 	}
 	
-	public Character[] getAllCharacters(){
-		return alphabet.keySet().toArray(new Character[0]);
+	public Byte[] getAllCharacters(){
+		return alphabet.keySet().toArray(new Byte[0]);
 	}
 
 	@Override
@@ -50,10 +50,10 @@ public class ConcreteAlphabet implements Alphabet {
 	}
 
 	@Override
-	public Alphabet[] splitAlphabet(Character pivot) {
+	public Alphabet[] splitAlphabet(Byte pivot) {
 		ConcreteAlphabet alphabet1 = new ConcreteAlphabet();
 		ConcreteAlphabet alphabet2 = new ConcreteAlphabet();
-		for(Entry<Character, Integer> pair : alphabet.entrySet()){
+		for(Entry<Byte, Integer> pair : alphabet.entrySet()){
 			if(pivot>pair.getKey()){
 				alphabet1.alphabet.put(pair.getKey(), pair.getValue());
 			}
@@ -70,7 +70,7 @@ public class ConcreteAlphabet implements Alphabet {
 	}
 
 	@Override
-	public Integer getCharacterIndex(Character character) {
+	public Integer getCharacterIndex(Byte character) {
 		int position = 0;
 		position = characterPositions.get(character);
 		return position;

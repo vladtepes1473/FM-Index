@@ -1,4 +1,6 @@
 package testcases;
+import java.io.UnsupportedEncodingException;
+
 import junit.framework.Assert;
 import FMIndex.*;
 import static org.junit.Assert.*;
@@ -13,7 +15,12 @@ public class BWTTests {
 		String expectedOutput = "ard#rcaaaabb";
 		
 		StringWrapper inputString = new StringWrapper();
-		inputString.string = input;
+		try {
+			inputString.string = input.getBytes("US-ASCII");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		StringWrapper outputString = new StringWrapper();
 		BWT.performBWT(inputString, outputString);
 		
@@ -27,7 +34,12 @@ public class BWTTests {
 		String expectedOutput = "ipssm#pissii";
 		
 		StringWrapper inputString = new StringWrapper();
-		inputString.string = input;
+		try {
+			inputString.string = input.getBytes("US-ASCII");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		StringWrapper outputString = new StringWrapper();
 		BWT.performBWT(inputString, outputString);
 		
@@ -42,7 +54,12 @@ public class BWTTests {
 		String expectedOutput = "s#nnaaa";
 		
 		StringWrapper inputString = new StringWrapper();
-		inputString.string = input;
+		try {
+			inputString.string = input.getBytes("US-ASCII");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		StringWrapper outputString = new StringWrapper();
 		BWT.performBWT(inputString, outputString);
 		

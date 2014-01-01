@@ -7,5 +7,5 @@ public interface OccTable {
 	 * @param position - last position to count character occurrence
 	 * @return character occurrence
 	 */
-	int getCharacterOcurrance(Character character, Integer position);
+	int getCharacterOcurrance(byte character, Integer position);
 }

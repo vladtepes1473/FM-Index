@@ -20,7 +20,7 @@ public class RRR implements BitLookup {
 	 * @param pivot character used as pivot for creating bit sequence from given string
 	 * @param string string that needs to be converted into bit sequence
 	 */
-	public RRR(Character pivot, StringWrapper string){
+	public RRR(Byte pivot, StringWrapper string){
 		
 		bitStringLength = string.length(); 
 		bucketSize = calculateBucketSize(string.length(), 2);	 
@@ -32,10 +32,8 @@ public class RRR implements BitLookup {
 		 */
 		for (int i=0, n=string.length() ; i<n ; i++) { 
 			
-			Character c = string.charAt(i); 
-			c = Character.toUpperCase(c);
-			pivot = Character.toUpperCase(pivot);
-			
+			byte c = string.charAt(i); 
+
 
 			short bitValue = 0;
 			/*
@@ -111,7 +109,7 @@ public class RRR implements BitLookup {
 		
 		int superBucketRank;
 		int bucketRank;
-		int bitRank;
+		int bitRank=0;
 		
 		/*
 		 * Get rank value from the super bucket

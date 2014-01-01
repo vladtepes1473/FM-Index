@@ -1,5 +1,7 @@
 package testcases;
 
+import java.io.UnsupportedEncodingException;
+
 import junit.framework.Assert;
 import FMIndex.*;
 import static org.junit.Assert.*;
@@ -12,12 +14,17 @@ public class RRRTests {
 	public void RRRTest1() {
 		
 		StringWrapper string = new StringWrapper();
-		string.string = "abracadabra";
+		try {
+			string.string = "abracadabra".getBytes("US-ASCII");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		char pivot = 'c';
 		int position = 5;
 		int expectedRank = 2;
 		
-		BitLookup bitContent = new RRR(pivot, string);
+		BitLookup bitContent = new RRR((byte)pivot, string);
 		int rank = bitContent.rank(position);
 		
 		Assert.assertEquals(rank , expectedRank);
@@ -29,12 +36,17 @@ public class RRRTests {
 	public void RRRTest2() {
 		
 		StringWrapper string = new StringWrapper();
-		string.string = "ananas";
+		try {
+			string.string = "ananas".getBytes("US-ASCII");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		char pivot = 'n';
 		int position = 0;
 		int expectedRank = 0;
 		
-		BitLookup bitContent = new RRR(pivot, string);
+		BitLookup bitContent = new RRR((byte)pivot, string);
 		int rank = bitContent.rank(position);
 		
 		Assert.assertEquals(rank , expectedRank);
@@ -47,12 +59,17 @@ public class RRRTests {
 	public void RRRTest3() {
 		
 		StringWrapper string = new StringWrapper();
-		string.string = "rrrstructure";
+		try {
+			string.string = "rrrstructure".getBytes("US-ASCII");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		char pivot = 'c';
 		int position = 11;
 		int expectedRank = 12;
 		
-		BitLookup bitContent = new RRR(pivot, string);
+		BitLookup bitContent = new RRR((byte)pivot, string);
 		int rank = bitContent.rank(position);
 		
 		Assert.assertEquals(rank , expectedRank);

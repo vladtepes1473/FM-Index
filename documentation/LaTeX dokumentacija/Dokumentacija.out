@@ -1,12 +1,12 @@
 \BOOKMARK [0][-]{chapter.1}{Uvod}{}% 1
 \BOOKMARK [0][-]{chapter.2}{Pomocni algoritmi}{}% 2
-\BOOKMARK [1][-]{section.2.1}{Wavelet stablo}{chapter.2}% 3
-\BOOKMARK [2][-]{subsection.2.1.1}{Konstruiranje wavelet stabla}{section.2.1}% 4
-\BOOKMARK [2][-]{subsection.2.1.2}{Konstruiranje wavelet stabla}{section.2.1}% 5
-\BOOKMARK [1][-]{section.2.2}{RRR struktura}{chapter.2}% 6
-\BOOKMARK [2][-]{subsection.2.2.1}{Konstruiranje RRR strukture}{section.2.2}% 7
-\BOOKMARK [2][-]{subsection.2.2.2}{Izracunavanje broja jedinica u nizu}{section.2.2}% 8
-\BOOKMARK [1][-]{section.2.3}{Burrows-Wheeler transformacija}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.3.1}{Algoritam transformacije}{section.2.3}% 10
-\BOOKMARK [2][-]{subsection.2.3.2}{Rekonstrukcija originalnog teksta iz BWT transformacije}{section.2.3}% 11
+\BOOKMARK [1][-]{section.2.1}{Burrows-Wheeler transformacija}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{Algoritam transformacije}{section.2.1}% 4
+\BOOKMARK [2][-]{subsection.2.1.2}{Rekonstrukcija originalnog teksta iz BWT transformacije}{section.2.1}% 5
+\BOOKMARK [1][-]{section.2.2}{Wavelet stablo}{chapter.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.1}{Konstruiranje wavelet stabla}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.2}{Upiti nad wavelet stablom}{section.2.2}% 8
+\BOOKMARK [1][-]{section.2.3}{RRR struktura}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.3.1}{Konstruiranje RRR strukture}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.2}{Izracunavanje broja jedinica u nizu}{section.2.3}% 11
 \BOOKMARK [0][-]{chapter.3}{Literatura}{}% 12

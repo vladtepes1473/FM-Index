@@ -1,49 +1,6 @@
-This is BibTeX, Version 0.99d (TeX Live 2013)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: Dokumentacija.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Dokumentacija.aux
 The style file: unsrt.bst
 Database file #1: literatura.bib
 Warning--empty journal in rrr2
 Warning--empty year in rrr2
-You've used 4 entries,
-            1791 wiz_defined-function locations,
-            465 strings with 4077 characters,
-and the built_in function-call counts, 879 in all, are:
-= -- 83
-> -- 16
-< -- 2
-+ -- 8
-- -- 4
-* -- 37
-:= -- 132
-add.period$ -- 11
-call.type$ -- 4
-change.case$ -- 4
-chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 52
-empty$ -- 87
-format.name$ -- 4
-if$ -- 208
-int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 4
-newline$ -- 22
-num.names$ -- 4
-pop$ -- 15
-preamble$ -- 1
-purify$ -- 0
-quote$ -- 0
-skip$ -- 36
-stack$ -- 0
-substring$ -- 56
-swap$ -- 21
-text.length$ -- 2
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 0
-warning$ -- 2
-while$ -- 8
-width$ -- 5
-write$ -- 41
 (There were 2 warnings)

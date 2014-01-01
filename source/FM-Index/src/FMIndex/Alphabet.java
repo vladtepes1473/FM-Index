@@ -12,20 +12,20 @@ public interface Alphabet {
 	 * @param c Character for which the occurrence in the alphabet will be checked
 	 * @return Returns true if the alphabet contains the given character
 	 */
-	public boolean containsCharacter(Character c);
+	public boolean containsCharacter(Byte c);
 	
 	/**
 	 * Gets the number of occurrences of the given character
 	 * @param c Character for which the number of occurrences will be returned
 	 * @return Number of occurrences for the given character
 	 */
-	public Integer getOccurancesForCharacter(Character c);
+	public Integer getOccurancesForCharacter(Byte c);
 	
 	/**
 	 * Gets all the characters in the alphabet
 	 * @return Array containing all the characters in the alphabet 
 	 */
-	public Character[] getAllCharacters();
+	public Byte[] getAllCharacters();
 	
 	/**
 	 * Gets the size of the alphabet
@@ -38,12 +38,12 @@ public interface Alphabet {
 	 * @param pivot Element by which the alphabet will be split
 	 * @return Array of the two splitted alphabets
 	 */
-	public Alphabet[] splitAlphabet(Character pivot);
+	public Alphabet[] splitAlphabet(Byte pivot);
 	
 	/**
 	 * Gets the index of the character in the alphabet
 	 * @param character Character for which the index should be returned
 	 * @return The index of the character in the alphabet (starting with 0)
 	 */
-	public Integer getCharacterIndex(Character character);
+	public Integer getCharacterIndex(Byte character);
 }

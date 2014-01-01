@@ -1,6 +1,12 @@
 package FMIndex;
 
 
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+
 /**
  * Class that represents a single wavelet tree node.
  */
@@ -8,7 +14,7 @@ public class WaveletNode {
 
 	private WaveletNode left = null;
 	private WaveletNode right = null;
-	private Character pivot;
+	private Byte pivot;
 	private BitLookup bitContent;
 	
 	/**
@@ -17,7 +23,7 @@ public class WaveletNode {
 	 * @param alphabet - Alphabet object containing alphabet information of the given string
 	 */
 	public WaveletNode(StringWrapper string, Alphabet alphabet){
-		Character[] allCharacters = alphabet.getAllCharacters();
+		Byte[] allCharacters = alphabet.getAllCharacters();
 		
 		int alphabetSize = alphabet.size();
 		/*
@@ -37,7 +43,13 @@ public class WaveletNode {
 		/*
 		 * Find the middle of the string and put it in variable half.
 		 */
-		int half;
+		
+		int totalNumberOfCharacters = 0;
+		for(byte b : alphabet.getAllCharacters()){
+			totalNumberOfCharacters+=alphabet.getOccurancesForCharacter(b);
+		}
+		
+		int half = totalNumberOfCharacters/2;
 		if(alphabetSize % 2 == 0)
 			half = alphabet.size() / 2 - 1;
 		else
@@ -53,19 +65,22 @@ public class WaveletNode {
 		 * of it's occurrence in the string.
 		 */
 		int totalOccurencesSoFar = 0;
-		int pivotIndex;
-		for(pivotIndex = 0; totalOccurencesSoFar < half; pivotIndex++){
-			totalOccurencesSoFar += alphabet.getOccurancesForCharacter(allCharacters[pivotIndex]);
-		}
+		int pivotIndex = half;
+//		int counter = 0;
+//		for(pivotIndex = 0; totalOccurencesSoFar < half; pivotIndex++){
+//			counter = totalOccurencesSoFar;
+//			totalOccurencesSoFar += alphabet.getOccurancesForCharacter(allCharacters[pivotIndex]);
+//		}
 		/*
 		 * The final check sees if found pivot is better pivot than the character that comes after it in the alphabet's
 		 * character array (since the for loop stops when totalOccurencesSoFar < half).
 		 */
-		if( (string.length() - totalOccurencesSoFar) > 
+		/*if( (string.length() - totalOccurencesSoFar) > 
 			(string.length() + alphabet.getOccurancesForCharacter(allCharacters[pivotIndex + 1]) - totalOccurencesSoFar) &&
 			pivotIndex < alphabet.size()-1){
+				
 				pivotIndex ++;
-		}
+		}*/
 		/*
 		 * Building the RRR structure.
 		 */
@@ -77,18 +92,50 @@ public class WaveletNode {
 		 */
 		StringWrapper zeros = new StringWrapper();
 		StringWrapper ones = new StringWrapper();
-		StringBuilder buildZeros = new StringBuilder();
+		/*StringBuilder buildZeros = new StringBuilder();
 		StringBuilder buildOnes = new StringBuilder();
+		*/
+		
+
+		
+		int index1=0;
+		int index2= 0;
+		
+		int count = 0;
+		
+		for(byte b : alphabet.getAllCharacters()){
+			//System.out.println((char)b+": " +alphabet.getOccurancesForCharacter(b));
+			//System.out.println(count);
+			if(b==pivot){break;}
+			count+=alphabet.getOccurancesForCharacter(b);
+		}
+		//System.out.println(count);
+
+		
+
+		//System.out.println(count);
+		
+		zeros.string = new byte[count];
+		ones.string = new byte[string.length()-count];
+		
+		//System.out.println("Count: "+count);
+		
+		//System.out.println("pivot:" +allCharacters[pivotIndex].toString());
+		
+		
+		//System.out.println(new String(string.string));
 		
 		for(int i = 0; i < string.length(); i++){
-			if(string.charAt(i) < allCharacters[pivotIndex])
-				buildZeros.append(string.charAt(i));
+			if(string.charAt(i) < pivot)
+				zeros.string[index1++] = string.charAt(i);
 			else
-				buildOnes.append(string.charAt(i));
+				ones.string[index2++] = string.charAt(i);
 		}
 		
-		zeros.string = buildZeros.toString();
-		ones.string = buildOnes.toString();
+		string = null;
+		System.gc();
+		
+
 		
 		Alphabet[] splittedAlphabets = alphabet.splitAlphabet(pivot);
 
@@ -96,7 +143,11 @@ public class WaveletNode {
 		 * Creating child nodes
 		 */
 		left = new WaveletNode(zeros, splittedAlphabets[0]);
+		zeros = null;
+		System.gc();
 		right = new WaveletNode(ones, splittedAlphabets[1]);
+		ones = null;
+		System.gc();
 	}
 	
 	/**
@@ -105,7 +156,7 @@ public class WaveletNode {
 	 * @param position
 	 * @return occurrence of given character 
 	 */
-	public int getCharacterOcurrance(Character character, Integer position){
+	public int getCharacterOcurrance(byte character, Integer position){
 		int rank = bitContent.rank(position);
 		if(character < pivot){
 			if(left != null)

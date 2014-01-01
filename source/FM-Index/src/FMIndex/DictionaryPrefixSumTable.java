@@ -9,20 +9,20 @@ import java.util.TreeMap;
  */
 public class DictionaryPrefixSumTable implements PrefixSumTable {
 
-	private Map<Character, Integer> table;
+	private Map<Byte, Integer> table;
 	private Integer[] occurance;
 	
 	/**
 	 * Builds the prefix sum table on the given alphabet
-	 * @param alphabet Alphabet on which the prefix sum table will be built
+	 * @param alphabet Alpgabet on which the prefix sum table will be built
 	 */
 	public DictionaryPrefixSumTable(Alphabet alphabet){
-		table = new TreeMap<Character, Integer>();
+		table = new TreeMap<Byte, Integer>();
 		Integer sum = 0;
 		Integer position = 0;
-		Character[] array = alphabet.getAllCharacters();
+		Byte[] array = alphabet.getAllCharacters();
 		occurance = new Integer[array.length+1];
-		for(Character c : array){
+		for(Byte c : array){
 			table.put(c,sum);
 			occurance[position] = sum;
 			sum += alphabet.getOccurancesForCharacter(c);
@@ -31,7 +31,7 @@ public class DictionaryPrefixSumTable implements PrefixSumTable {
 		occurance[position] = sum;
 	}
 	
-	public Integer getCharacterPrefixSum(Character c){
+	public Integer getCharacterPrefixSum(byte c){
 		return table.get(c);
 	}
 

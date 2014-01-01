@@ -17,7 +17,7 @@ public class WaveletTree implements OccTable {
 	}
 	
 	@Override
-	public int getCharacterOcurrance(Character character, Integer position) {
+	public int getCharacterOcurrance(byte character, Integer position) {
 		return root.getCharacterOcurrance(character, position);
 	}	
 }

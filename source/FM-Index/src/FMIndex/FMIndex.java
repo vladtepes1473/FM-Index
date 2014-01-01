@@ -1,8 +1,5 @@
 package FMIndex;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-
 /**
  * Class for building the FM index structure
  *
@@ -21,10 +18,37 @@ public class FMIndex {
 		this.alphabet = new ConcreteAlphabet(string);
 		this.cTable = new DictionaryPrefixSumTable(this.alphabet);
 		StringWrapper bwtString = new StringWrapper();
-		BWT.performBWT(string, bwtString);
+		long startTime = System.currentTimeMillis();
+		
+		for(byte b : alphabet.getAllCharacters()){
+			System.out.println(((char)b)+": "+alphabet.getOccurancesForCharacter(b));
+		}
+		
+		
+		System.out.println(string.length());
+//		char[] c = string.string.toCharArray();
+//		ByteBuffer bb = Charset.forName("UTF-8").encode(CharBuffer.wrap(c));
+//		byte[] b = new byte[bb.remaining()];
+//		bb.get(b);
+		StringWrapper sw = new StringWrapper();
+		byte[] bwt = new byte[string.length()];
+		sw.string = bwt;
+		//new sais().bwtransform(b, bwt, new int[b.length], b.length);
+		//SaisBWT.PerformBWT(string.string, bwt);
+		SaisBWT.PerformBWT(string, sw);
+		string = null;
+		bwtString = new StringWrapper();
+		bwtString.string = sw.string;
+		long stopTime = System.currentTimeMillis();
+		long elapsedTime = stopTime - startTime;
+		System.out.println("Time:" + elapsedTime);
+		startTime = System.currentTimeMillis();
 		this.occTable = new WaveletTree(bwtString, alphabet);
+		stopTime = System.currentTimeMillis();
+		elapsedTime = stopTime - startTime;
+		System.out.println("Time:" + elapsedTime);
 		bwtString = null;
-	}
+		}
 	
 	/**
 	 * Performs the count algorithm on the index
@@ -32,13 +56,13 @@ public class FMIndex {
 	 * @return Number of the occurrences of the pattern
 	 */
 	public int Count(StringWrapper string){
-		int position = string.string.length()-1;
-		Character character = string.string.charAt(position);
+		int position = string.length()-1;
+		byte character = string.charAt(position);
 		int characterIndex = alphabet.getCharacterIndex(character);
 		int startPosition = cTable.getCharacterPrefixSum(characterIndex)+1;
 		int endPosition = cTable.getCharacterPrefixSum(characterIndex+1);
 		for(position = position-1; position>=0; position--){
-			character = string.string.charAt(position);
+			character = string.charAt(position);
 			startPosition = cTable.getCharacterPrefixSum(character) + occTable.getCharacterOcurrance(character, startPosition-2)+1;
 			endPosition = cTable.getCharacterPrefixSum(character) + occTable.getCharacterOcurrance(character, endPosition-1);
 		}
