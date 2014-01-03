@@ -1,3 +1,6 @@
+U ovom poglavlju upisani su algoritmi koji su potrebni za konstruranje i korištenje FM-indeksa u svrhu prebrojavanja broja ponavljanja podniza unutar zadanog niza nad kojim je konstruiran FM-indeks. Opisani su algoritmi Burrows-Wheeler transformacije, wavelet stabla i RRR strukture.
+
+
 \section{Burrows-Wheeler transformacija}
 Burrows-Wheeler transformacija (skraćeno BWT) \cite{bwt1}, služi za kompresiju tekstualnog niza na osnovi pronalaska ponavljajućih uzoraka unutar njega. Ova transformacija je reverzibilna i ne iziskuje pohranu dodatnih podataka za rekonstrukciju originalnog niza. Osim ovoga, prilikom BWT transformacije, ni jedan znak originalnog niza se ne mijenja. Dodatna prednost je činjenica da se za transformaciju (osim dodavanja znaka \$) ne proširuje ulazna abeceda. Ukoliko ulazni niz sadrži više jednakih podnizova, velika je vjerojatnost da će transformirani niz sadržavati uzastopne nizove jednakih znakova, što kasnije uvelike pogoduje njegovom komprimiranju.
 
@@ -34,10 +37,7 @@ Matrica dobivena u 3. koraku algoritma poslužiti će za rekonstrukciju original
 
 \section{Wavelet stablo}
 
-Wavelet stablo (engl. \textit{wavelet tree}) je podatkovna struktura koja tekstualni niz organizira u hijerarhiju nizova nula i jedinica - \textit{bit-vektora}. Ova struktura omogućuje pronalazak broja pojavljivanja do nekog indeksa u nizu - \textit{ranga} nekog znaka sa složenošću od $O(log n)$
-
-
-, gdje je n veličina abecede danog tekstualnog niza. 
+Wavelet stablo (engl. \textit{wavelet tree}) je podatkovna struktura koja tekstualni niz organizira u hijerarhiju nizova nula i jedinica - \textit{bit-vektora}. Ova struktura omogućuje pronalazak broja pojavljivanja do nekog indeksa u nizu - \textit{ranga} nekog znaka sa složenošću od $O(log n)$, gdje je $n$ veličina abecede danog tekstualnog niza. 
 Stablo se izgrađuje rekurzivno, razdijeljujući abecedu u parove podabeceda. Nakon izgradnje stabla, svaki list odgovara jednom znaku abecede, dok ostali unutarnji čvorovi označavaju da li pojedini znak teksta pripada prvoj ili drugoj podabecedi.
 Ukoliko se bit-vektori koji izgrađuju stablo pohrane u RRR strukturu (koja je opisana u idućem poglavlju), moguće je da se memorijsko zauzeće smanji s obzirom na originalno stablo koje ne koristi RRR strukturu.
 
@@ -89,7 +89,7 @@ Ukoliko se osvrnemo na primjer wavelet stabla prikazanim u prethodnom poglavlju 
 \subsection{Izračunavanje broja jedinica u nizu}
 Broj jedinica u nizu se izračunava kao zbroj vrijednosti zadnjeg popunjenog nadbloka i bloka do zadane pozicije te broja jedinica u ostatku niza koji nije obuhvaćen blokom. Zbog načina punjenja blokova i nadblokova, kod računanja ukupnog broja pojavljivanja jedinica u nizu do određene pozicije potrebno je pripaziti na određene situacije. Ako se tražena pozicija nalazi na mjestu u nizu jednakom $k\cdot l^2$, onda je broj pojavljivanja jedinica u podnizu jednak samo vrijednosti nadbloka, a ako se pozicija nalazi na mjestu u nizu $k\cdot l$, to znači da je vrijednost broja jedinica u podnizu dan ili samo nadblokom (ranije naveden slučaj) ili zbrojem vrijednosti nadbloka i bloka, te nema dijela niza koji nije obuhvaćen blokom/nadblokom za koji treba dodatno provjeravati vrijednosti znamenki. U ostalim slučajevima se vrijednostima zadnjeg popunjenog nadbloka i bloka pridodaje broj jedinica u dijelu niza od zadnjeg popunjenog bloka do pozicije do koje se traži izračun broja pojavljivanja jedinica u podnizu, i to je jedini dio u računanju kada je potrebno slijedno prolaziti kroz elemente niza prebrajajući pojavljivanje jedinica.
 
-U nastavku je opisan postupak izračunavanja broja jedinica za primjer niza prikazanog slikom \ref{rrr2}. Neka se želi izračunati broj pojavljivanja jedinica do pozicije 17. elementa niza (uključujući). Zadnji popunjeni nadblok moguće je pronaći formulom $ind\_nadblok = \linebreak \lfloor pozicija/l^2 \rfloor = \lfloor 17/9 \rfloor = 1$, a zadnji popunjeni blok formulom $ind\_blok = \lfloor pozicija/l \rfloor = \lfloor 17/3 \rfloor = 5$. Broj pojavljivanja jedinica u ostatku podniza računa se provjeravanjem broja jedinica u dijelu niza od pozicije $ind\_blok\cdot l+1$ do tražene pozicije (uključujući). U ovom primjeru potrebno je provjeriti pojavljivanje jednica u još dva elementa niza, 16. i 17. elementu, čime se dobiva vrijednost dodatnih jedinica dodatne = 2. Ukupan broj pojavljivanja jedninica u nizu do 17. elementa niza se izračunava kao ukupno  = $SBS(ind\_nadblok) + BS(ind\_blok) + dodatno = 5 + 1 + 2 = 8$.
+U nastavku je opisan postupak izračunavanja broja jedinica za primjer niza prikazanog slikom \ref{rrr2}. Neka se želi izračunati broj pojavljivanja jedinica do pozicije 17. elementa niza (uključujući). Zadnji popunjeni nadblok moguće je pronaći formulom $indNadblok = \linebreak \lfloor pozicija/l^2 \rfloor = \lfloor 17/9 \rfloor = 1$, a zadnji popunjeni blok formulom $indBlok = \lfloor pozicija/l \rfloor = \lfloor 17/3 \rfloor = 5$. Broj pojavljivanja jedinica u ostatku podniza računa se provjeravanjem broja jedinica u dijelu niza od pozicije $indBlok\cdot l+1$ do tražene pozicije (uključujući). U ovom primjeru potrebno je provjeriti pojavljivanje jednica u još dva elementa niza, 16. i 17. elementu, čime se dobiva vrijednost dodatnih jedinica $dodatno$ = 2. Ukupan broj pojavljivanja jedninica u nizu do 17. elementa niza se izračunava kao ukupno  = $SBS(indNadblok) + BS(indBlok) + dodatno = 5 + 1 + 2 = 8$.
 
 \begin{figure}[H]
 \centering
@@ -97,105 +97,6 @@ U nastavku je opisan postupak izračunavanja broja jedinica za primjer niza prik
 \caption{Ispunjene vrijednosti u poljima BS i SBS}\label{rrr2}
 \end{figure}
 
-
-
-\section{FM indeks}
-FM indeks je samostojeći indeks koji su 2000. godine u svom radu opisali i objavili Ferragina i Manzini. Općenito indeks je podatkovna struktura koja omogućuje učinkovito dohvaćanje podataka. Samostojeći indeks (engl. \emph{self-index}) je struktura koja se stvara nad određenim tekstom te ga indeksira na način da je memorijski proporcionalna veličini komprimiranog teksta te omogućava efikasno dohvaćanje i prebrojavanje dijelova tog teksta (bez potrebe za dekompresijom cijelog teksta).
-
-
-\subsection{Originalna implementacija}
-FM indeks count je implementacija FM indeksa koja služi za pronalaženje broja pojavljivanja uzorka P u tekstu S. Općenito se FM indeks temelji na Burrows-Wheeler transformaciji i sufisknom polju, ali kod izvedbe samo prebrojavanja, ne i dohvaćanja svih pojavljivanja (FM indeks find), struktura sufiksnog polja se može izostaviti.
-FM indeks count je ustvari samo izvedba algoritma pretraživanja unatrag  (engl. \emph{backward search}) u kojemu se kreće s pretraživanjem od zadnjeg znaka uzorka P te ako uzorak postoji u tekstu, algoritam vraća koliko se puta on u tekstu ponavlja.
-Pronalaženje broja pojavljivanja uzorka u tekstu provodi se tako da se nad zadanim tekstom prvo stvori FM indeks sa svojim strukturama OCC tablicom i C tablicom te se zatim koristeći stvorene tablice provodi prebrojavanje za zadani uzorak.
-U originalnoj implementaciji FM indeksa  \cite{fm1}, algoritam pretraživanja unatrag se provodi nad nizom znakova koji je dobiven iz originalnog teksta na koji su primjenjene različite operacije. Nad originalnim tekstom provedene su redom Burrows-Wheeler transformacija, \emph{Move-To-Front} i \emph{Run-length} kodiranje te stvaranje prefiksnog koda promjenjive duljine.  Za provođenje algoritma potrebne su funkcije C(c) i Occ(c,i). C(c) daje broj znakova u (originalnom) tekstu koji su abecedno prije znaka c uključujući i ponavljanje pojedinih znakova. Occ(c,i) daje broj pojavljivanja znaka c u nizu B[1,i], i=1...$|S|$, gdje je S originalni tekst, B niz dobiven transformacijama originalnog teksta, a znak c je bilokoji znak iz abecede originalnog teksta. Pokazano je [neka referenca] da brzina izvođenja funkcije Occ(c,i) određuje brzinu izvođenja cijelog algoritma pretraživanja unatrag. U originalnoj implementaciji funkcija Occ(c,i) se računa korištenjem transformiranog (sažetog) originalnog teksta te nekoliko dodatnih pomoćnih struktura. 
-
-\emph{\textbf{(opisat te strukture? ako bude ugrubo bit će nejasno, ali sve objasnit će biti predugačko)}}
-
-
-\subsection{Naša implementacija}
-U ovoj implementaciji FM indeksa koristi se algoritam pretraživanja unatrag i ranije spomenuta struktura C tablice na isti način kao i u originalnoj implementaciji, ali je funkcija Occ(c,i) izvedena korištenjem wavelet stabla i RRR struktura čiji je princip objašnjen u ranijem poglavlju.
-
-Prvi korak je dodavanje znaka \$ na kraj niza te stvaranje C tablice koja za svaki znak iz abecede ulaznog teksta sadrži informacije koliko je znakova abecedno manjih ispred tog znaka abecede, uključujući i ponavljanje znakova. Pretpostavimo da ulazni niz s nadodanim znakom kraja niza glasi \emph{ACAAGATGCACAATGTCCCA\$}. Stvorena struktura (C tablica) izgledala bi ovako:
-
-\begin{table}[htb]
-\caption{C tablica}
-\label{tbl:ctabl}
-\centering
-\begin{tabular}{|l||ccccc|} \hline
-c & \$ & A & C & G & T \\ \hline
-C(c) & 0 & 1 & 9 & 15 & 18 \\ \hline
-\end{tabular}
-\end{table}
-
-
-Sljedeći korak je provođenje Burrows-Wheeler transformacije nad zadanim tekstom korištenjem \emph{multikey quick} sortiranja čime se iz niza \emph{ACAAGATGCCAATGTCCCA\$} dobiva niz \linebreak \emph{ACCC\$CAGACAAGCTATTGAA}. Burrows-Wheeler transformacija i \emph{multikey quick} sortiranje detaljno su opisani u prethodnom poglavlju.
-Na temelju dobivenog niza  stvara se OCC tablica koja je u ovoj implementaciji predstavljena wavelet stablom. Na temelju izgrađenog stabla prikazanog slikom  \ref{fmWaveletTree}, uz korištenje RRR struktura koje se stvaraju za svaki list stabla (i služe za računanje broja jedinica u dijelu niza pojedinog lista), lako se računaju  vrijednosti Occ(c,i) koje su potrebne za algoritam pretraživanja unatrag. Struktura wavelet stabla i RRR struktura su detaljnije opisane u ranijim potpoglavljima. 
-
-
-\emph{\textbf{SLIKA STABLA}}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth]{./pictures/fmStablo.png}
-\caption{Prikaz izgrađenog wavelet stabla za niz \emph{ACCC\$CAGACAAGCTATTGAA}}\label{fmWaveletTree}
-\end{figure}
-
-Ovim dijelom implementacije završeno je stvaranje same strukture FM indeksa te je još samo potrebno implementirati algoritam koji će obuhvatiti prebrojavanje pojavljivanja nekog podniza u nizu nad kojim je napravljen FM indeks, tj. \emph{Count} dio implementacije projekta \textbf{\emph{(? malo čudno zvuči).}}
-Za završni dio implementacije korišten je algoritam pretraživanja unatrag (engl. \emph{backward search algorithm}). Algoritam je implementiran kao i u originalnoj implementaciji FM indeksa \cite{fm1}, prema sljedećem pseudokodu:
-
-
-\begin{algorithm}
-\caption{ Pretraživanje unatrag }
-\label{algo:bws}
-\begin{algorithmic}
-\STATE{\textbf{Ulaz:} P[0, p - 1] -- zadani podniz}
-\STATE{\textbf{Izlaz:} broj pojavljivanja podniza}
-\STATE{i = p - 1;}
-\STATE{c = P[i];}
-\STATE{startPosition = C[c] + 1;}
-\STATE{endPosition = C[c + 1];}
-\FOR{(i=i-1; i$>=$0; i-\--)}
-\STATE{c = P[i];}
-\STATE{startPosition = C[c] + Occ(c, startPosition - 2) + 1;}
-\STATE{endPosition = C[c] + Occ(c, endPosition - 1);}
-\ENDFOR
-\IF{endPosition $>=$ startPosition}
-\RETURN endPosition - startPosition + 1;
-\ELSE
-\RETURN 0;
-\ENDIF
-\end{algorithmic}
-\end{algorithm}
-
-
-
-
-
-Ako se i dalje pretpostavi da se FM indeks izgradio nad nizom \emph{ACAAGATGCCAATGTCCCA}  u kojemu se želi pronaći broj pojavljivanja podniza \emph{ATG}, algoritam pretraživanja unatrag se provodi prema sljedećim koracima:
-
-
-i = 2; \newline
-c = 'G'; \newline
-startPosition = 15 + 1 = 16; \newline
-endPosition = 18; \newline
------------ \newline
-i = 1; \newline
-c = 'T'; \newline
-startPosition  = 18 + 1 + 1 = 20; \newline
-endPosition = 18 + 3 = 21; \newline
- \newline
-i = 0; \newline
-c = 'A'; \newline
-startPosition  = 1 + 6 + 1 = 8; \newline
-endPosition = 1 + 8 = 9; \newline
- \newline
-STOP \newline
- \newline
-broj pojavljivanja = 9 - 8 + 1 = 2  \newline
-\\
-
-
-\subsection{Nedostaci implementacije u programskom jeziku Java}
 
 
 

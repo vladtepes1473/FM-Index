@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.2)  3 JAN 2014 16:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.2)  3 JAN 2014 17:47
 entering extended mode
 **Dokumentacija.tex
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.tex"
@@ -902,7 +902,7 @@ See the natbib package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.72 ...mand\NAT@force@numbers{}\NAT@force@numbers
+l.74 ...mand\NAT@force@numbers{}\NAT@force@numbers
                                                   
 ? 
 )
@@ -1019,41 +1019,42 @@ Poglavlje 1.
 Poglavlje 2.
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\pomocniAlgoritmi.tex"
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
 
 <./pictures/bwt.jpg, id=103, 1588.93625pt x 771.88374pt>
 File: ./pictures/bwt.jpg Graphic file (type jpg)
 
 <use ./pictures/bwt.jpg>
-Package pdftex.def Info: ./pictures/bwt.jpg used on input line 20.
+Package pdftex.def Info: ./pictures/bwt.jpg used on input line 23.
 (pdftex.def)             Requested size: 317.78162pt x 154.37401pt.
  [3
 
- <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/bwt.jpg>] <./pictures/rev
-erseBWT.jpg, id=115, 838.13126pt x 771.88374pt>
+]
+<./pictures/reverseBWT.jpg, id=115, 838.13126pt x 771.88374pt>
 File: ./pictures/reverseBWT.jpg Graphic file (type jpg)
 
 <use ./pictures/reverseBWT.jpg>
-Package pdftex.def Info: ./pictures/reverseBWT.jpg used on input line 29.
+Package pdftex.def Info: ./pictures/reverseBWT.jpg used on input line 32.
 (pdftex.def)             Requested size: 167.62328pt x 154.37401pt.
- [4 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/reverseBWT.jpg>]
-<./pictures/Waveletusporedba.jpg, id=125, 1664.2175pt x 1856.9375pt>
+ [4 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/bwt.jpg> <C:/Users/Mat
+ea/Desktop/LaTeX dokumentacija/pictures/reverseBWT.jpg>] <./pictures/Waveletusp
+oredba.jpg, id=125, 1664.2175pt x 1856.9375pt>
 File: ./pictures/Waveletusporedba.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletusporedba.jpg>
 Package pdftex.def Info: ./pictures/Waveletusporedba.jpg used on input line 54.
 
 (pdftex.def)             Requested size: 332.8376pt x 371.38092pt.
- [5 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/Waveletusporedba.jpg>]
-
+ [5]
 <./pictures/Waveletquery.jpg, id=133, 1890.06125pt x 1074.0125pt>
 File: ./pictures/Waveletquery.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletquery.jpg>
 Package pdftex.def Info: ./pictures/Waveletquery.jpg used on input line 65.
 (pdftex.def)             Requested size: 452.9679pt x 257.39134pt.
- [6 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/Waveletquery.jpg>]
-<./pictures/rrr1.png, id=143, 800.9925pt x 132.495pt>
+ [6 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/Waveletusporedba.jpg>]
+ [7 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/Waveletquery.jpg>]
+<./pictures/rrr1.png, id=149, 800.9925pt x 132.495pt>
 File: ./pictures/rrr1.png Graphic file (type png)
 
 <use ./pictures/rrr1.png>
@@ -1065,106 +1066,109 @@ Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 89.
 
-[7 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr1.png>]
-Underfull \hbox (badness 1097) in paragraph at lines 92--93
+
+Underfull \hbox (badness 1226) in paragraph at lines 92--93
 \OT1/ptm/m/n/12 (uklju[]cuju[]ci). Zad-nji po-pu-njeni nad-blok mogu[]ce je pro
-na[]ci for-mu-lom $\OML/ztmcm/m/it/12 ind[]nadblok \OT1/ztmcm/m/n/12 =$
+na[]ci for-mu-lom $\OML/ztmcm/m/it/12 indNadblok \OT1/ztmcm/m/n/12 =$
  []
 
-<./pictures/rrr2.png, id=157, 800.9925pt x 132.495pt>
+[8 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr1.png>]
+<./pictures/rrr2.png, id=161, 800.9925pt x 132.495pt>
 File: ./pictures/rrr2.png Graphic file (type png)
 
 <use ./pictures/rrr2.png>
 Package pdftex.def Info: ./pictures/rrr2.png used on input line 96.
 (pdftex.def)             Requested size: 452.9679pt x 74.92854pt.
+) [9 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr2.png>]
+Poglavlje 3.
+("C:\Users\Matea\Desktop\LaTeX dokumentacija\FMindeks.tex"
 
+Package natbib Warning: Citation `fm1' on page 10 undefined on input line 8.
 
-Package natbib Warning: Citation `fm1' on page 8 undefined on input line 110.
-
-[8 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr2.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 112.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 10.
 
-Overfull \hbox (1.99591pt too wide) in paragraph at lines 112--113
+Overfull \hbox (1.99591pt too wide) in paragraph at lines 10--11
 []\OT1/ptm/b/it/12 (opisat te struk-ture? ako bude ugrubo bit []ce ne-jasno, al
 i sve objas-nit []ce biti pre-duga[]cko) 
  []
 
+[10
 
-Overfull \hbox (3.15947pt too wide) in paragraph at lines 131--133
+]
+Overfull \hbox (3.15947pt too wide) in paragraph at lines 29--31
 []\OT1/ptm/m/n/12 Sljede[]ci ko-rak je provo[]denje Burrows-Wheeler tran-sfor-m
 a-cije nad za-da-nim tek-s-tom kori[]stenjem
  []
 
 
-Underfull \hbox (badness 3838) in paragraph at lines 131--133
+Underfull \hbox (badness 3838) in paragraph at lines 29--31
 \OT1/ptm/m/it/12 mul-ti-key qu-ick \OT1/ptm/m/n/12 sor-ti-ra-nja []cime se iz n
 iza \OT1/ptm/m/it/12 ACA-AGAT-G-C-CA-AT-G-T-C-CCA\OT1/ptm/m/sl/12 $ \OT1/ptm/m/
 n/12 do-biva niz
  []
 
-<./pictures/fmStablo.png, id=165, 898.85812pt x 358.33875pt>
+<./pictures/fmStablo.png, id=174, 898.85812pt x 358.33875pt>
 File: ./pictures/fmStablo.png Graphic file (type png)
 
 <use ./pictures/fmStablo.png>
-Package pdftex.def Info: ./pictures/fmStablo.png used on input line 139.
+Package pdftex.def Info: ./pictures/fmStablo.png used on input line 37.
 (pdftex.def)             Requested size: 452.9679pt x 180.57962pt.
- [9]
 
-Package natbib Warning: Citation `fm1' on page 10 undefined on input line 144.
+
+Package natbib Warning: Citation `fm1' on page 11 undefined on input line 42.
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 148.
-
-Underfull \hbox (badness 10000) in paragraph at lines 177--196
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 177--196
+put line 46.
+[11 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/fmStablo.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 75--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--196
+Underfull \hbox (badness 10000) in paragraph at lines 75--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--196
+Underfull \hbox (badness 10000) in paragraph at lines 75--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--196
+Underfull \hbox (badness 10000) in paragraph at lines 75--94
 
  []
 
-[10 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/fmStablo.png>])
-[11]
-Poglavlje 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 75--94
+
+ []
+
+) [12] [13]
+Poglavlje 4.
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.bbl")
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 55.
-[12
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
+[14
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
  ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 55.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
 Package rerunfilecheck Info: File `Dokumentacija.out' has not changed.
-(rerunfilecheck)             Checksum: ED2B3350EB996629DFFF3DB528E49ABF;1177.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
+(rerunfilecheck)             Checksum: A27995CC2399F2FA8EBAC1DFDD6F347E;1152.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 16719 strings out of 493921
- 277753 string characters out of 3146481
- 361009 words of memory out of 3000000
- 19602 multiletter control sequences out of 15000+200000
- 31146 words of font info for 62 fonts, out of 3000000 for 9000
+ 16721 strings out of 493921
+ 277817 string characters out of 3146481
+ 360009 words of memory out of 3000000
+ 19599 multiletter control sequences out of 15000+200000
+ 30132 words of font info for 60 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  49i,8n,53p,1214b,602s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/Program Fi
@@ -1175,9 +1179,9 @@ nts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/urw/t
 imes/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/urw/times/utmr8a.pf
 b><C:/Program Files (x86)/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Program F
 iles (x86)/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Dokumentacija.pdf (13 pages, 1593255 bytes).
+Output written on Dokumentacija.pdf (15 pages, 1594745 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
- 63 named destinations out of 1000 (max. 500000)
+ 256 PDF objects out of 1000 (max. 8388607)
+ 65 named destinations out of 1000 (max. 500000)
  176 words of extra memory for PDF output out of 10000 (max. 10000000)
 
