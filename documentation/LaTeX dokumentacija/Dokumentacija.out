@@ -9,4 +9,8 @@
 \BOOKMARK [1][-]{section.2.3}{RRR struktura}{chapter.2}% 9
 \BOOKMARK [2][-]{subsection.2.3.1}{Konstruiranje RRR strukture}{section.2.3}% 10
 \BOOKMARK [2][-]{subsection.2.3.2}{Izracunavanje broja jedinica u nizu}{section.2.3}% 11
-\BOOKMARK [0][-]{chapter.3}{Literatura}{}% 12
+\BOOKMARK [1][-]{section.2.4}{FM indeks}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.4.1}{Originalna implementacija}{section.2.4}% 13
+\BOOKMARK [2][-]{subsection.2.4.2}{Na\235a implementacija}{section.2.4}% 14
+\BOOKMARK [2][-]{subsection.2.4.3}{Nedostaci implementacije u programskom jeziku Java}{section.2.4}% 15
+\BOOKMARK [0][-]{chapter.3}{Literatura}{}% 16

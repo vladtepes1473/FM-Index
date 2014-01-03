@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.2)  2 JAN 2014 20:33
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.2)  3 JAN 2014 04:18
 entering extended mode
 **Dokumentacija.tex
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.tex"
@@ -847,6 +847,50 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen173
 \l_MT_below_shortintertext_sep=\dimen174
 )
+("C:\Program Files (x86)\MiKTeX\tex\latex\algorithms\algorithmic.sty"
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@ALC@unique=\count136
+\c@ALC@line=\count137
+\c@ALC@rem=\count138
+\c@ALC@depth=\count139
+\ALC@tlm=\skip61
+\algorithmicindent=\skip62
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\algorithms\algorithm.sty"
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+\@float@every@algorithm=\toks32
+\c@algorithm=\count140
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\listings\listings.sty"
+\lst@mode=\count141
+\lst@gtempboxa=\box38
+\lst@token=\toks33
+\lst@length=\count142
+\lst@currlwidth=\dimen175
+\lst@column=\count143
+\lst@pos=\count144
+\lst@lostspace=\dimen176
+\lst@width=\dimen177
+\lst@newlines=\count145
+\lst@lineno=\count146
+\lst@maxwidth=\dimen178
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count147
+\lst@skipnumbers=\count148
+\lst@framebox=\box39
+)
+("C:\Program Files (x86)\MiKTeX\tex\latex\listings\listings.cfg"
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.aux"
 
 ! Package natbib Error: Bibliography not compatible with author-year citations.
@@ -858,49 +902,50 @@ See the natbib package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.60 ...mand\NAT@force@numbers{}\NAT@force@numbers
+l.70 ...mand\NAT@force@numbers{}\NAT@force@numbers
                                                   
 ? 
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 37.
  ("C:\Program Files (x86)\MiKTeX\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ("C:\Program Files (x86)\MiKTeX\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count136
-\scratchdimen=\dimen175
-\scratchbox=\box38
-\nofMPsegments=\count137
-\nofMParguments=\count138
-\everyMPshowfont=\toks32
-\MPscratchCnt=\count139
-\MPscratchDim=\dimen176
-\MPnumerator=\count140
-\makeMPintoPDFobject=\count141
-\everyMPtoPDFconversion=\toks33
+\scratchcounter=\count149
+\scratchdimen=\dimen179
+\scratchbox=\box40
+\nofMPsegments=\count150
+\nofMParguments=\count151
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count152
+\MPscratchDim=\dimen180
+\MPnumerator=\count153
+\makeMPintoPDFobject=\count154
+\everyMPtoPDFconversion=\toks35
 ) ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box39
-Package hyperref Info: Link coloring OFF on input line 32.
+\AtBeginShipoutBox=\box41
+Package hyperref Info: Link coloring OFF on input line 37.
 
 ("C:\Program Files (x86)\MiKTeX\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -908,15 +953,16 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ("C:\Program Files (x86)\MiKTeX\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count142
+\c@section@level=\count155
 )
-LaTeX Info: Redefining \ref on input line 32.
-LaTeX Info: Redefining \pageref on input line 32.
-LaTeX Info: Redefining \nameref on input line 32.
+LaTeX Info: Redefining \ref on input line 37.
+LaTeX Info: Redefining \pageref on input line 37.
+LaTeX Info: Redefining \nameref on input line 37.
 
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.out")
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.out")
 \@outlinefile=\write4
+\c@lstlisting=\count156
 
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\naslovna.tex"
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
@@ -962,7 +1008,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.38 \chapter
+l.43 \chapter
              {Uvod} [1
 
 ]
@@ -975,7 +1021,7 @@ Poglavlje 2.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
 
-<./pictures/bwt.jpg, id=83, 1588.93625pt x 771.88374pt>
+<./pictures/bwt.jpg, id=103, 1588.93625pt x 771.88374pt>
 File: ./pictures/bwt.jpg Graphic file (type jpg)
 
 <use ./pictures/bwt.jpg>
@@ -984,89 +1030,127 @@ Package pdftex.def Info: ./pictures/bwt.jpg used on input line 20.
  [3
 
  <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/bwt.jpg>] <./pictures/rev
-erseBWT.jpg, id=95, 838.13126pt x 771.88374pt>
+erseBWT.jpg, id=115, 838.13126pt x 771.88374pt>
 File: ./pictures/reverseBWT.jpg Graphic file (type jpg)
 
 <use ./pictures/reverseBWT.jpg>
 Package pdftex.def Info: ./pictures/reverseBWT.jpg used on input line 29.
 (pdftex.def)             Requested size: 167.62328pt x 154.37401pt.
  [4 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/reverseBWT.jpg>]
-<./pictures/Waveletusporedba.jpg, id=104, 1664.2175pt x 1856.9375pt>
+<./pictures/Waveletusporedba.jpg, id=125, 1664.2175pt x 1856.9375pt>
 File: ./pictures/Waveletusporedba.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletusporedba.jpg>
-Package pdftex.def Info: ./pictures/Waveletusporedba.jpg used on input line 51.
+Package pdftex.def Info: ./pictures/Waveletusporedba.jpg used on input line 54.
 
 (pdftex.def)             Requested size: 332.8376pt x 371.38092pt.
  [5 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/Waveletusporedba.jpg>]
 
-<./pictures/Waveletquery.jpg, id=112, 1890.06125pt x 1074.0125pt>
+<./pictures/Waveletquery.jpg, id=133, 1890.06125pt x 1074.0125pt>
 File: ./pictures/Waveletquery.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletquery.jpg>
-Package pdftex.def Info: ./pictures/Waveletquery.jpg used on input line 62.
+Package pdftex.def Info: ./pictures/Waveletquery.jpg used on input line 65.
 (pdftex.def)             Requested size: 452.9679pt x 257.39134pt.
  [6 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/Waveletquery.jpg>]
-<./pictures/rrr1.png, id=123, 800.9925pt x 132.495pt>
+<./pictures/rrr1.png, id=143, 800.9925pt x 132.495pt>
 File: ./pictures/rrr1.png Graphic file (type png)
 
 <use ./pictures/rrr1.png>
-Package pdftex.def Info: ./pictures/rrr1.png used on input line 79.
+Package pdftex.def Info: ./pictures/rrr1.png used on input line 82.
 (pdftex.def)             Requested size: 452.9679pt x 74.92854pt.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 86.
+(hyperref)                removing `\textasciicaron' on input line 89.
 
 [7 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr1.png>]
-Overfull \hbox (31.73933pt too wide) in paragraph at lines 89--90
+Overfull \hbox (31.73933pt too wide) in paragraph at lines 92--93
 \OT1/ptm/m/n/12 (uklju[]cuju[]ci). Zad-nji po-pu-njeni nad-blok mogu[]ce je pro
 na[]ci for-mu-lom $\OML/ztmcm/m/it/12 ind[]nadblok \OT1/ztmcm/m/n/12 = \OMS/ztm
 cm/m/n/12 b\OML/ztmcm/m/it/12 pozicija=l[]\OMS/ztmcm/m/n/12 c \OT1/ztmcm/m/n/12
  =$
  []
 
-<./pictures/rrr2.png, id=137, 800.9925pt x 132.495pt>
+<./pictures/rrr2.png, id=157, 800.9925pt x 132.495pt>
 File: ./pictures/rrr2.png Graphic file (type png)
 
 <use ./pictures/rrr2.png>
-Package pdftex.def Info: ./pictures/rrr2.png used on input line 93.
+Package pdftex.def Info: ./pictures/rrr2.png used on input line 96.
 (pdftex.def)             Requested size: 452.9679pt x 74.92854pt.
-) [8 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr2.png>]
+
+
+Package natbib Warning: Citation `fm1' on page 8 undefined on input line 110.
+
+[8 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr2.png>]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 112.
+
+Overfull \hbox (1.99591pt too wide) in paragraph at lines 112--113
+[]\OT1/ptm/b/it/12 (opisat te struk-ture? ako bude ugrubo bit []ce ne-jasno, al
+i sve objas-nit []ce biti pre-duga[]cko) 
+ []
+
+
+Overfull \hbox (3.15947pt too wide) in paragraph at lines 129--131
+[]\OT1/ptm/m/n/12 Sljede[]ci ko-rak je provo[]denje Burrows-Wheeler tran-sfor-m
+a-cije nad za-da-nim tek-s-tom kori[]stenjem
+ []
+
+
+Overfull \hbox (100.21548pt too wide) in paragraph at lines 129--131
+\OT1/ptm/m/it/12 mul-ti-key qu-ick \OT1/ptm/m/n/12 sor-ti-ra-nja []cime se iz n
+iza \OT1/ptm/m/it/12 ACA-AGAT-G-C-CA-AT-G-T-C-CCA\OT1/ptm/m/sl/12 $ \OT1/ptm/m/
+n/12 do-biva niz \OT1/ptm/m/it/12 ACCC\OT1/ptm/m/sl/12 $\OT1/ptm/m/it/12 CAGACA
+AGCTATTGAA\OT1/ptm/m/n/12 .
+ []
+
+
+Package natbib Warning: Citation `fm1' on page 9 undefined on input line 137.
+
+[9] ("C:\Program Files (x86)\MiKTeX\tex\latex\listings\lstlang1.sty"
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 142.
+) [10]
 Poglavlje 3.
 ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 50.
- [9
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 55.
+[11
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 50.
-
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 50.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 50.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
+ ("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 55.
 Package rerunfilecheck Info: File `Dokumentacija.out' has not changed.
-(rerunfilecheck)             Checksum: D7395003B678F653818BE7E9D929A901;858.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 50.
+(rerunfilecheck)             Checksum: ED2B3350EB996629DFFF3DB528E49ABF;1177.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
  ) 
 Here is how much of TeX's memory you used:
- 15123 strings out of 493921
- 255545 string characters out of 3146481
- 337648 words of memory out of 3000000
- 18059 multiletter control sequences out of 15000+200000
- 27875 words of font info for 58 fonts, out of 3000000 for 9000
+ 16750 strings out of 493921
+ 278232 string characters out of 3146481
+ 370795 words of memory out of 3000000
+ 19632 multiletter control sequences out of 15000+200000
+ 31146 words of font info for 62 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 49i,7n,53p,1214b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,8n,53p,1214b,602s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/Program Fi
 les (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x
 86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX/fo
 nts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/urw/t
-imes/utmr8a.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/urw/times/utmri8a.pf
-b>
-Output written on Dokumentacija.pdf (10 pages, 1552872 bytes).
+imes/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/urw/times/utmr8a.pf
+b><C:/Program Files (x86)/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Program F
+iles (x86)/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Dokumentacija.pdf (12 pages, 1581138 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 37 named destinations out of 1000 (max. 500000)
- 139 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 239 PDF objects out of 1000 (max. 8388607)
+ 61 named destinations out of 1000 (max. 500000)
+ 171 words of extra memory for PDF output out of 10000 (max. 10000000)
 

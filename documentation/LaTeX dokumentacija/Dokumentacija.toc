@@ -10,4 +10,8 @@
 \contentsline {section}{\numberline {2.3}RRR struktura}{6}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Konstruiranje RRR strukture}{7}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Izra\IeC {\v c}unavanje broja jedinica u nizu}{7}{subsection.2.3.2}
-\contentsline {chapter}{\numberline {3}Literatura}{9}{chapter.3}
+\contentsline {section}{\numberline {2.4}FM indeks}{8}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Originalna implementacija}{8}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Na\IeC {\v s}a implementacija}{9}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Nedostaci implementacije u programskom jeziku Java}{10}{subsection.2.4.3}
+\contentsline {chapter}{\numberline {3}Literatura}{11}{chapter.3}
