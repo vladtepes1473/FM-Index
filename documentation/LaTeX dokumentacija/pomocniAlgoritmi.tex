@@ -89,7 +89,7 @@ Ukoliko se osvrnemo na primjer wavelet stabla prikazanim u prethodnom poglavlju 
 \subsection{Izračunavanje broja jedinica u nizu}
 Broj jedinica u nizu se izračunava kao zbroj vrijednosti zadnjeg popunjenog nadbloka i bloka do zadane pozicije te broja jedinica u ostatku niza koji nije obuhvaćen blokom. Zbog načina punjenja blokova i nadblokova, kod računanja ukupnog broja pojavljivanja jedinica u nizu do određene pozicije potrebno je pripaziti na određene situacije. Ako se tražena pozicija nalazi na mjestu u nizu jednakom $k\cdot l^2$, onda je broj pojavljivanja jedinica u podnizu jednak samo vrijednosti nadbloka, a ako se pozicija nalazi na mjestu u nizu $k\cdot l$, to znači da je vrijednost broja jedinica u podnizu dan ili samo nadblokom (ranije naveden slučaj) ili zbrojem vrijednosti nadbloka i bloka, te nema dijela niza koji nije obuhvaćen blokom/nadblokom za koji treba dodatno provjeravati vrijednosti znamenki. U ostalim slučajevima se vrijednostima zadnjeg popunjenog nadbloka i bloka pridodaje broj jedinica u dijelu niza od zadnjeg popunjenog bloka do pozicije do koje se traži izračun broja pojavljivanja jedinica u podnizu, i to je jedini dio u računanju kada je potrebno slijedno prolaziti kroz elemente niza prebrajajući pojavljivanje jedinica.
 
-U nastavku je opisan postupak izračunavanja broja jedinica za primjer niza prikazanog slikom \ref{rrr2}. Neka se želi izračunati broj pojavljivanja jedinica do pozicije 17. elementa niza (uključujući). Zadnji popunjeni nadblok moguće je pronaći formulom $ind\_nadblok = \lfloor pozicija/l^2 \rfloor = \lfloor 17/9 \rfloor = 1$, a zadnji popunjeni blok formulom $ind\_blok = \lfloor pozicija/l \rfloor = \lfloor 17/3 \rfloor = 5$. Broj pojavljivanja jedinica u ostatku podniza računa se provjeravanjem broja jedinica u dijelu niza od pozicije $ind\_blok\cdot l+1$ do tražene pozicije (uključujući). U ovom primjeru potrebno je provjeriti pojavljivanje jednica u još dva elementa niza, 16. i 17. elementu, čime se dobiva vrijednost dodatnih jedinica dodatne = 2. Ukupan broj pojavljivanja jedninica u nizu do 17. elementa niza se izračunava kao ukupno  = $SBS(ind\_nadblok) + BS(ind\_blok) + dodatno = 5 + 1 + 2 = 8$.
+U nastavku je opisan postupak izračunavanja broja jedinica za primjer niza prikazanog slikom \ref{rrr2}. Neka se želi izračunati broj pojavljivanja jedinica do pozicije 17. elementa niza (uključujući). Zadnji popunjeni nadblok moguće je pronaći formulom $ind\_nadblok = \linebreak \lfloor pozicija/l^2 \rfloor = \lfloor 17/9 \rfloor = 1$, a zadnji popunjeni blok formulom $ind\_blok = \lfloor pozicija/l \rfloor = \lfloor 17/3 \rfloor = 5$. Broj pojavljivanja jedinica u ostatku podniza računa se provjeravanjem broja jedinica u dijelu niza od pozicije $ind\_blok\cdot l+1$ do tražene pozicije (uključujući). U ovom primjeru potrebno je provjeriti pojavljivanje jednica u još dva elementa niza, 16. i 17. elementu, čime se dobiva vrijednost dodatnih jedinica dodatne = 2. Ukupan broj pojavljivanja jedninica u nizu do 17. elementa niza se izračunava kao ukupno  = $SBS(ind\_nadblok) + BS(ind\_blok) + dodatno = 5 + 1 + 2 = 8$.
 
 \begin{figure}[H]
 \centering
@@ -113,33 +113,39 @@ U originalnoj implementaciji FM indeksa  \cite{fm1}, algoritam pretraživanja un
 
 
 \subsection{Naša implementacija}
-U ovoj implementaciji FM indeksa koristi se algoritam pretraživanja unatrag i ranije spomenuta struktura C tablice na isti način kao i u originalnoj implementaciji, ali je funkcija Occ(c,i) izvedena korištenjem Wavelet stabla i RRR struktura čiji je princip objašnjen u ranijem poglavlju.
+U ovoj implementaciji FM indeksa koristi se algoritam pretraživanja unatrag i ranije spomenuta struktura C tablice na isti način kao i u originalnoj implementaciji, ali je funkcija Occ(c,i) izvedena korištenjem wavelet stabla i RRR struktura čiji je princip objašnjen u ranijem poglavlju.
+
 Prvi korak je dodavanje znaka \$ na kraj niza te stvaranje C tablice koja za svaki znak iz abecede ulaznog teksta sadrži informacije koliko je znakova abecedno manjih ispred tog znaka abecede, uključujući i ponavljanje znakova. Pretpostavimo da ulazni niz s nadodanim znakom kraja niza glasi \emph{ACAAGATGCACAATGTCCCA\$}. Stvorena struktura (C tablica) izgledala bi ovako:
 
 \begin{table}[htb]
 \caption{C tablica}
 \label{tbl:ctabl}
 \centering
-\begin{tabular}{l||ccccc} 
+\begin{tabular}{|l||ccccc|} \hline
 c & \$ & A & C & G & T \\ \hline
-C(c) & 0 & 1 & 9 & 15 & 18 \\
+C(c) & 0 & 1 & 9 & 15 & 18 \\ \hline
 \end{tabular}
 \end{table}
 
-Sljedeći korak je provođenje Burrows-Wheeler transformacije nad zadanim tekstom korištenjem \emph{multikey quick} sortiranja čime se iz niza \emph{ACAAGATGCCAATGTCCCA\$} dobiva niz \emph{ACCC\$CAGACAAGCTATTGAA}. Burrows-Wheeler transformacija i \emph{multikey quick} sortiranje detaljno su opisani u prethodnom poglavlju.
-Na temelju dobivenog niza  stvara se OCC tablica koja je u ovoj implementaciji predstavljena wavelet stablom. Na temelju izgrađenog stabla, uz korištenje pomoćne RRR strukture, lako se računaju  vrijednosti Occ(c,i) koje su potrebne za algoritam pretraživanja unatrag. Struktura wavelet stabla i RRR struktura su detaljnije opisane u ranijim potpoglavljima. 
+
+Sljedeći korak je provođenje Burrows-Wheeler transformacije nad zadanim tekstom korištenjem \emph{multikey quick} sortiranja čime se iz niza \emph{ACAAGATGCCAATGTCCCA\$} dobiva niz \linebreak \emph{ACCC\$CAGACAAGCTATTGAA}. Burrows-Wheeler transformacija i \emph{multikey quick} sortiranje detaljno su opisani u prethodnom poglavlju.
+Na temelju dobivenog niza  stvara se OCC tablica koja je u ovoj implementaciji predstavljena wavelet stablom. Na temelju izgrađenog stabla prikazanog slikom  \ref{fmWaveletTree}, uz korištenje RRR struktura koje se stvaraju za svaki list stabla (i služe za računanje broja jedinica u dijelu niza pojedinog lista), lako se računaju  vrijednosti Occ(c,i) koje su potrebne za algoritam pretraživanja unatrag. Struktura wavelet stabla i RRR struktura su detaljnije opisane u ranijim potpoglavljima. 
 
 
 \emph{\textbf{SLIKA STABLA}}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{./pictures/fmStablo.png}
+\caption{Prikaz izgrađenog wavelet stabla za niz \emph{ACCC\$CAGACAAGCTATTGAA}}\label{fmWaveletTree}
+\end{figure}
 
 Ovim dijelom implementacije završeno je stvaranje same strukture FM indeksa te je još samo potrebno implementirati algoritam koji će obuhvatiti prebrojavanje pojavljivanja nekog podniza u nizu nad kojim je napravljen FM indeks, tj. \emph{Count} dio implementacije projekta \textbf{\emph{(? malo čudno zvuči).}}
 Za završni dio implementacije korišten je algoritam pretraživanja unatrag (engl. \emph{backward search algorithm}). Algoritam je implementiran kao i u originalnoj implementaciji FM indeksa \cite{fm1}, prema sljedećem pseudokodu:
 
-\lstset{language=Java, tabsize=2}
 
 \begin{algorithm}
-\caption{ Pretraživanja unatrag }
+\caption{ Pretraživanje unatrag }
 \label{algo:bws}
 \begin{algorithmic}
 \STATE{\textbf{Ulaz:} P[0, p - 1] -- zadani podniz}
@@ -149,11 +155,10 @@ Za završni dio implementacije korišten je algoritam pretraživanja unatrag (en
 \STATE{startPosition = C[c] + 1;}
 \STATE{endPosition = C[c + 1];}
 \FOR{(i=i-1; i$>=$0; i-\--)}
-\STATE{$c = P[i];$}
+\STATE{c = P[i];}
 \STATE{startPosition = C[c] + Occ(c, startPosition - 2) + 1;}
 \STATE{endPosition = C[c] + Occ(c, endPosition - 1);}
 \ENDFOR
-
 \IF{endPosition $>=$ startPosition}
 \RETURN endPosition - startPosition + 1;
 \ELSE
@@ -163,6 +168,31 @@ Za završni dio implementacije korišten je algoritam pretraživanja unatrag (en
 \end{algorithm}
 
 
+
+
+
+Ako se i dalje pretpostavi da se FM indeks izgradio nad nizom \emph{ACAAGATGCCAATGTCCCA}  u kojemu se želi pronaći broj pojavljivanja podniza \emph{ATG}, algoritam pretraživanja unatrag se provodi prema sljedećim koracima:
+
+
+i = 2; \newline
+c = 'G'; \newline
+startPosition = 15 + 1 = 16; \newline
+endPosition = 18; \newline
+----------- \newline
+i = 1; \newline
+c = 'T'; \newline
+startPosition  = 18 + 1 + 1 = 20; \newline
+endPosition = 18 + 3 = 21; \newline
+ \newline
+i = 0; \newline
+c = 'A'; \newline
+startPosition  = 1 + 6 + 1 = 8; \newline
+endPosition = 1 + 8 = 9; \newline
+ \newline
+STOP \newline
+ \newline
+broj pojavljivanja = 9 - 8 + 1 = 2  \newline
+\\
 
 
 \subsection{Nedostaci implementacije u programskom jeziku Java}
