@@ -160,6 +160,8 @@ public class SaisBWT {
 		for(int i=0; i<SA.length;i++){
 			outputString.string[i] = inputString.string[SA[i]-1>=0?SA[i]-1:inputString.length()-1];
 		}
+		SA = null;
+		System.gc();
 	}
 
 
@@ -225,7 +227,7 @@ public class SaisBWT {
 		boolean sTypeChar=false;
 		int rigthCharacter=array.get(length-1);
 		int leftCharacter = 0;
-		//iterate through the array and finds all LMS characters, as well classifies
+		//iterates through the array and finds all LMS characters, as well classifies
 		//all the characters as either s or l type
 		for(int i=length-2; i>=0; i--){
 			leftCharacter = array.get(i);

@@ -31,19 +31,21 @@ public class FMIndex {
 //		byte[] b = new byte[bb.remaining()];
 //		bb.get(b);
 		StringWrapper sw = new StringWrapper();
-		byte[] bwt = new byte[string.length()];
-		sw.string = bwt;
+		//byte[] bwt = new byte[string.length()];
+		//sw.string = bwt;
 		//new sais().bwtransform(b, bwt, new int[b.length], b.length);
 		//SaisBWT.PerformBWT(string.string, bwt);
-		SaisBWT.PerformBWT(string, sw);
+		(new BWT()).performBWT(string, sw);
+		
 		string = null;
+		System.gc();
 		bwtString = new StringWrapper();
 		bwtString.string = sw.string;
 		long stopTime = System.currentTimeMillis();
 		long elapsedTime = stopTime - startTime;
 		System.out.println("Time:" + elapsedTime);
 		startTime = System.currentTimeMillis();
-		this.occTable = new WaveletTree(bwtString, alphabet);
+		this.occTable = new WaveletTree(sw, alphabet);
 		stopTime = System.currentTimeMillis();
 		elapsedTime = stopTime - startTime;
 		System.out.println("Time:" + elapsedTime);
