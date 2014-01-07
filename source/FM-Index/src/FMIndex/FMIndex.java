@@ -34,8 +34,8 @@ public class FMIndex {
 		//byte[] bwt = new byte[string.length()];
 		//sw.string = bwt;
 		//new sais().bwtransform(b, bwt, new int[b.length], b.length);
-		//SaisBWT.PerformBWT(string.string, bwt);
-		(new BWT()).performBWT(string, sw);
+		SaisBWT.PerformBWT(string, sw);
+		//(new BWT()).performBWT(string, sw);
 		
 		string = null;
 		System.gc();

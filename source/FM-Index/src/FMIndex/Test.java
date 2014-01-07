@@ -79,7 +79,7 @@ public class Test {
 //			e.printStackTrace();
 //		}
 		//System.out.println(text.length());
-		input.string = getBytesFromFile(new File("D:\\FM-Index\\source\\dna.txt"));
+		input.string = getBytesFromFile(new File("D:\\FM-Index\\source\\ba.txt"));
 		text = null;
 		System.gc();
 		sc.next();

@@ -43,7 +43,7 @@ Prvo ćemo proučiti jedan tip algoritma za sortiranje koji se temelji na quick 
 \begin{figure}[h]
    \centering
        \includegraphics[width=\textwidth]{./pictures/MKQS.jpg}
- \caption{Test}
+ \caption{Multikey quicksort algoritam}
  \label{fig:Test}
 \end{figure}
 
@@ -53,8 +53,51 @@ Prednost ovog postupka su prije svega njegova jednostavnost. Sam algoritam je ve
 
 Iako se ovdje radi o veoma zanimljivom algoritmu, nažalost pokazao se kao prespor u usporedbi s izračunavanjem BWT transformacije korištenjem sufiksnog polja.
 
-\section{Konstrukcija sufiksnog polja}
-Sufiksno polje jest jednostavna stuktura podataka koje je sastavljena od niza cijelih brojeva koji sadrže početna mjesta abecedno poredanih sufiksa nekog niza. 
+\subsection{Konstrukcija sufiksnog polja}
+Sufiksno polje jest jednostavna stuktura podataka koje je sastavljena od niza cijelih brojeva koji sadrže početna mjesta abecedno poredanih sufiksa nekog niza. Dobra stvar kod sufiksnog polja jest da se iz njega može izračunati BWT transformacija u linearnom vremenu. Još veća prednost ovakvog postupka jest da se sufiksno polje isto tako može konstruirati u linearnom vremenu. Iako postoje mnogi algoritmi za konstrukciju sufiksnih polja, u ovoj implementaciji iskorišten je algoritam koji je predložen u [reference]. 
+
+Prije nego što se krene na objašnavanje samog algoritma potrebno je uvesti određenu terminologiju koju ćemo koristiti za objašnjenje postupaka ovog algoritma. Ulazni niz znakova ćemo označiti sa $S$. Neka je ulazni niz znakova duljine $n$, i neka je oznaka indeksiranja jednog elementa $S[i]$ pri ćemu je $i \in [0,n-1]$. Posljednja stvar koju je bitno napomenuti jest da znakovni niz mora obavezno završavati znakom koji je strogo manji od svih znakova u ostatku niza.  Definirat ćemo dvije različite vrste znakova, L-znakove i S-znakove. S-znak je onaj znak koji je manji od znaka koji dolazi neposredno iza njega (odnosno formalnije, ako gledamo i-ti znak onda mora vrijediti $S[i]<S[i+1]$) ili je jednak znaku koji se nalazi desno od njega i taj znak je S-znak (formalnije $S[i]=S[i+1]$ i $S[i+1]$ je L-znak). L-znak je onaj znak za koji vrijedi da je veći od znaka koji se nalazi desno od tog znaka (odnosno formalnije, ako gledamo i-ti znak onda mora vrijediti $S[i]<S[i+1]$) ili je jednak znaku koji se nalazi desno od njega i taj znak je L-znak (formalnije $S[i]=S[i+1]$ i $S[i+1]$ je L-znak). Iznimka od ovog pravila jest zadnji znak koji će uvijek biti definiran kao S-znak. Ovaj koncept možemo proširiti i na sufikse, pa reći da je S-sufiks sufiks koji počinje S-znakom i L-sufiks sufiks koji počinje L-znakom. Uvest ćemo još pojam LMS-znak i LMS-podniz. LMS-znak je S-znak kojemu se na lijevom mjestu nalazi L-znak, odnosno vrijedi $S[i]$ je S-znak i $S[i-1]$ je L-znak. LMS-podniz je niz koji započinje LMS-znakom i završava LMS-znakom, te se u njemu ne nalaze drugi LMS-znakovi. Primjer jednog ovako označenog niza može se vidjeti na slici \ref{fig:oznake}.
+
+\begin{figure}[h]
+   \centering
+       \includegraphics{./pictures/charactertypes.jpg}
+ \caption{Oznake znakova u jednom nizu}
+ \label{fig:oznake}
+\end{figure}
+
+Sada kada su uvedene osnovne oznake, možemo pojasniti samo ideju algoritma. Osnovna ideja algoritma predložena je već u [ko aluru ref]. U svojoj osnovnoj inačici, algoritam se je zasnovao na svojstvu da ako znamo poredak svih S-sufiksa ona možemo odrediti i poredak svih L-sufiksa. Nažalost, problem je ostao u tome kako zapravo efikasno sortirati S-sufikse. U tom radu je predložen način kako bi se to moglo riješiti korištenjem S-udaljenosti, što je opet zahtjevalo dodatnog memorijskog prostora. Ta ideja je razrađena i poboljšana te je konačno predložen novi algoritam u [nang] koji se zasniva na istoj ideji, ali uvodi neke promjene koje su rezultirale mnogo boljim ponašanjem ovog algoritma. Prvo bitno poboljšanje koje je uvedeno jest da se umjesto sortiranja S-sufiksa mogu sortirati LMS-sufiksi, koji su sasvim dovoljni kako bi se odredio poredak L-sufiksa, pomoću kojih se konačno može odrediti poredak S-sufiksa. Kako su LMS-sufiksi obično dulji, to znaći kako ćemo vjerojatno imati manji broj takvih sufiksa koje moramo sortirati nego bi to bio slučaj da sortiramo sve S-sufikse (u najgorem slučaju broj LMS-sufiksa je polovica duljine ulaznog niza). Drugo veoma zanimljivo poboljšanje jest da se za sortiranje tih LMS-sufiksa ne mora koristiti nikakav posebni algoritam za sortiranje nego se može koristiti isti postupak kao i kod sortiranja L-znakova i S-znakova. U nastavku ćemo pogledati detaljnije korake ovog algoritma. 
+
+Prvo je potrebno svim znakovima odrediti jesu li to S-znakovi, L-znakovi ili LMS-znakovi. Nakon tog koraka slijedi postupak induciranog sortiranja. Definirajmo prvo inducirano sortiranje. To je postupak kojim ćemo iz LMS-sufiksa inducirati poredak L-sufiksa i potom S-sufiksa. Ovo je zapravo centralni i najvažniji dio algoritma. Za rad ovog algoritma potrebno nam je nekoliko struktura: ulazni niz, sufiksno polje, niz sa oznakama tipova znakova i pokazivaći na pretince. Sve strukture su već ranije spomenute i poznate, osim pokazivaća na pretince. Pretince ćemo zapravo definirati kao područja u nizu u kojima se nalaze sufiksi koji počinju s  istim početnim znakom. Broj pretinaca će dakle biti jednak veličini abecede (originalne abecede proširene s dodatnim znakom koji je manji od svih ostalih). Kada imamo sve te strukture možemo provesti postupak induciranog sortiranja. Postupak induciranog sortiranja se provodi kroz tri koraka opisanih u nastavku.
+
+Prije početka prvog koraka pretpostavimo da svi pokazivaći na pretince pokazuju na krajeve tih pretinaca, i neka su vrijednosti elemenata sufiksnog polja inicijalno postavljene na vrijednost 0. Prvi korak se sastoji od toga da prođemo kroz niz i da sve LMS-znakove stavimo u odgovarajući pretinac (smjer prolaska kroz niz je u potpunosti nebitan, može se prolaziti od početka ili od kraja niza). Kada stavimo LMS-znak u odgovarajući pretinac potrebno je pokazivač na taj pretinac smanjiti tako da pokazuje ne iduće prazno mjesto. Ovaj korak algoritma detaljno je prikazan na slici \ref{fig:sais1}
+
+\begin{figure}[H]
+   \centering
+       \includegraphics{./pictures/SAISstep1.jpg}
+ \caption{Prvi korak u induciranom sortiranju}
+ \label{fig:sais1}
+\end{figure}
+
+Prije početka drugog koraka potrebno je pokazivače postaviti na početke svih pretinaca. Drugi korak algoritma jest induciranje L-znakova. U ovom koraku prolazimo kroz sufiksno polje s lijeva na desno i za svaki element koji je veći od 0, dakle za elemente za koje vrijedi $SA[i]>0$. Svaki taj  element zapravo predstavlja indeks nekog znaka u ulaznom nizu. Za svaki element iz sufiksnog polja ispitat ćemo da li je znak iz ulaznog niza koji se nalazi na poziciji koja je određena vrijednošću trenutnog elementa sufiksnog polja umanjenoj za jedan L-znak. Mnogo jednostavnije rečeno  ispitujemo da li je znak $S[SA[i]]$ L-znak, pri ćemu je $i$ index elementa sufiksnog polja na kojem se trenutno nalazimo. Ukoliko je taj znak L-znak, onda u pretinac koji predstavlja taj znak stavimo njegov indeks i uvećamo pokazivač na taj pretinac. 
+
+\begin{figure}[H]
+   \centering
+       \includegraphics{./pictures/SAISstep2.jpg}
+ \caption{Prvi korak u induciranom sortiranju}
+ \label{fig:sais2}
+\end{figure}
+
+Prije početka treće i posljednje faze induciranog sortiranja moramo pokazivače postaviti na kraj pretinaca. Treći dio induciranog sortiranja je veoma sličanan drugom koraku. Kroz sufiksno polje se ovaj puta prolazi od kraja prema početku. Opet izostavljamo elemente koji su jednaki 0.  Za svaki element iz sufiksnog polja ispitat ćemo da li je znak iz ulaznog niza, koji se nalazi na poziciji koja je određena vrijednošću trenutnog elementa sufiksnog polja umanjenoj za jedan, S-znak, odnosno ispitujemo da li je znak $S[SA[i]]$ S-znak, pri ćemu je $i$ index elementa sufiksnog polja na kojem se trenutno nalazimo. Ukoliko je taj znak S-znak, onda u pretinac koji predstavlja taj znak stavimo njegov indeks i smanjimo vrijednost pokazivača na taj pretinac. 
+
+\begin{figure}[H]
+   \centering
+       \includegraphics{./pictures/SAISstep3.jpg}
+ \caption{Prvi korak u induciranom sortiranju}
+ \label{fig:sais3}
+\end{figure}
+
+S ta tri koraka završen je postupak induciranog sortiranja. 
+
 
 
 \section{Wavelet stablo}
