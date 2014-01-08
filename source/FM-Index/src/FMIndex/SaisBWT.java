@@ -333,30 +333,33 @@ public class SaisBWT {
 
 		//if more LMS substrings are equal we have a problem because we can't order them,
 		//that's why we need to recurse the problem and deduce the order of those substrings
+
 		if(nl>name){
+			SA[length-1]=0;
 			//create a new array which will contain all the lexicographical names
-			IntDisplacedArray reducedArray = new IntDisplacedArray(SA, length-nl);
-			index = length  - 1;
+			IntDisplacedArray reducedArray = new IntDisplacedArray(SA, length-nl-1);
+			index = length  - 2;
 			//move the lexicographical names into the end of the array
 			for(int i = nl + length/2 -1; nl<=i;i--){
 				if(SA[i]!=0){
-					SA[index] = SA[i]-1;
+					SA[index] = SA[i];
 					index--;
 				}
 			}
 
 			//recurse the problem
-			SAIS(reducedArray, SA, nl, name);
+			SAIS(reducedArray, SA, ++nl, name+1);
 			reducedArray = null;
 
 			//now that we have the order of the substrings, we locate the LMS substring of the original array again
 			index = nl*2-1;
-			for(int i = length-3; i>=0; i--){
+			for(int i = length-2; i>=0; i--){
 				if(bs.get(i)&&!bs.get(i+1)){
 					SA[index] = i+1;
 					index--;
 				}
 			}
+
 
 			//by using the computed suffix array for the LMS substrings which were equal
 			//we can now correctly order all the LMS substrings

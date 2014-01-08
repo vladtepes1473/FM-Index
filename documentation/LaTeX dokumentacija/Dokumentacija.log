@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.1)  6 JAN 2014 23:58
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.1)  9 JAN 2014 00:09
 entering extended mode
 **D:/FM-Index/FM-Index/documentation/LaTeX*dokumentacija/Dokumentacija.tex
 ("D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/Dokumentacija.tex"
@@ -906,7 +906,7 @@ See the natbib package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.83 ...mand\NAT@force@numbers{}\NAT@force@numbers
+l.100 ...and\NAT@force@numbers{}\NAT@force@numbers
                                                   
 ? 
 )
@@ -1025,7 +1025,7 @@ Poglavlje 2.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
 
-<./pictures/bwt.jpg, id=118, 1588.93625pt x 771.88374pt>
+<./pictures/bwt.jpg, id=123, 1588.93625pt x 771.88374pt>
 File: ./pictures/bwt.jpg Graphic file (type jpg)
 
 <use ./pictures/bwt.jpg>
@@ -1034,7 +1034,7 @@ Package pdftex.def Info: ./pictures/bwt.jpg used on input line 23.
  [3
 
 ]
-<./pictures/reverseBWT.jpg, id=130, 838.13126pt x 771.88374pt>
+<./pictures/reverseBWT.jpg, id=135, 838.13126pt x 771.88374pt>
 File: ./pictures/reverseBWT.jpg Graphic file (type jpg)
 
 <use ./pictures/reverseBWT.jpg>
@@ -1046,7 +1046,7 @@ D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/reverseBWT.jpg>
 
 LaTeX Warning: Reference `mkqs' on page 5 undefined on input line 40.
 
-<./pictures/MKQS.jpg, id=136, 450.18187pt x 282.30469pt>
+<./pictures/MKQS.jpg, id=142, 450.18187pt x 282.30469pt>
 File: ./pictures/MKQS.jpg Graphic file (type jpg)
 
 <use ./pictures/MKQS.jpg>
@@ -1057,7 +1057,7 @@ Package pdftex.def Info: ./pictures/MKQS.jpg used on input line 45.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [5] [6 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/MKQS.jp
-g>] <./pictures/charactertypes.jpg, id=152, 233.37187pt x 235.63031pt>
+g>] <./pictures/charactertypes.jpg, id=163, 233.37187pt x 235.63031pt>
 File: ./pictures/charactertypes.jpg Graphic file (type jpg)
 
 <use ./pictures/charactertypes.jpg>
@@ -1065,7 +1065,7 @@ Package pdftex.def Info: ./pictures/charactertypes.jpg used on input line 63.
 (pdftex.def)             Requested size: 233.37129pt x 235.62973pt.
  [7 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/charactert
 ypes.jpg>]
-<./pictures/SAISstep1.jpg, id=159, 158.09062pt x 536.0025pt>
+<./pictures/SAISstep1.jpg, id=172, 158.09062pt x 536.0025pt>
 File: ./pictures/SAISstep1.jpg Graphic file (type jpg)
 
 <use ./pictures/SAISstep1.jpg>
@@ -1073,7 +1073,7 @@ Package pdftex.def Info: ./pictures/SAISstep1.jpg used on input line 76.
 (pdftex.def)             Requested size: 158.09023pt x 536.00119pt.
  [8] [9 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/SAISst
 ep1.jpg>]
-<./pictures/SAISstep2.jpg, id=169, 161.85469pt x 629.35126pt>
+<./pictures/SAISstep2.jpg, id=182, 161.85469pt x 629.35126pt>
 File: ./pictures/SAISstep2.jpg Graphic file (type jpg)
 
 <use ./pictures/SAISstep2.jpg>
@@ -1081,63 +1081,60 @@ Package pdftex.def Info: ./pictures/SAISstep2.jpg used on input line 85.
 (pdftex.def)             Requested size: 161.85428pt x 629.34972pt.
  [10] [11 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/SAIS
 step2.jpg>]
-<./pictures/SAISstep3.jpg, id=179, 203.25937pt x 408.77719pt>
+<./pictures/SAISstep3.jpg, id=192, 203.25937pt x 408.77719pt>
 File: ./pictures/SAISstep3.jpg Graphic file (type jpg)
 
 <use ./pictures/SAISstep3.jpg>
 Package pdftex.def Info: ./pictures/SAISstep3.jpg used on input line 94.
 (pdftex.def)             Requested size: 203.25887pt x 408.77618pt.
  [12 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/SAISstep3
-.jpg>]
-<./pictures/Waveletusporedba.jpg, id=188, 1664.2175pt x 1856.9375pt>
+.jpg>] [13]
+<./pictures/Waveletusporedba.jpg, id=205, 1664.2175pt x 1856.9375pt>
 File: ./pictures/Waveletusporedba.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletusporedba.jpg>
-Package pdftex.def Info: ./pictures/Waveletusporedba.jpg used on input line 116
+Package pdftex.def Info: ./pictures/Waveletusporedba.jpg used on input line 123
 .
 (pdftex.def)             Requested size: 332.8376pt x 371.38092pt.
- [13]
-<./pictures/Waveletquery.jpg, id=195, 1890.06125pt x 1074.0125pt>
+ [14]
+<./pictures/Waveletquery.jpg, id=213, 1890.06125pt x 1074.0125pt>
 File: ./pictures/Waveletquery.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletquery.jpg>
-Package pdftex.def Info: ./pictures/Waveletquery.jpg used on input line 127.
+Package pdftex.def Info: ./pictures/Waveletquery.jpg used on input line 134.
 (pdftex.def)             Requested size: 452.9679pt x 257.39134pt.
- [14 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/Waveletus
-poredba.jpg>] [15 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictu
+ [15 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/Waveletus
+poredba.jpg>] [16 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictu
 res/Waveletquery.jpg>]
-<./pictures/rrr1.png, id=211, 800.9925pt x 132.495pt>
+<./pictures/rrr1.png, id=228, 800.9925pt x 132.495pt>
 File: ./pictures/rrr1.png Graphic file (type png)
 
 <use ./pictures/rrr1.png>
-Package pdftex.def Info: ./pictures/rrr1.png used on input line 144.
+Package pdftex.def Info: ./pictures/rrr1.png used on input line 151.
 (pdftex.def)             Requested size: 452.9679pt x 74.92854pt.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 151.
+(hyperref)                removing `\textasciicaron' on input line 158.
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 154--155
+Underfull \hbox (badness 1226) in paragraph at lines 161--162
 \OT1/ptm/m/n/12 (uklju[]cuju[]ci). Zad-nji po-pu-njeni nad-blok mogu[]ce je pro
 na[]ci for-mu-lom $\OML/ztmcm/m/it/12 indNadblok \OT1/ztmcm/m/n/12 =$
  []
 
-[16 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/rrr1.png>]
-<./pictures/rrr2.png, id=221, 800.9925pt x 132.495pt>
+[17 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/rrr1.png>]
+<./pictures/rrr2.png, id=238, 800.9925pt x 132.495pt>
 File: ./pictures/rrr2.png Graphic file (type png)
 
 <use ./pictures/rrr2.png>
-Package pdftex.def Info: ./pictures/rrr2.png used on input line 158.
+Package pdftex.def Info: ./pictures/rrr2.png used on input line 165.
 (pdftex.def)             Requested size: 452.9679pt x 74.92854pt.
-) [17 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/rrr2.png
+) [18 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/rrr2.png
 >]
 Poglavlje 3.
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\FMindeks.tex"
-
-Package natbib Warning: Citation `fm1' on page 18 undefined on input line 8.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 10.
 
@@ -1146,7 +1143,7 @@ Overfull \hbox (1.99591pt too wide) in paragraph at lines 10--11
 i sve objas-nit []ce biti pre-duga[]cko) 
  []
 
-[18
+[19
 
 ]
 Overfull \hbox (3.15947pt too wide) in paragraph at lines 29--31
@@ -1161,20 +1158,16 @@ iza \OT1/ptm/m/it/12 ACA-AGAT-G-C-CA-AT-G-T-C-CCA\OT1/ptm/m/sl/12 $ \OT1/ptm/m/
 n/12 do-biva niz
  []
 
-<./pictures/fmStablo.png, id=235, 898.85812pt x 358.33875pt>
+<./pictures/fmStablo.png, id=254, 898.85812pt x 358.33875pt>
 File: ./pictures/fmStablo.png Graphic file (type png)
 
 <use ./pictures/fmStablo.png>
 Package pdftex.def Info: ./pictures/fmStablo.png used on input line 37.
 (pdftex.def)             Requested size: 452.9679pt x 180.57962pt.
-
-
-Package natbib Warning: Citation `fm1' on page 19 undefined on input line 42.
-
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 46.
-[19 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/fmStablo.p
-ng>]
+ [20 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/fmStablo.
+png>]
 Underfull \hbox (badness 10000) in paragraph at lines 75--94
 
  []
@@ -1199,22 +1192,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 75--94
 
  []
 
-) [20] [21]
+[21]) [22]
 Poglavlje 4.
-("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.bbl")
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
-[22
+("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\testiranja.tex")
+[23
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
+Poglavlje 5.
+("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.bbl")
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
+
+[24
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
  ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 60.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 60.
 Package rerunfilecheck Info: File `Dokumentacija.out' has not changed.
-(rerunfilecheck)             Checksum: 4DC77DA5CC7C45FED916439F42165159;1381.
+(rerunfilecheck)             Checksum: BBC691E15FCBD07F35F6590D867E28D0;1428.
 
 
 LaTeX Warning: There were undefined references.
@@ -1222,16 +1218,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
  ) 
 Here is how much of TeX's memory you used:
- 16770 strings out of 493921
- 280065 string characters out of 3144876
- 361009 words of memory out of 3000000
- 19628 multiletter control sequences out of 15000+200000
+ 16796 strings out of 493921
+ 280463 string characters out of 3144876
+ 361007 words of memory out of 3000000
+ 19643 multiletter control sequences out of 15000+200000
  30132 words of font info for 60 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 49i,8n,53p,2290b,602s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,8n,53p,2292b,602s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fil
@@ -1241,9 +1237,9 @@ eX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/ur
 w/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on Dokumentacija.pdf (23 pages, 1754863 bytes).
+Output written on Dokumentacija.pdf (25 pages, 1766558 bytes).
 PDF statistics:
- 320 PDF objects out of 1000 (max. 8388607)
- 81 named destinations out of 1000 (max. 500000)
- 225 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 346 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
+ 233 words of extra memory for PDF output out of 10000 (max. 10000000)
 

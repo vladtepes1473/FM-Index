@@ -5,6 +5,27 @@ David~J. Burrows, Michael;~Wheeler.
 \newblock A block sorting lossless data compression algorithm.
 \newblock {\em Technical Report 124, Digital Equipment Corporation}, 1994.
 
+\bibitem{mkqs}
+Jon L. Bentley;~Robert Sedgewick.
+\newblock Fast algorithms for sorting and searching strings.
+\newblock {\em SODA '97 Proceedings of the eighth annual ACM-SIAM symposium on
+  Discrete algorithms}, 1997.
+
+\bibitem{sais1}
+Ge~Nong; Sen Zhang ; Wai~Hong Chan.
+\newblock Linear suffix array construction by almost pure induced-sorting.
+\newblock {\em Data Compression Conference, 2009. DCC '09}, 2009.
+
+\bibitem{sais2}
+Ge~Nong; Sen Zhang ; Wai~Hong Chan.
+\newblock Two efficient algorithms for linear time suffix array construction.
+\newblock {\em Computers, IEEE Transactions on}, 2011.
+
+\bibitem{ka}
+Pang Ko;~Srinivas Aluru.
+\newblock Space efficient linear time construction of suffix arrays.
+\newblock {\em Journal of Discrete Algorithms}, 2003.
+
 \bibitem{wavelet}
 J.~Vitter R.~Grossi, A.~Gupta.
 \newblock High-order entropy-compressed text indexes.
@@ -20,5 +41,12 @@ S.~Srinivasa~Rao R.~Raman, V.~Raman.
 \bibitem{rrr2}
 Gonzalo~Navarro Francisco~Claude.
 \newblock Practical rank/select queries over arbitrary sequences.
+\newblock 2009.
+
+\bibitem{fm1}
+Giovanni~Manzini Paolo~Ferragina.
+\newblock Opportunistic data structures with applications.
+\newblock {\em Foundations of Computer Science, 2000. Proceedings. 41st Annual
+  Symposium on Foundations of Computer Science}, pages 390--398, 2000.
 
 \end{thebibliography}
