@@ -10,12 +10,13 @@ import java.util.List;
 /**
  * Class that represents a single wavelet tree node.
  */
-public class WaveletNode {
+public class WaveletNode implements Node{
 
 	private WaveletNode left = null;
 	private WaveletNode right = null;
 	private Byte pivot;
 	private BitLookup bitContent;
+	private int contentLenght;
 	
 	/**
 	 * Constructor for WaveletNode. Recursively builds the wavelet tree node and its subtrees.
@@ -24,6 +25,7 @@ public class WaveletNode {
 	 */
 	public WaveletNode(StringWrapper string, Alphabet alphabet){
 		Byte[] allCharacters = alphabet.getAllCharacters();
+		contentLenght = string.length();
 		
 		int alphabetSize = alphabet.size();
 		/*
@@ -148,6 +150,31 @@ public class WaveletNode {
 		right = new WaveletNode(ones, splittedAlphabets[1]);
 		ones = null;
 		System.gc();
+	}
+	
+	/**
+	 * @return left child
+	 */
+	public WaveletNode getLeft(){
+		return left;
+	}
+	
+	/**
+	 * @return right child
+	 */
+	public WaveletNode getRight(){
+		return right;
+	}
+	
+	/**
+	 * @return pivot
+	 */
+	public Byte getPivot(){
+		return pivot;
+	}
+	
+	public int getContentLength(){
+		return contentLenght;
 	}
 	
 	/**

@@ -8,4 +8,5 @@ public interface OccTable {
 	 * @return character occurrence
 	 */
 	int getCharacterOcurrance(byte character, Integer position);
+	public Node getRoot();
 }

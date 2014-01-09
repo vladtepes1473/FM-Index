@@ -16,6 +16,13 @@ public class WaveletTree implements OccTable {
 		root = new WaveletNode(string, alphabet);
 	}
 	
+	/**
+	 * @return root
+	 */
+	public Node getRoot(){
+		return root;
+	}
+	
 	@Override
 	public int getCharacterOcurrance(byte character, Integer position) {
 		return root.getCharacterOcurrance(character, position);

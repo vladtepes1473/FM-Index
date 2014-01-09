@@ -50,6 +50,8 @@ public class FMIndex {
 		elapsedTime = stopTime - startTime;
 		System.out.println("Time:" + elapsedTime);
 		bwtString = null;
+		
+		TreePrinter.print(occTable.getRoot());
 		}
 	
 	/**

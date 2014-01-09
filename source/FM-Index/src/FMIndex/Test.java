@@ -127,6 +127,7 @@ public class Test {
 	    System.out.println("Used memory is megabytes: "
 	        + bytesToMegabytes(runtime.totalMemory()));
 		sc.next();
+		
 		return;
 	}
 
