@@ -69,7 +69,7 @@ public class Test {
 		System.out.println((char)bb);
 		Scanner sc = new Scanner(System.in);
 
-		sc.next();
+		//sc.next();
 		StringWrapper input = new StringWrapper();
 		String text = null;
 //		try {
@@ -80,7 +80,7 @@ public class Test {
 //			e.printStackTrace();
 //		}
 		//System.out.println(text.length());
-		input.string = getBytesFromFile(new File("D:\\FM-Index\\source\\dna\\dna1.txt"));
+		input.string = getBytesFromFile(new File("D:\\FM-Index\\source\\dna\\dna50.txt"));
 		text = null;
 		System.gc();
 		//sc.next();
@@ -114,12 +114,12 @@ public class Test {
 		elapsedTime = stopTime - startTime;
 		System.out.println("Time:" + elapsedTime);
 		System.out.println("Count: "+count);
-		input = null;
+		//input = null;
 		
 		Random rand = new Random();
 		int upper;
 		
-//		Testcoubnt(input, sw1, rand);
+		Testcoubnt(fmindex,input, sw1, rand);
 //		
 		
 
@@ -190,7 +190,7 @@ public class Test {
 		
 		return;
 	}
-	private static void Testcoubnt(StringWrapper input, StringWrapper sw1,
+	private static void Testcoubnt(FMIndex fm,StringWrapper input, StringWrapper sw1,
 			Random rand) {
 		long startTime;
 		FMIndex fmindex;
@@ -198,90 +198,96 @@ public class Test {
 		long elapsedTime;
 		int count;
 		int upper;
-		fmindex = new FMIndex(input);
-		System.out.println("COUNTS");
-		System.out.println();
-		System.out.println("Niz od 100");
-		upper = rand.nextInt(input.length()-100);
-		sw1.string = new byte[100];
-		for(int i =0;i<100;i++){
-			sw1.string[i]=input.string[i+upper];
-		}
-	    startTime = System.currentTimeMillis();
-		count = fmindex.Count(sw1);
-		stopTime = System.currentTimeMillis();
-		elapsedTime = stopTime - startTime;
-		System.out.println("Time:" + elapsedTime);
-		System.out.println("Count: "+count);
+		fmindex = fm;
+		double m1,m2,m3,m4,m5,m6,m7,m8,m9,m10;
+		m1=m2=m3=m4=m5=m6=m7=m8=m9=m10=0;
+//		
+
+//		System.out.println("COUNTS");
+//		System.out.println();
+//		System.out.println("Niz od 100");
+//		upper = rand.nextInt(input.length()-100);
+//		sw1.string = new byte[100];
+//		for(int i =0;i<100;i++){
+//			sw1.string[i]=input.string[i+upper];
+//		}
+//	    startTime = System.currentTimeMillis();
+//		count = fmindex.Count(sw1);
+//		stopTime = System.currentTimeMillis();
+//		m1+=elapsedTime = stopTime - startTime;
+//		System.out.println("Time:" + elapsedTime);
+//		System.out.println("Count: "+count);
 
 
 		
-		System.out.println("COUNTS");
-		System.out.println();
-		System.out.println("Niz od 200");
-		upper = rand.nextInt(input.length()-200);
-		sw1.string = new byte[200];
-		for(int i =0;i<200;i++){
-			sw1.string[i]=input.string[i+upper];
-		}
-	    startTime = System.currentTimeMillis();
-		count = fmindex.Count(sw1);
-		stopTime = System.currentTimeMillis();
-		elapsedTime = stopTime - startTime;
-		System.out.println("Time:" + elapsedTime);
-		System.out.println("Count: "+count);
-		
-		
-		fmindex = new FMIndex(input);
-		System.out.println("COUNTS");
-		System.out.println();
-		System.out.println("Niz od 300");
-		upper = rand.nextInt(input.length()-300);
-		sw1.string = new byte[300];
-		for(int i =0;i<300;i++){
-			sw1.string[i]=input.string[i+upper];
-		}
-	    startTime = System.currentTimeMillis();
-		count = fmindex.Count(sw1);
-		stopTime = System.currentTimeMillis();
-		elapsedTime = stopTime - startTime;
-		System.out.println("Time:" + elapsedTime);
-		System.out.println("Count: "+count);
+//		System.out.println("COUNTS");
+//		System.out.println();
+//		System.out.println("Niz od 200");
+//		upper = rand.nextInt(input.length()-200);
+//		sw1.string = new byte[200];
+//		for(int i =0;i<200;i++){
+//			sw1.string[i]=input.string[i+upper];
+//		}
+//	    startTime = System.currentTimeMillis();
+//		count = fmindex.Count(sw1);
+//		stopTime = System.currentTimeMillis();
+//		m2+=elapsedTime = stopTime - startTime;
+//		System.out.println("Time:" + elapsedTime);
+//		System.out.println("Count: "+count);
 //		
-		
-		fmindex = new FMIndex(input);
-		System.out.println("COUNTS");
-		System.out.println();
-		System.out.println("Niz od 400");
-		upper = rand.nextInt(input.length()-400);
-		sw1.string = new byte[400];
-		for(int i =0;i<400;i++){
-			sw1.string[i]=input.string[i+upper];
-		}
-	    startTime = System.currentTimeMillis();
-		count = fmindex.Count(sw1);
-		stopTime = System.currentTimeMillis();
-		elapsedTime = stopTime - startTime;
-		System.out.println("Time:" + elapsedTime);
-		System.out.println("Count: "+count);
-		
-		fmindex = new FMIndex(input);
-		System.out.println();
-		System.out.println("Niz od 500");
-		upper = rand.nextInt(input.length()-500);
-		sw1.string = new byte[500];
-		for(int i =0;i<500;i++){
-			sw1.string[i]=input.string[i+upper];
-		}
-	    startTime = System.currentTimeMillis();
-		count = fmindex.Count(sw1);
-		stopTime = System.currentTimeMillis();
-		elapsedTime = stopTime - startTime;
-		System.out.println("Time:" + elapsedTime);
-		System.out.println("Count: "+count);
 //		
+////		fmindex = new FMIndex(input);
+//		System.out.println("COUNTS");
+//		System.out.println();
+//		System.out.println("Niz od 300");
+//		upper = rand.nextInt(input.length()-300);
+//		sw1.string = new byte[300];
+//		for(int i =0;i<300;i++){
+//			sw1.string[i]=input.string[i+upper];
+//		}
+//	    startTime = System.currentTimeMillis();
+//		count = fmindex.Count(sw1);
+//		stopTime = System.currentTimeMillis();
+//		m3+=elapsedTime = stopTime - startTime;
+//		System.out.println("Time:" + elapsedTime);
+//		System.out.println("Count: "+count);
+////		
+//		
+////		fmindex = new FMIndex(input);
+//		System.out.println("COUNTS");
+//		System.out.println();
+//		System.out.println("Niz od 400");
+//		upper = rand.nextInt(input.length()-400);
+//		sw1.string = new byte[400];
+//		for(int i =0;i<400;i++){
+//			sw1.string[i]=input.string[i+upper];
+//		}
+//	    startTime = System.currentTimeMillis();
+//		count = fmindex.Count(sw1);
+//		stopTime = System.currentTimeMillis();
+//		m4+=elapsedTime = stopTime - startTime;
+//		System.out.println("Time:" + elapsedTime);
+//		System.out.println("Count: "+count);
 		
+		//fmindex = new FMIndex(input);
+//		System.out.println();
+//		System.out.println("Niz od 500");
+//		upper = rand.nextInt(input.length()-500);
+//		sw1.string = new byte[500];
+//		for(int i =0;i<500;i++){
+//			sw1.string[i]=input.string[i+upper];
+//		}
+//	    startTime = System.currentTimeMillis();
+//		count = fmindex.Count(sw1);
+//		stopTime = System.currentTimeMillis();
+//		m6+=elapsedTime = stopTime - startTime;
+//		System.out.println("Time:" + elapsedTime);
+//		System.out.println("Count: "+count);
+//		
+//		
+
 		
+		//fmindex = new FMIndex(input);
 		System.out.println();
 		System.out.println("Niz od 1000");
 		upper = rand.nextInt(input.length()-1000);
@@ -292,9 +298,42 @@ public class Test {
 	    startTime = System.currentTimeMillis();
 		count = fmindex.Count(sw1);
 		stopTime = System.currentTimeMillis();
-		elapsedTime = stopTime - startTime;
+		m10+=elapsedTime = stopTime - startTime;
 		System.out.println("Time:" + elapsedTime);
 		System.out.println("Count: "+count);
+//		
+		//fmindex = new FMIndex(input);
+//		System.out.println();
+//		System.out.println("Niz od 2000");
+//		upper = rand.nextInt(input.length()-2000);
+//		sw1.string = new byte[2000];
+//		for(int i =0;i<2000;i++){
+//			sw1.string[i]=input.string[i+upper];
+//		}
+//	    startTime = System.currentTimeMillis();
+//		count = fmindex.Count(sw1);
+//		stopTime = System.currentTimeMillis();
+//		m10+=elapsedTime = stopTime - startTime;
+//		System.out.println("Time:" + elapsedTime);
+//		System.out.println("Count: "+count);
+//		
+		
+		
+		
+
+		
+		
+		
+		System.out.println("m1: "+m1/10);
+		System.out.println("m2: "+m2/10);
+		System.out.println("m3: "+m3/10);
+		System.out.println("m4: "+m4/10);
+		System.out.println("m5: "+m5/10);
+		System.out.println("m6: "+m6/10);
+		System.out.println("m7: "+m7/10);
+		System.out.println("m8: "+m8/10);
+		System.out.println("m9: "+m9/10);
+		System.out.println("m10: "+m10/10);
 	}
 
 }
