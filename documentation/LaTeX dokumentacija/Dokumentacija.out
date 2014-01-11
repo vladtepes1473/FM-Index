@@ -17,4 +17,7 @@
 \BOOKMARK [1][-]{section.3.2}{Na\235a implementacija}{chapter.3}% 17
 \BOOKMARK [2][-]{subsection.3.2.1}{Nedostaci implementacije u programskom jeziku Java}{section.3.2}% 18
 \BOOKMARK [0][-]{chapter.4}{Testiranja}{}% 19
-\BOOKMARK [0][-]{chapter.5}{Literatura}{}% 20
+\BOOKMARK [1][-]{section.4.1}{Vrijeme izgradnje FM-Indexa}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.2}{Vrijeme obavljanja count upita}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.3}{Memorijsko zauzece FM-indexa}{chapter.4}% 22
+\BOOKMARK [0][-]{chapter.5}{Literatura}{}% 23

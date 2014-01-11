@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.1)  9 JAN 2014 00:09
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.1)  11 JAN 2014 04:03
 entering extended mode
 **D:/FM-Index/FM-Index/documentation/LaTeX*dokumentacija/Dokumentacija.tex
 ("D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/Dokumentacija.tex"
@@ -627,48 +627,6 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks30
 \@floatcapt=\box36
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\mathptmx.sty"
-Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
-LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
-LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
-LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
-\symbold=\mathgroup4
-\symitalic=\mathgroup5
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
-LaTeX Info: Redefining \hbar on input line 50.
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\courier.sty"
-Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\helvet.sty"
-Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
-)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip51
@@ -906,29 +864,25 @@ See the natbib package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.100 ...and\NAT@force@numbers{}\NAT@force@numbers
+l.105 ...and\NAT@force@numbers{}\NAT@force@numbers
                                                   
 ? 
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 37.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
-File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count149
 \scratchdimen=\dimen179
@@ -949,7 +903,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box41
-Package hyperref Info: Link coloring OFF on input line 37.
+Package hyperref Info: Link coloring OFF on input line 38.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -959,51 +913,16 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count155
 )
-LaTeX Info: Redefining \ref on input line 37.
-LaTeX Info: Redefining \pageref on input line 37.
-LaTeX Info: Redefining \nameref on input line 37.
+LaTeX Info: Redefining \ref on input line 38.
+LaTeX Info: Redefining \pageref on input line 38.
+LaTeX Info: Redefining \nameref on input line 38.
 
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.out")
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.out")
 \@outlinefile=\write4
 \c@lstlisting=\count156
 
-("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\naslovna.tex"
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 9.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 9.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 13.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 27
-.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd"
-File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
-)
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 27
-.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omlztmcm.fd"
-File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
-)
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 27
-.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omsztmcm.fd"
-File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
-)
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 27
-.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omxztmcm.fd"
-File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
-)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 27.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 27.
- [1
+("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\naslovna.tex" [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}])
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.toc")
@@ -1012,7 +931,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.43 \chapter
+l.44 \chapter
              {Uvod} [1
 
 ]
@@ -1022,10 +941,7 @@ Poglavlje 1.
 ]
 Poglavlje 2.
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\pomocniAlgoritmi.tex"
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
-
-<./pictures/bwt.jpg, id=123, 1588.93625pt x 771.88374pt>
+<./pictures/bwt.jpg, id=139, 1588.93625pt x 771.88374pt>
 File: ./pictures/bwt.jpg Graphic file (type jpg)
 
 <use ./pictures/bwt.jpg>
@@ -1034,7 +950,7 @@ Package pdftex.def Info: ./pictures/bwt.jpg used on input line 23.
  [3
 
 ]
-<./pictures/reverseBWT.jpg, id=135, 838.13126pt x 771.88374pt>
+<./pictures/reverseBWT.jpg, id=151, 838.13126pt x 771.88374pt>
 File: ./pictures/reverseBWT.jpg Graphic file (type jpg)
 
 <use ./pictures/reverseBWT.jpg>
@@ -1046,7 +962,7 @@ D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/reverseBWT.jpg>
 
 LaTeX Warning: Reference `mkqs' on page 5 undefined on input line 40.
 
-<./pictures/MKQS.jpg, id=142, 450.18187pt x 282.30469pt>
+<./pictures/MKQS.jpg, id=158, 450.18187pt x 282.30469pt>
 File: ./pictures/MKQS.jpg Graphic file (type jpg)
 
 <use ./pictures/MKQS.jpg>
@@ -1057,7 +973,7 @@ Package pdftex.def Info: ./pictures/MKQS.jpg used on input line 45.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [5] [6 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/MKQS.jp
-g>] <./pictures/charactertypes.jpg, id=163, 233.37187pt x 235.63031pt>
+g>] <./pictures/charactertypes.jpg, id=175, 233.37187pt x 235.63031pt>
 File: ./pictures/charactertypes.jpg Graphic file (type jpg)
 
 <use ./pictures/charactertypes.jpg>
@@ -1065,7 +981,7 @@ Package pdftex.def Info: ./pictures/charactertypes.jpg used on input line 63.
 (pdftex.def)             Requested size: 233.37129pt x 235.62973pt.
  [7 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/charactert
 ypes.jpg>]
-<./pictures/SAISstep1.jpg, id=172, 158.09062pt x 536.0025pt>
+<./pictures/SAISstep1.jpg, id=186, 158.09062pt x 536.0025pt>
 File: ./pictures/SAISstep1.jpg Graphic file (type jpg)
 
 <use ./pictures/SAISstep1.jpg>
@@ -1073,7 +989,7 @@ Package pdftex.def Info: ./pictures/SAISstep1.jpg used on input line 76.
 (pdftex.def)             Requested size: 158.09023pt x 536.00119pt.
  [8] [9 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/SAISst
 ep1.jpg>]
-<./pictures/SAISstep2.jpg, id=182, 161.85469pt x 629.35126pt>
+<./pictures/SAISstep2.jpg, id=196, 161.85469pt x 629.35126pt>
 File: ./pictures/SAISstep2.jpg Graphic file (type jpg)
 
 <use ./pictures/SAISstep2.jpg>
@@ -1081,7 +997,7 @@ Package pdftex.def Info: ./pictures/SAISstep2.jpg used on input line 85.
 (pdftex.def)             Requested size: 161.85428pt x 629.34972pt.
  [10] [11 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/SAIS
 step2.jpg>]
-<./pictures/SAISstep3.jpg, id=192, 203.25937pt x 408.77719pt>
+<./pictures/SAISstep3.jpg, id=206, 203.25937pt x 408.77719pt>
 File: ./pictures/SAISstep3.jpg Graphic file (type jpg)
 
 <use ./pictures/SAISstep3.jpg>
@@ -1089,7 +1005,7 @@ Package pdftex.def Info: ./pictures/SAISstep3.jpg used on input line 94.
 (pdftex.def)             Requested size: 203.25887pt x 408.77618pt.
  [12 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/SAISstep3
 .jpg>] [13]
-<./pictures/Waveletusporedba.jpg, id=205, 1664.2175pt x 1856.9375pt>
+<./pictures/Waveletusporedba.jpg, id=219, 1664.2175pt x 1856.9375pt>
 File: ./pictures/Waveletusporedba.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletusporedba.jpg>
@@ -1097,7 +1013,7 @@ Package pdftex.def Info: ./pictures/Waveletusporedba.jpg used on input line 123
 .
 (pdftex.def)             Requested size: 332.8376pt x 371.38092pt.
  [14]
-<./pictures/Waveletquery.jpg, id=213, 1890.06125pt x 1074.0125pt>
+<./pictures/Waveletquery.jpg, id=227, 1890.06125pt x 1074.0125pt>
 File: ./pictures/Waveletquery.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletquery.jpg>
@@ -1106,7 +1022,7 @@ Package pdftex.def Info: ./pictures/Waveletquery.jpg used on input line 134.
  [15 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/Waveletus
 poredba.jpg>] [16 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictu
 res/Waveletquery.jpg>]
-<./pictures/rrr1.png, id=228, 800.9925pt x 132.495pt>
+<./pictures/rrr1.png, id=242, 800.9925pt x 132.495pt>
 File: ./pictures/rrr1.png Graphic file (type png)
 
 <use ./pictures/rrr1.png>
@@ -1118,14 +1034,8 @@ Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 158.
 
-
-Underfull \hbox (badness 1226) in paragraph at lines 161--162
-\OT1/ptm/m/n/12 (uklju[]cuju[]ci). Zad-nji po-pu-njeni nad-blok mogu[]ce je pro
-na[]ci for-mu-lom $\OML/ztmcm/m/it/12 indNadblok \OT1/ztmcm/m/n/12 =$
- []
-
 [17 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/rrr1.png>]
-<./pictures/rrr2.png, id=238, 800.9925pt x 132.495pt>
+<./pictures/rrr2.png, id=253, 800.9925pt x 132.495pt>
 File: ./pictures/rrr2.png Graphic file (type png)
 
 <use ./pictures/rrr2.png>
@@ -1134,40 +1044,25 @@ Package pdftex.def Info: ./pictures/rrr2.png used on input line 165.
 ) [18 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/rrr2.png
 >]
 Poglavlje 3.
-("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\FMindeks.tex"
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 10.
-
-Overfull \hbox (1.99591pt too wide) in paragraph at lines 10--11
-[]\OT1/ptm/b/it/12 (opisat te struk-ture? ako bude ugrubo bit []ce ne-jasno, al
-i sve objas-nit []ce biti pre-duga[]cko) 
- []
-
-[19
+("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\FMindeks.tex" [19
 
 ]
-Overfull \hbox (3.15947pt too wide) in paragraph at lines 29--31
-[]\OT1/ptm/m/n/12 Sljede[]ci ko-rak je provo[]denje Burrows-Wheeler tran-sfor-m
-a-cije nad za-da-nim tek-s-tom kori[]stenjem
+Overfull \hbox (25.9313pt too wide) in paragraph at lines 29--31
+[]\OT1/cmr/m/n/12 Sljedeci ko-rak je provo[]denje Burrows-Wheeler tran-sfor-ma
+-cije nad za-da-nim tek-s-tom koristenjem
  []
 
-
-Underfull \hbox (badness 3838) in paragraph at lines 29--31
-\OT1/ptm/m/it/12 mul-ti-key qu-ick \OT1/ptm/m/n/12 sor-ti-ra-nja []cime se iz n
-iza \OT1/ptm/m/it/12 ACA-AGAT-G-C-CA-AT-G-T-C-CCA\OT1/ptm/m/sl/12 $ \OT1/ptm/m/
-n/12 do-biva niz
- []
-
-<./pictures/fmStablo.png, id=254, 898.85812pt x 358.33875pt>
+<./pictures/fmStablo.png, id=269, 898.85812pt x 358.33875pt>
 File: ./pictures/fmStablo.png Graphic file (type png)
 
 <use ./pictures/fmStablo.png>
 Package pdftex.def Info: ./pictures/fmStablo.png used on input line 37.
 (pdftex.def)             Requested size: 452.9679pt x 180.57962pt.
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 46.
  [20 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/fmStablo.
 png>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 46.
+
 Underfull \hbox (badness 10000) in paragraph at lines 75--94
 
  []
@@ -1194,23 +1089,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 75--94
 
 [21]) [22]
 Poglavlje 4.
-("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\testiranja.tex")
+("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\testiranja.tex"
+
+LaTeX Warning: Reference `' on page 23 undefined on input line 10.
+
+
+LaTeX Warning: Reference `' on page 23 undefined on input line 10.
+
+
+LaTeX Warning: Reference `' on page 23 undefined on input line 10.
+
 [23
 
 ]
+
+LaTeX Warning: Reference `profiler' on page 24 undefined on input line 35.
+
+<./pictures/profiler.jpg, id=308, 1114.1625pt x 602.25pt>
+File: ./pictures/profiler.jpg Graphic file (type jpg)
+
+<use ./pictures/profiler.jpg>
+Package pdftex.def Info: ./pictures/profiler.jpg used on input line 39.
+(pdftex.def)             Requested size: 452.9679pt x 244.84724pt.
+) [24] [25 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/pro
+filer.jpg>]
 Poglavlje 5.
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 61.
 
-[24
+[26
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 61.
  ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 60.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 60.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 61.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 61.
 Package rerunfilecheck Info: File `Dokumentacija.out' has not changed.
-(rerunfilecheck)             Checksum: BBC691E15FCBD07F35F6590D867E28D0;1428.
+(rerunfilecheck)             Checksum: 1051D70A5BA52C0D83E7E264C9F53D20;1657.
 
 
 LaTeX Warning: There were undefined references.
@@ -1218,28 +1133,27 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 61.
  ) 
 Here is how much of TeX's memory you used:
- 16796 strings out of 493921
- 280463 string characters out of 3144876
- 361007 words of memory out of 3000000
- 19643 multiletter control sequences out of 15000+200000
- 30132 words of font info for 60 fonts, out of 3000000 for 9000
+ 16669 strings out of 493921
+ 278240 string characters out of 3144876
+ 360634 words of memory out of 3000000
+ 19547 multiletter control sequences out of 15000+200000
+ 10591 words of font info for 37 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 49i,8n,53p,2292b,602s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
- (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/ur
-w/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utm
-ri8a.pfb>
-Output written on Dokumentacija.pdf (25 pages, 1766558 bytes).
+ 49i,8n,53p,2292b,600s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on Dokumentacija.pdf (27 pages, 1889093 bytes).
 PDF statistics:
- 346 PDF objects out of 1000 (max. 8388607)
- 89 named destinations out of 1000 (max. 500000)
- 233 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 371 PDF objects out of 1000 (max. 8388607)
+ 95 named destinations out of 1000 (max. 500000)
+ 262 words of extra memory for PDF output out of 10000 (max. 10000000)
 

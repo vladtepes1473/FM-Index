@@ -249,7 +249,7 @@ public class BWT {
 		//we need to sort the middle elements
 		if(displacement<(da.RealLength()-1)){
 			//sort the middle characters (pivots), but increment the displacement, and sort them by those characters
-			sort(da.newArray(startPointer-leftPivotsPointer, leftPivotsPointer+da.reducedLength-(rightPivotsPointer+1)), displacement+1);
+			sort(da.newArray(startPointer-leftPivotsPointer, leftPivotsPointer+da.reducedLength-(rightPivotsPointer+1)-1), displacement+1);
 		}
 
 		//sort the upper part of the array containing characters larger than the pivot

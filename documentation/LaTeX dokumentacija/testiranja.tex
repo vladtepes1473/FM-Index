@@ -4,7 +4,7 @@ Za obavljanje ovih testiranja korištena su tri tipa tekstualnih datoteka. Prvi 
 
 U ovom poglavlju pogledat ćemo performanse koje pruža implementirani FM-Index i to u tri kategorije: brzina izgradnje, brzina obavljanja \textit{count} upita i memorijska potrošnja.
 
-\subsection{Vrijeme izgradnje FM-Indexa}
+\section{Vrijeme izgradnje FM-Indexa}
 Pogledajmo prvo performanse izgradnje FM-indexa. Ovo je možda i jedan od najbitnijih faktora prilikom ocjene koliko je neka implementacija dobra, pošto je izgradnja samog indeksa računalno veoma zahtjevna operacija. Kako bi rezultati koji će biti prikazani u ovom poglavlju bili što relevantniji, vrijednosti koje su prikazane u tablicama izračunate su kao prosjek od deset izgradnji FM-indeksa za svaku pojedinu veličinu datoteka. Osim toga, prilikom provođenja ovih eksperimenata nije bio pokrenut profiler, jer on dodatno usporava izvođenje programa, stoga su mjerenja za memorijsku potrošnju obavljena zasebno. Eksperimenti su ovaljnei za svaki tip datoteke koji bio ranije spomenut i to za 9 različith veličina takvih datoteka, od manjih (1MB), pa sve do većih (500MB). Osim toga, posebno su izdvojena vremena izgradnje BWT transformacije i Wavelet stabla, koji ipak sačinjavaju glavne građevne blokove FM-Indexa, pa je iz tog razloga dobro vidjeti koliko se mijenja i vrijeme izgradnje ovih struktura s promjenom veličine ulazne datoteke.
 
 Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizove nukleotida. Tablica \ref{} prikazuje vremena izgradnje FM-Indexa nad tipom datoteka koje sadrže nukleotide. Dodatno su iscrtana tri grafa koji prikazuju kako se brzina izgradnje FM-Indeksa i nekih njegovi djelova ponaša s povečanjem nizova nad kojima se te strukture izgrađuju. Tako graf \ref{} prikazuje ovisnost vremena izgradnje FM-Indexa u odnosu na veličinu ulaznog niza, graf \ref{} prikazuje ovisnost algoritam izgradnje sufisknog stavla u odnosu na veličinu ulaznaog niza i graf ref{} izgradnju Wavelet stabla u ovisnosti na veličinu ulaznog niza.
@@ -16,11 +16,32 @@ GRAF BWT
 GRAF WAVELET
 
 
-Ukoliko malo proučimo podatke iz tablice i grafova, možemo vidjeti kako 
+Ukoliko malo proučimo podatke iz tablice i grafova, možemo vidjeti kako je složenost izgradnje indeksa linearno ovisna o veličini ulaznog niza. To je svojstvo koje smo i željeli postići, ondnosno htjeli smo da nam je složenost izgradnje indeksa linearna. No svejedno vidimo kako je složenost izgradnje FM-Indexa za veće nizove veoma zahtjevan i dugotrajan proces te da za veće ulazne nizove može potrajati i po nekoliko minuta.
+
+U tablici \ref{} prikazani su rezultati koji su dobiveni za datoteke koje su sadržavale proteinske nizove. Grafof \ref prikazuje ovisnost trajanje izgradnje FM-Indeksa o veličini ulaznog niza (odnosno ulazne datoteke), dok slike \ref{} i \re{} prikazuju ovisnost izračunavanja BWT transformacije i izgradnje Wavelet stabla respektivno, u ovisnosti o veličini ulaznog niza.
+
+Konačno, u tablici \ref{} je prikazana i ovisnost izgradnje FM-Indexa o veličini ulaznog niza za treću vrstu datoteka. Ovisnost izgradnje FM-Indexa, provođenja BWT transformacije, kao i izgradnju Wavelet stabla, u odnosu na veličinu ulaznog niza prikazuju grafovi \ref{}, \ref{} i \ref{}, respektivno.
 
 
 
 
-\subsection{Vrijeme obavljanja \textit{count} upita}
 
-\subsection{Memorijsko zauzeće FM-indexa}
+\section{Vrijeme obavljanja \textit{count} upita}
+
+Drugi važan parametar pomoću kojeg se može ocijeniti uspješnost implementacije FM-Indeksa jest obavljanje \textit{count} upita nad izgrađenim nizom. 
+
+\section{Memorijsko zauzeće FM-indexa}
+
+Posljednji parametar kojeg možemo promatrati tijekom izrade FM-indeksa jest memorijsko zauzeće programa. U ovom poglavlju istaknut ćemo koliko je memorijsko zauzeće tokom izgradnje indeksa, kao i na kraju kada je indeks u potpunosti izgrađen. Osim toga, u ovom poglavlju pokazat će se kako Java virtualni stroj zauzima mnogo više memorije nego što je zaista potrebno za samo izvođenje algoritma, što predstavlja jedan veliki nedostatak. Ovdje će se razmotriti memorijska zauzeća za sve tipove datoteka, no promatrat će se samo veličine datoteka od 50MB nadalje. To je napravljeno iz razloga što i sam Java virtualni stroj sam po sebi zauzima dosta memorije, bez da je išta pokrenuto, te bi na manjim datotekama bio veći utjecaj Java virtualnog stroja nego samog algoritma i stoga rezultati ne bi bili u potpunosti relevantni. Ovako kada su mjerenja obavljena nad 
+
+
+
+
+Pogledajmo sada sliku \ref{profiler} koja je preuzeta iz profilera koje predstavlja memorijsko zauzeće algoritma kroz vrijeme. Plavom bojom označena je memorija koju program, odnsono algoritam stvarno koristi za spremanje struktura, dok je zelenom bojom označena slobodna memorija koju je Java virtualni stroj dodatno zauzeo. Vidimo da cijelo vrijeme Java virtualni stroj zauzima mnogo više memorije nego što mu doista treba za rad. To je ogroman nedostatak pri izradi memorijski zahtjevnih algoritama kao što je ovaj, jer Java programski jezik ne omogućuje efikasno rukovanje memorijom.
+
+\begin{figure}[H]
+   \centering
+       \includegraphics[width=\linewidth]{./pictures/profiler.jpg}
+ \caption{Zauzeće memorije Java virtualnog stroja tijekom konstrukcije indeksa}
+ \label{fig:profiler}
+\end{figure}
