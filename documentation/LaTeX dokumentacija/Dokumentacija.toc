@@ -4,21 +4,21 @@
 \contentsline {section}{\numberline {2.1}Burrows-Wheeler transformacija}{3}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Algoritam transformacije}{3}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Rekonstrukcija originalnog teksta iz BWT transformacije}{4}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Konstrukcija BWT-a}{5}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.3}Konstrukcija BWT-a}{4}{subsection.2.1.3}
 \contentsline {subsection}{\numberline {2.1.4}Multikey quicksort}{5}{subsection.2.1.4}
 \contentsline {subsection}{\numberline {2.1.5}Konstrukcija sufiksnog polja}{6}{subsection.2.1.5}
-\contentsline {section}{\numberline {2.2}Wavelet stablo}{13}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Konstruiranje wavelet stabla}{14}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Upiti nad wavelet stablom}{15}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}RRR struktura}{16}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Konstruiranje RRR strukture}{17}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Izra\IeC {\v c}unavanje broja jedinica u nizu}{17}{subsection.2.3.2}
-\contentsline {chapter}{\numberline {3}FM-indeks}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Originalna implementacija}{19}{section.3.1}
-\contentsline {section}{\numberline {3.2}Na\IeC {\v s}a implementacija}{20}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Nedostaci implementacije u programskom jeziku Java}{22}{subsection.3.2.1}
-\contentsline {chapter}{\numberline {4}Testiranja}{23}{chapter.4}
-\contentsline {section}{\numberline {4.1}Vrijeme izgradnje FM-Indexa}{23}{section.4.1}
-\contentsline {section}{\numberline {4.2}Vrijeme obavljanja \textit {count} upita}{25}{section.4.2}
+\contentsline {section}{\numberline {2.2}Wavelet stablo}{12}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Konstruiranje wavelet stabla}{13}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Upiti nad wavelet stablom}{14}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}RRR struktura}{15}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Konstruiranje RRR strukture}{16}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Izra\IeC {\v c}unavanje broja jedinica u nizu}{16}{subsection.2.3.2}
+\contentsline {chapter}{\numberline {3}FM-indeks}{18}{chapter.3}
+\contentsline {section}{\numberline {3.1}Originalna implementacija}{18}{section.3.1}
+\contentsline {section}{\numberline {3.2}Na\IeC {\v s}a implementacija}{19}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Nedostaci implementacije u programskom jeziku Java}{21}{subsection.3.2.1}
+\contentsline {chapter}{\numberline {4}Testiranja}{22}{chapter.4}
+\contentsline {section}{\numberline {4.1}Vrijeme izgradnje FM-Indexa}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}Vrijeme obavljanja \textit {count} upita}{24}{section.4.2}
 \contentsline {section}{\numberline {4.3}Memorijsko zauze\IeC {\'c}e FM-indexa}{25}{section.4.3}
-\contentsline {chapter}{\numberline {5}Literatura}{28}{chapter.5}
+\contentsline {chapter}{\numberline {5}Literatura}{34}{chapter.5}
