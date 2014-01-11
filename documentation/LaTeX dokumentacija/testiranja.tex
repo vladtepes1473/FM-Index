@@ -7,9 +7,30 @@ U ovom poglavlju pogledat ćemo performanse koje pruža implementirani FM-Index 
 \section{Vrijeme izgradnje FM-Indexa}
 Pogledajmo prvo performanse izgradnje FM-indexa. Ovo je možda i jedan od najbitnijih faktora prilikom ocjene koliko je neka implementacija dobra, pošto je izgradnja samog indeksa računalno veoma zahtjevna operacija. Kako bi rezultati koji će biti prikazani u ovom poglavlju bili što relevantniji, vrijednosti koje su prikazane u tablicama izračunate su kao prosjek od deset izgradnji FM-indeksa za svaku pojedinu veličinu datoteka. Osim toga, prilikom provođenja ovih eksperimenata nije bio pokrenut profiler, jer on dodatno usporava izvođenje programa, stoga su mjerenja za memorijsku potrošnju obavljena zasebno. Eksperimenti su ovaljnei za svaki tip datoteke koji bio ranije spomenut i to za 9 različith veličina takvih datoteka, od manjih (1MB), pa sve do većih (500MB). Osim toga, posebno su izdvojena vremena izgradnje BWT transformacije i Wavelet stabla, koji ipak sačinjavaju glavne građevne blokove FM-Indexa, pa je iz tog razloga dobro vidjeti koliko se mijenja i vrijeme izgradnje ovih struktura s promjenom veličine ulazne datoteke.
 
-Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizove nukleotida. Tablica \ref{} prikazuje vremena izgradnje FM-Indexa nad tipom datoteka koje sadrže nukleotide. Dodatno su iscrtana tri grafa koji prikazuju kako se brzina izgradnje FM-Indeksa i nekih njegovi djelova ponaša s povečanjem nizova nad kojima se te strukture izgrađuju. Tako graf \ref{} prikazuje ovisnost vremena izgradnje FM-Indexa u odnosu na veličinu ulaznog niza, graf \ref{} prikazuje ovisnost algoritam izgradnje sufisknog stavla u odnosu na veličinu ulaznaog niza i graf ref{} izgradnju Wavelet stabla u ovisnosti na veličinu ulaznog niza.
+Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizove nukleotida. Tablica \ref{tbl:tablNukleotidi} prikazuje vremena izgradnje FM-Indexa nad tipom datoteka koje sadrže nukleotide. Dodatno su iscrtana tri grafa koji prikazuju kako se brzina izgradnje FM-Indeksa i nekih njegovi djelova ponaša s povečanjem nizova nad kojima se te strukture izgrađuju. Tako graf \ref{} prikazuje ovisnost vremena izgradnje FM-Indexa u odnosu na veličinu ulaznog niza, graf \ref{} prikazuje ovisnost algoritam izgradnje sufisknog stavla u odnosu na veličinu ulaznaog niza i graf ref{} izgradnju Wavelet stabla u ovisnosti na veličinu ulaznog niza.
 
 TABLICA NUKLEOTIDI
+
+\begin{table}[h]
+\caption{Testiranje na nizu nukleotida}
+\label{tbl:tablNukleotidi}
+\centering
+\begin{tabular}{c|c|c|c|}
+\cline{2-4}
+      	    					 & \multicolumn{3}{c|}{vrijeme izgradnje (s)}  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {veličina (MB)} & BWT & wavelet stablo & FM indeks  \\ \cline{1-4}  
+\multicolumn{1}{ |c| } {   1    } 		& 	0.4694	&	0.1431	&	0.6954	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   2    } 		& 	0.6427	&	0.1881	&	0.9581	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   5    } 		&	1.4017	&	0.3137	&	1.9724	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   10    } 	&	2.9828	&	0.5214	&	3.9738	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   20    } 	&	6.7284	&	0.9268	&	8.5542	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   50    } 	&	21.1193	&	3.5455	&	27.0914	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   100    } 	&	46.4439	&	6.2703	&	57.6676	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   200    } 	&	101.1712	&	11.9061	&	122.9448	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   500    } 	&	284.38207	&	29.0901	&	338.5938	\\ \cline{1-4}
+\end{tabular}
+\end{table}
+
 
 GRAF FMINDEX
 GRAF BWT
@@ -18,9 +39,55 @@ GRAF WAVELET
 
 Ukoliko malo proučimo podatke iz tablice i grafova, možemo vidjeti kako je složenost izgradnje indeksa linearno ovisna o veličini ulaznog niza. To je svojstvo koje smo i željeli postići, ondnosno htjeli smo da nam je složenost izgradnje indeksa linearna. No svejedno vidimo kako je složenost izgradnje FM-Indexa za veće nizove veoma zahtjevan i dugotrajan proces te da za veće ulazne nizove može potrajati i po nekoliko minuta.
 
-U tablici \ref{} prikazani su rezultati koji su dobiveni za datoteke koje su sadržavale proteinske nizove. Grafof \ref prikazuje ovisnost trajanje izgradnje FM-Indeksa o veličini ulaznog niza (odnosno ulazne datoteke), dok slike \ref{} i \re{} prikazuju ovisnost izračunavanja BWT transformacije i izgradnje Wavelet stabla respektivno, u ovisnosti o veličini ulaznog niza.
+U tablici \ref{tbl:tablProteini} prikazani su rezultati koji su dobiveni za datoteke koje su sadržavale proteinske nizove. Graf \ref{} prikazuje ovisnost trajanje izgradnje FM-Indeksa o veličini ulaznog niza (odnosno ulazne datoteke), dok slike \ref{} i \re{} prikazuju ovisnost izračunavanja BWT transformacije i izgradnje Wavelet stabla respektivno, u ovisnosti o veličini ulaznog niza.
 
-Konačno, u tablici \ref{} je prikazana i ovisnost izgradnje FM-Indexa o veličini ulaznog niza za treću vrstu datoteka. Ovisnost izgradnje FM-Indexa, provođenja BWT transformacije, kao i izgradnju Wavelet stabla, u odnosu na veličinu ulaznog niza prikazuju grafovi \ref{}, \ref{} i \ref{}, respektivno.
+
+\begin{table}[h]
+\caption{Testiranje na proteinima}
+\label{tbl:tablProteini}
+\centering
+\begin{tabular}{c|c|c|c|}
+\cline{2-4}
+      	    					 & \multicolumn{3}{c|}{vrijeme izgradnje (s)}  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {veličina (MB)} & BWT & wavelet stablo & FM indeks  \\ \cline{1-4}  
+\multicolumn{1}{ |c| } {   1    } 		& 	0.4547	&	0.366	&	0.9295	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   2    } 		& 	0.6815	&	0.4119	&	1.2776	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   5    } 		& 	1.5011	&	0.5886	&	2.5025	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   10    } 	&	3.2401	&	0.8957	&	4.9289	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   20    } 	&	7.392		&	1.4896	&	10.4347	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   50    } 	&	24.1723	&	4.61334	&	32.6025	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   100    } 	&	52.6474	&	7.7732	&	67.9625	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   200    } 	&	112.8949	&	13.9333	&	142.1054	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   500    } 	&	315.5526	&	32.8476	&	386.6631	\\ \cline{1-4}
+\end{tabular}
+\end{table}
+
+
+
+
+Konačno, u tablici \ref{tbl:tablRand} je prikazana i ovisnost izgradnje FM-Indexa o veličini ulaznog niza za treću vrstu datoteka. Ovisnost izgradnje FM-Indexa, provođenja BWT transformacije, kao i izgradnju Wavelet stabla, u odnosu na veličinu ulaznog niza prikazuju grafovi \ref{}, \ref{} i \ref{}, respektivno.
+
+
+\begin{table}[h]
+\caption{Testiranje na rand}
+\label{tbl:tablRand}
+\centering
+\begin{tabular}{c|c|c|c|}
+\cline{2-4}
+      	    					 & \multicolumn{3}{c|}{vrijeme izgradnje (s)}  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {veličina (MB)} & BWT & wavelet stablo & FM indeks  \\ \cline{1-4}  
+\multicolumn{1}{ |c| } {   1    } 		& 	0.4795	&	1.2554	&	1.9021	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   2    } 		& 	0.772	&	1.3382	&	2.4216	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   5    } 		& 	1.8199	&	1.789	&	4.34387	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   10    } 		&	4.2868	&	2.579	&	8.3161	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   20    } 		&	10.2298	&	4.061	&	17.1314	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   50    } 		&	31.4606	&	8.3703	&	46.9771	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   100    } 		&	72.435	&	15.4384	&	103.1664	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   200    } 		&	163.362	&	29.5337	&	223.3576	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   500    } 		&	447.88	&	66.3437	&	588.4351	\\ \cline{1-4}
+\end{tabular}
+\end{table}
+
 
 
 
@@ -35,6 +102,52 @@ Drugi važan parametar pomoću kojeg se može ocijeniti uspješnost implementaci
 Posljednji parametar kojeg možemo promatrati tijekom izrade FM-indeksa jest memorijsko zauzeće programa. U ovom poglavlju istaknut ćemo koliko je memorijsko zauzeće tokom izgradnje indeksa, kao i na kraju kada je indeks u potpunosti izgrađen. Osim toga, u ovom poglavlju pokazat će se kako Java virtualni stroj zauzima mnogo više memorije nego što je zaista potrebno za samo izvođenje algoritma, što predstavlja jedan veliki nedostatak. Ovdje će se razmotriti memorijska zauzeća za sve tipove datoteka, no promatrat će se samo veličine datoteka od 50MB nadalje. To je napravljeno iz razloga što i sam Java virtualni stroj sam po sebi zauzima dosta memorije, bez da je išta pokrenuto, te bi na manjim datotekama bio veći utjecaj Java virtualnog stroja nego samog algoritma i stoga rezultati ne bi bili u potpunosti relevantni. Ovako kada su mjerenja obavljena nad 
 
 
+\begin{table}[h]
+\caption{Memorijsko zauzeće - niz nukleotida}
+\label{tbl:tablMemNukl}
+\centering
+\begin{tabular}{c|c|c|c|}
+\cline{2-4}
+      	   & \multicolumn{3}{c|}{memorijsko zauzeće (MB)}  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {veličina (MB)} & maksimalno & pravo & konačno  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {   50   }		&	393	&	314	&	53	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {  100  }		&	803	&	620	&	103	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {  200  }		&	1553	&	1230	&	201	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {  500   } 	&	3830	&	3080	&	494	\\ \cline{1-4}
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[h]
+\caption{Memorijsko zauzeće - protieni}
+\label{tbl:tablMemProt}
+\centering
+\begin{tabular}{c|c|c|c|}
+\cline{2-4}
+      	   & \multicolumn{3}{c|}{memorijsko zauzeće (MB)}  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {veličina (MB)} & maksimalno & pravo & konačno  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {   50   }		&	370	&	292	&	67	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   100   }		&	800	&	614	&	130	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   200   }		&	1550	&	1230	&	254	\\ \cline{1-4}
+\multicolumn{1}{ |c| } {   500   }		&	4800	&	3070	&	680	\\ \cline{1-4}
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h]
+\caption{Memorijsko zauzeće - rand}
+\label{tbl:tablMemRand}
+\centering\begin{tabular}{c|c|c|c|}
+\cline{2-4}
+      	   & \multicolumn{3}{c|}{memorijsko zauzeće (MB)}  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {veličina (MB)} & maksimalno & pravo & konačno  \\ \cline{1-4}
+\multicolumn{1}{ |c| } {   50   }		&	432	&	365	&	100	\\ \hline
+\multicolumn{1}{ |c| } {   100   }		&	800	&	619	&	191	\\ \hline
+\multicolumn{1}{ |c| } {   200   }		&	1558	&	1235	&	378	\\ \hline
+\multicolumn{1}{ |c| } {   500   }		&	4000	&	3700	&	840	\\ \hline
+\end{tabular}
+\end{table}
 
 
 Pogledajmo sada sliku \ref{profiler} koja je preuzeta iz profilera koje predstavlja memorijsko zauzeće algoritma kroz vrijeme. Plavom bojom označena je memorija koju program, odnsono algoritam stvarno koristi za spremanje struktura, dok je zelenom bojom označena slobodna memorija koju je Java virtualni stroj dodatno zauzeo. Vidimo da cijelo vrijeme Java virtualni stroj zauzima mnogo više memorije nego što mu doista treba za rad. To je ogroman nedostatak pri izradi memorijski zahtjevnih algoritama kao što je ovaj, jer Java programski jezik ne omogućuje efikasno rukovanje memorijom.
