@@ -68,7 +68,7 @@ public class Test {
 		System.out.println((char)bb);
 		Scanner sc = new Scanner(System.in);
 
-		sc.next();
+		//sc.next();
 		StringWrapper input = new StringWrapper();
 		String text = null;
 //		try {
@@ -79,10 +79,10 @@ public class Test {
 //			e.printStackTrace();
 //		}
 		//System.out.println(text.length());
-		input.string = getBytesFromFile(new File("D:\\FM-Index\\source\\dna.txt"));
+		input.string = getBytesFromFile(new File("D:\\FM-Index\\source\\rand\\rand200.txt"));
 		text = null;
 		System.gc();
-		sc.next();
+		//sc.next();
 		/*StringWrapper output = new StringWrapper();
 		long startTime = System.currentTimeMillis();
 		ConcreteAlphabet a = new ConcreteAlphabet(input); 

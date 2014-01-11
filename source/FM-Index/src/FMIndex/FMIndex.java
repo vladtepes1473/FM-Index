@@ -17,15 +17,14 @@ public class FMIndex {
 	public FMIndex(StringWrapper string) {
 		this.alphabet = new ConcreteAlphabet(string);
 		this.cTable = new DictionaryPrefixSumTable(this.alphabet);
-		StringWrapper bwtString = new StringWrapper();
 		long startTime = System.currentTimeMillis();
 		
-		for(byte b : alphabet.getAllCharacters()){
+		/*for(byte b : alphabet.getAllCharacters()){
 			System.out.println(((char)b)+": "+alphabet.getOccurancesForCharacter(b));
 		}
+		*/
 		
-		
-		System.out.println(string.length());
+//		System.out.println(string.length());
 //		char[] c = string.string.toCharArray();
 //		ByteBuffer bb = Charset.forName("UTF-8").encode(CharBuffer.wrap(c));
 //		byte[] b = new byte[bb.remaining()];
@@ -39,19 +38,17 @@ public class FMIndex {
 		
 		string = null;
 		System.gc();
-		bwtString = new StringWrapper();
-		bwtString.string = sw.string;
+
 		long stopTime = System.currentTimeMillis();
 		long elapsedTime = stopTime - startTime;
-		System.out.println("Time:" + elapsedTime);
+		System.out.println("Time BWT:" + elapsedTime);
 		startTime = System.currentTimeMillis();
 		this.occTable = new WaveletTree(sw, alphabet);
 		stopTime = System.currentTimeMillis();
 		elapsedTime = stopTime - startTime;
-		System.out.println("Time:" + elapsedTime);
-		bwtString = null;
+		System.out.println("Time wavelet:" + elapsedTime);
 		
-		TreePrinter.print(occTable.getRoot());
+		//TreePrinter.print(occTable.getRoot());
 		}
 	
 	/**

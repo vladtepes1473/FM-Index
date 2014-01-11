@@ -12,8 +12,8 @@ public class RRR implements BitLookup {
 	private BitSet bitString = new BitSet();
 	private int bitStringLength;
 	private int bucketSize;
-	private ArrayList<Short> BS = new ArrayList<Short>(); 
-	private ArrayList<Integer> SBS = new ArrayList<Integer>(); 
+	private short[] BS; 
+	private int[] SBS; 
 	
 	/**
 	 * Constructs bit sequence (bitString), buckets and super buckets for given string and pivot character
@@ -25,6 +25,10 @@ public class RRR implements BitLookup {
 		bitStringLength = string.length(); 
 		bucketSize = calculateBucketSize(string.length(), 2);	 
 		
+		BS = new short[(int)Math.ceil((double)bitStringLength/bucketSize)];
+		SBS = new int[(int)Math.ceil((double)bitStringLength/(bucketSize*bucketSize))];
+		int bsc=0;
+		int sbsc=0;
 		short bsCounter = 0; // number of the set bits (bits with value 1) from the last filled super bucket
 		
 		/*
@@ -51,7 +55,7 @@ public class RRR implements BitLookup {
 		     * If the bucket is full, save the value of the bsCounter as a bucket value in the list of all buckets BS
 		     */
 		    if ((i%bucketSize)==bucketSize-1) {
-		    	BS.add(bsCounter); 
+		    	BS[bsc++]=bsCounter; 
 		    }
 
 		    
@@ -67,13 +71,13 @@ public class RRR implements BitLookup {
 		    	 * sum of the value of the last saved super bucket and the number of set bits (counting from
 		    	 * the last super bucket).
 		    	 */
-		    	if (!SBS.isEmpty()) {
-		    		newSBSValue = SBS.get(SBS.size()-1) + bsCounter;
+		    	if (sbsc!=0) {
+		    		newSBSValue = SBS[(sbsc-1)] + bsCounter;
 		    		}
 		    	else {
 		    		newSBSValue = bsCounter;
 		    	}
-		    	SBS.add(newSBSValue); 
+		    	SBS[sbsc++]=newSBSValue; 
 		    	bsCounter = 0;
 		    }
 		}
@@ -82,6 +86,7 @@ public class RRR implements BitLookup {
 		System.gc();
 
 	}
+
 
 	
 	/**
@@ -119,7 +124,7 @@ public class RRR implements BitLookup {
 			superBucketRank = 0; 
 		}
 		else {
-			superBucketRank = SBS.get(SBSindex);
+			superBucketRank = SBS[SBSindex];
 		}
 		
 		/*
@@ -131,7 +136,7 @@ public class RRR implements BitLookup {
 			bucketRank = 0; 
 		}
 		else {
-			bucketRank = BS.get(BSindex);
+			bucketRank = BS[BSindex];
 		}
 		
 	

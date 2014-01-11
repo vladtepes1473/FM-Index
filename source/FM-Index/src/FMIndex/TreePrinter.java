@@ -1,6 +1,8 @@
 package FMIndex;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class TreePrinter {
 	
@@ -17,14 +19,25 @@ public class TreePrinter {
 	
 	public static void print(Node root){
 		System.out.println("Hello there :)");
-		LinkedList<Node> nodes = new LinkedList<Node>();
+		List<Node> nodes = new ArrayList<Node>();
 		nodes.add(root);
 		printInternal(nodes, 1, maxDepth(root));
 	}
 
-	private static void printInternal(LinkedList<Node> nodes, int level, int maxLevel){
+	private static void printInternal(List<Node> nodes, int level, int maxLevel){
 		if(nodes.size() == 0)
 			return;
+		
+		int counter = 0;
+		
+		for(int i =0;i<nodes.size();i++){
+			if(nodes.get(i)==null)
+				counter++;
+		}
+		
+		if(counter==nodes.size()){
+			return;
+		}
 		
 		int floor = maxLevel - level;
         int endgeLines = (int) Math.pow(2, (Math.max(floor - 1, 0)));
@@ -34,7 +47,7 @@ public class TreePrinter {
         LinkedList<Node> newNodes = new LinkedList<Node>();
         for (Node node : nodes) {
             if (node != null) {
-                System.out.print(node.getPivot() + ";" + node.getContentLength());
+                System.out.print((char)(byte)node.getPivot() + ";" + node.getContentLength());
                 newNodes.add(node.getLeft());
                 newNodes.add(node.getRight());
             } else {

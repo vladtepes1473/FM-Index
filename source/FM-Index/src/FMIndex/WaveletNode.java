@@ -52,10 +52,10 @@ public class WaveletNode implements Node{
 		}
 		
 		int half = totalNumberOfCharacters/2;
-		if(alphabetSize % 2 == 0)
-			half = alphabet.size() / 2 - 1;
-		else
-			half = alphabetSize / 2;
+//		if(alphabetSize % 2 == 0)
+//			half = alphabet.size() / 2 - 1;
+//		else
+//			half = alphabetSize / 2;
 		
 		/*
 		 * Finding the pivot.
@@ -68,25 +68,27 @@ public class WaveletNode implements Node{
 		 */
 		int totalOccurencesSoFar = 0;
 		int pivotIndex = half;
-//		int counter = 0;
-//		for(pivotIndex = 0; totalOccurencesSoFar < half; pivotIndex++){
-//			counter = totalOccurencesSoFar;
-//			totalOccurencesSoFar += alphabet.getOccurancesForCharacter(allCharacters[pivotIndex]);
-//		}
+		int counter = 0;
+		for(pivotIndex = 0; totalOccurencesSoFar < half; pivotIndex++){
+			counter = totalOccurencesSoFar;
+			totalOccurencesSoFar += alphabet.getOccurancesForCharacter(allCharacters[pivotIndex]);
+		}
 		/*
 		 * The final check sees if found pivot is better pivot than the character that comes after it in the alphabet's
 		 * character array (since the for loop stops when totalOccurencesSoFar < half).
 		 */
-		/*if( (string.length() - totalOccurencesSoFar) > 
-			(string.length() + alphabet.getOccurancesForCharacter(allCharacters[pivotIndex + 1]) - totalOccurencesSoFar) &&
-			pivotIndex < alphabet.size()-1){
+		if( pivotIndex>1 && (string.length() - totalOccurencesSoFar) < 
+			(string.length() + alphabet.getOccurancesForCharacter(allCharacters[pivotIndex - 1]) - totalOccurencesSoFar) ){
 				
-				pivotIndex ++;
-		}*/
+				pivotIndex--;
+		}
+
+		
 		/*
 		 * Building the RRR structure.
 		 */
 		this.pivot = allCharacters[pivotIndex];
+		//System.out.println("Pivot: "+(char)(byte)pivot);
 		bitContent = new RRR(pivot, string);
 		
 		/*

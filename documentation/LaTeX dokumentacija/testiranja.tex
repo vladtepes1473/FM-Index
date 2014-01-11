@@ -1,1 +1,26 @@
-Testiranja su obavaljena na računalu s procesorom Intel Core i7 920 @ 2.66 GHz, s 6 GB RAM memorije i na operacijskom sustavu Windows 7. Razlog zašto testiranja nisu bila obaljena na Biolinuxu (ili nekoj drugoj Linux distribuciji) je taj što se Biolinux pokreće u virtualnom stroju, pa je upitno kako bi to utjecalo na performanse izvođenja samog programa.
+Testiranja su obavaljena na računalu s procesorom Intel Core i7 920 @ 2.66 GHz, s 6 GB RAM memorije i na operacijskom sustavu Windows 7. Razlog zašto testiranja nisu bila obaljena na Biolinuxu (ili nekoj drugoj Linux distribuciji) je taj što se Biolinux, na računalu koje se je koristilo za testiranja, pokreće u virtualnom stroju, pa je upitno kako bi to utjecalo na performanse izvođenja samog programa.
+
+Za obavljanje ovih testiranja korištena su tri tipa tekstualnih datoteka. Prvi tip tekstualnih datoteka se je sastojao od nizova nukleotida i dodatnih znakova koji se još mogu pojaviti u takvim nizovima. Drugi tip takstualnih datoteka sastojao se je od nizova znakova koji predstavljaju proteine. Posljednji tip tekstualnih datoteka koje su korištene sastojale su se od nizova slučajno generiranih znakova iz osnovnog ASCII skupa znakova. Prvi i drugi tip datoteka su preuzeti sa [referenca na pizza i chilli] te su ponešto prilagođene za obavljanje testiranja. Treći tip datoteka je bio generiran uz pomoć posebnog programa.
+
+U ovom poglavlju pogledat ćemo performanse koje pruža implementirani FM-Index i to u tri kategorije: brzina izgradnje, brzina obavljanja \textit{count} upita i memorijska potrošnja.
+
+\subsection{Vrijeme izgradnje FM-Indexa}
+Pogledajmo prvo performanse izgradnje FM-indexa. Ovo je možda i jedan od najbitnijih faktora prilikom ocjene koliko je neka implementacija dobra, pošto je izgradnja samog indeksa računalno veoma zahtjevna operacija. Kako bi rezultati koji će biti prikazani u ovom poglavlju bili što relevantniji, vrijednosti koje su prikazane u tablicama izračunate su kao prosjek od deset izgradnji FM-indeksa za svaku pojedinu veličinu datoteka. Osim toga, prilikom provođenja ovih eksperimenata nije bio pokrenut profiler, jer on dodatno usporava izvođenje programa, stoga su mjerenja za memorijsku potrošnju obavljena zasebno. Eksperimenti su ovaljnei za svaki tip datoteke koji bio ranije spomenut i to za 9 različith veličina takvih datoteka, od manjih (1MB), pa sve do većih (500MB). Osim toga, posebno su izdvojena vremena izgradnje BWT transformacije i Wavelet stabla, koji ipak sačinjavaju glavne građevne blokove FM-Indexa, pa je iz tog razloga dobro vidjeti koliko se mijenja i vrijeme izgradnje ovih struktura s promjenom veličine ulazne datoteke.
+
+Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizove nukleotida. Tablica \ref{} prikazuje vremena izgradnje FM-Indexa nad tipom datoteka koje sadrže nukleotide. Dodatno su iscrtana tri grafa koji prikazuju kako se brzina izgradnje FM-Indeksa i nekih njegovi djelova ponaša s povečanjem nizova nad kojima se te strukture izgrađuju. Tako graf \ref{} prikazuje ovisnost vremena izgradnje FM-Indexa u odnosu na veličinu ulaznog niza, graf \ref{} prikazuje ovisnost algoritam izgradnje sufisknog stavla u odnosu na veličinu ulaznaog niza i graf ref{} izgradnju Wavelet stabla u ovisnosti na veličinu ulaznog niza.
+
+TABLICA NUKLEOTIDI
+
+GRAF FMINDEX
+GRAF BWT
+GRAF WAVELET
+
+
+Ukoliko malo proučimo podatke iz tablice i grafova, možemo vidjeti kako 
+
+
+
+
+\subsection{Vrijeme obavljanja \textit{count} upita}
+
+\subsection{Memorijsko zauzeće FM-indexa}
