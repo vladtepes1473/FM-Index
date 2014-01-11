@@ -11,8 +11,9 @@ public class WaveletTree implements OccTable {
 	 * Constructor for WaveletTree.
 	 * @param string - input string that you want to build the wavelet tree of
 	 * @param alphabet - Alphabet object containing alphabet information of the given input string
+	 * @throws AlphabetException 
 	 */
-	public WaveletTree(StringWrapper string, Alphabet alphabet){
+	public WaveletTree(StringWrapper string, Alphabet alphabet) throws AlphabetException{
 		root = new WaveletNode(string, alphabet);
 	}
 	

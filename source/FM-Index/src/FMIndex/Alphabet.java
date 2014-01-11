@@ -18,8 +18,9 @@ public interface Alphabet {
 	 * Gets the number of occurrences of the given character
 	 * @param c Character for which the number of occurrences will be returned
 	 * @return Number of occurrences for the given character
+	 * @throws AlphabetException 
 	 */
-	public Integer getOccurancesForCharacter(Byte c);
+	public Integer getOccurancesForCharacter(Byte c) throws AlphabetException;
 	
 	/**
 	 * Gets all the characters in the alphabet
@@ -44,6 +45,7 @@ public interface Alphabet {
 	 * Gets the index of the character in the alphabet
 	 * @param character Character for which the index should be returned
 	 * @return The index of the character in the alphabet (starting with 0)
+	 * @throws AlphabetException 
 	 */
-	public Integer getCharacterIndex(Byte character);
+	public Integer getCharacterIndex(Byte character) throws AlphabetException;
 }

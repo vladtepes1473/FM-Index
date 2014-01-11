@@ -72,7 +72,7 @@ public class FASTAParser implements Parser {
         bytes[intLength] = (byte) 3;
         
         ArrayList<Byte> nonEmptyMembers = new ArrayList<Byte>();
-        for(int i = 0; i < intLength; i++){
+        for(int i = 0; i <= intLength; i++){
         	if(bytes[i] != 0)
         		nonEmptyMembers.add(bytes[i]);
         }

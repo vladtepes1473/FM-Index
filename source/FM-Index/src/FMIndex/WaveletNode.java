@@ -22,8 +22,9 @@ public class WaveletNode implements Node{
 	 * Constructor for WaveletNode. Recursively builds the wavelet tree node and its subtrees.
 	 * @param string - a string that that you want to build the wavelet tree node of
 	 * @param alphabet - Alphabet object containing alphabet information of the given string
+	 * @throws AlphabetException 
 	 */
-	public WaveletNode(StringWrapper string, Alphabet alphabet){
+	public WaveletNode(StringWrapper string, Alphabet alphabet) throws AlphabetException{
 		Byte[] allCharacters = alphabet.getAllCharacters();
 		contentLenght = string.length();
 		

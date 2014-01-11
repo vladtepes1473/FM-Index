@@ -10,6 +10,15 @@ public class StringWrapper {
 
 	public byte[] string;
 	
+	/**
+	 * Default constructor
+	 */
+	public StringWrapper(){}
+	
+	public StringWrapper(byte[] bytes){
+		this.string = bytes;
+	}
+	
 	
 	/**
 	 * Returns the string enclosed in the StringWrapper class

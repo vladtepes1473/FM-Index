@@ -15,8 +15,9 @@ public class DictionaryPrefixSumTable implements PrefixSumTable {
 	/**
 	 * Builds the prefix sum table on the given alphabet
 	 * @param alphabet Alpgabet on which the prefix sum table will be built
+	 * @throws AlphabetException 
 	 */
-	public DictionaryPrefixSumTable(Alphabet alphabet){
+	public DictionaryPrefixSumTable(Alphabet alphabet) throws AlphabetException{
 		table = new TreeMap<Byte, Integer>();
 		Integer sum = 0;
 		Integer position = 0;

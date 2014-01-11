@@ -13,8 +13,9 @@ public class FMIndex {
 	/**
 	 * Builds the FM-index on the given StringWrapper
 	 * @param string The Stringwrapper on which the index should be built
+	 * @throws AlphabetException 
 	 */
-	public FMIndex(StringWrapper string) {
+	public FMIndex(StringWrapper string) throws AlphabetException {
 		this.alphabet = new ConcreteAlphabet(string);
 		this.cTable = new DictionaryPrefixSumTable(this.alphabet);
 		long startTime = System.currentTimeMillis();
@@ -59,11 +60,20 @@ public class FMIndex {
 	public int Count(StringWrapper string){
 		int position = string.length()-1;
 		byte character = string.charAt(position);
-		int characterIndex = alphabet.getCharacterIndex(character);
+		int characterIndex=0;
+		if(!alphabet.containsCharacter(character))
+			return 0;
+		try{
+			characterIndex = alphabet.getCharacterIndex(character);}
+		catch(AlphabetException e){
+			return 0;
+		}
 		int startPosition = cTable.getCharacterPrefixSum(characterIndex)+1;
 		int endPosition = cTable.getCharacterPrefixSum(characterIndex+1);
 		for(position = position-1; position>=0; position--){
 			character = string.charAt(position);
+			if(!alphabet.containsCharacter(character))
+				return 0;
 			startPosition = cTable.getCharacterPrefixSum(character) + occTable.getCharacterOcurrance(character, startPosition-2)+1;
 			endPosition = cTable.getCharacterPrefixSum(character) + occTable.getCharacterOcurrance(character, endPosition-1);
 		}

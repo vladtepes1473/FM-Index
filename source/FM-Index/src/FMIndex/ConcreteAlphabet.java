@@ -36,7 +36,9 @@ public class ConcreteAlphabet implements Alphabet {
 		return alphabet.containsKey(c);
 	}
 	
-	public Integer getOccurancesForCharacter(Byte c){
+	public Integer getOccurancesForCharacter(Byte c) throws AlphabetException{
+		if(!containsCharacter(c))
+			throw new AlphabetException("Alphabet does not contain such a character!");
 		return alphabet.get(c);
 	}
 	
@@ -70,7 +72,10 @@ public class ConcreteAlphabet implements Alphabet {
 	}
 
 	@Override
-	public Integer getCharacterIndex(Byte character) {
+	public Integer getCharacterIndex(Byte character) throws AlphabetException {
+		if(!characterPositions.containsKey(character)){
+			throw new AlphabetException("No such character exists in the alphabet");
+		}
 		int position = 0;
 		position = characterPositions.get(character);
 		return position;

@@ -8,6 +8,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import FMIndex.AlphabetException;
 import FMIndex.ConcreteAlphabet;
 import FMIndex.StringWrapper;
 import FMIndex.WaveletTree;
@@ -23,7 +24,13 @@ public class WaveletTreeTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		WaveletTree tree = new WaveletTree(string, new ConcreteAlphabet(string));
+		WaveletTree tree = null;
+		try {
+			tree = new WaveletTree(string, new ConcreteAlphabet(string));
+		} catch (AlphabetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int occ = tree.getCharacterOcurrance((byte)'b', 9);
 		 Assert.assertEquals(2 , occ);
 	}
@@ -36,7 +43,13 @@ public class WaveletTreeTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		WaveletTree tree = new WaveletTree(string, new ConcreteAlphabet(string));
+		WaveletTree tree=null;
+		try {
+			tree = new WaveletTree(string, new ConcreteAlphabet(string));
+		} catch (AlphabetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int occ = tree.getCharacterOcurrance((byte)'b', 9);
 		 Assert.assertEquals(4 , occ);
 	}

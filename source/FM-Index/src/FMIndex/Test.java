@@ -60,66 +60,121 @@ public class Test {
 	  }
 	public static void main(String[] args) throws IOException {
 
-		
-		byte bb = 84;
-		byte bv = 47;
-		byte[] nn = new byte[]{bb,bv};
-		//SaisBWT.Test();
-		
-		System.out.println((char)bb);
-		Scanner sc = new Scanner(System.in);
-
-		//sc.next();
-		StringWrapper input = new StringWrapper();
-		String text = null;
-//		try {
-//			text = new String(Files.readAllBytes(Paths.get("D:\\FM-Index\\source\\dnabig.txt")));
-//			//text = new String(Files.readAllBytes(Paths.get("/Users/ljama/FM-Index/source/FM-Index/test.txt")));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		//System.out.println(text.length());
-		input.string = getBytesFromFile(new File("D:\\FM-Index\\source\\dna\\dna50.txt"));
-		text = null;
-		System.gc();
-		//sc.next();
-		/*StringWrapper output = new StringWrapper();
-		long startTime = System.currentTimeMillis();
-		ConcreteAlphabet a = new ConcreteAlphabet(input); 
-		Character c[] = a.getAllCharacters();
-		PrefixSumTable sum = new DictionaryPrefixSumTable(a);
-		for(Character ca : c){
-			System.out.println(ca + " " + sum.getCharacterPrefixSum(ca));
+		//Invalid number of parameters, print usage
+		if(args.length!=2&&args.length!=1){
+			System.out.println("fmindex filetype filepath");
 		}
-		BWT.performBTW(input, output);
-		long stopTime = System.currentTimeMillis();
-	    long elapsedTime = stopTime - startTime;
-	    System.out.println(elapsedTime);*/
-
-		//StringWrapper sw = new StringWrapper();
-		//sw.string = "$matootootooteaimatortu";
-		StringWrapper sw1 = new StringWrapper();
-		//BWT.performBWT(input, );
-		//System.out.println(new String(input.string));
-		long startTime = System.currentTimeMillis();
-		FMIndex fmindex = new FMIndex(input);
-		long stopTime = System.currentTimeMillis();
-	    long elapsedTime = stopTime - startTime;
-	    System.out.println("TOTAL Time:" + elapsedTime);
-		sw1.string = "TATATATAT".getBytes("US-ASCII");
-	    startTime = System.currentTimeMillis();
-		int count = fmindex.Count(sw1);
-		stopTime = System.currentTimeMillis();
-		elapsedTime = stopTime - startTime;
-		System.out.println("Time:" + elapsedTime);
-		System.out.println("Count: "+count);
-		//input = null;
 		
-		Random rand = new Random();
-		int upper;
+		Parser parser = null;
+		String path;
 		
-		Testcoubnt(fmindex,input, sw1, rand);
+		if(args.length==1){
+			parser = new PlainTextParser();
+			path = args[0];
+		}
+		else{
+			if(args[0].equals("-p")){
+				parser = new PlainTextParser();
+			}
+			else if(args[0].equals("-f")){
+				parser = new FASTAParser();
+			}
+			else{
+				System.out.println("Invalid input parameter!");
+				return;
+			}
+			path = args[1];
+		}
+		
+		StringWrapper input = parser.Parse(path);
+		
+		System.out.println("Building index...");
+		FMIndex fmindex;
+		try{
+		fmindex = new FMIndex(input);
+		}
+		catch(Exception e){
+			System.out.println("An exception during the index construction occurred!");
+			return;
+		}
+		input = null;
+		System.gc();
+		System.out.println("Index built...");
+		
+		System.out.println("Enter a pattern to search for");
+		Scanner sc = new Scanner(System.in);
+		
+		while(true){
+			String pattern = sc.nextLine();
+			if(pattern.length()<1)
+				continue;
+			StringWrapper p = new StringWrapper(pattern.getBytes("US-ASCII"));
+			int count = fmindex.Count(p);
+			System.out.println("Pattern count: "+count);
+		}
+		
+//		
+//		byte bb = 84;
+//		byte bv = 47;
+//		byte[] nn = new byte[]{bb,bv};
+//		//SaisBWT.Test();
+//		
+//		System.out.println((char)bb);
+//		Scanner sc = new Scanner(System.in);
+//
+//		//sc.next();
+//		StringWrapper input = new StringWrapper();
+//		String text = null;
+////		try {
+////			text = new String(Files.readAllBytes(Paths.get("D:\\FM-Index\\source\\dnabig.txt")));
+////			//text = new String(Files.readAllBytes(Paths.get("/Users/ljama/FM-Index/source/FM-Index/test.txt")));
+////		} catch (IOException e) {
+////			// TODO Auto-generated catch block
+////			e.printStackTrace();
+////		}
+//		//System.out.println(text.length());
+//		Parser p = new FASTAParser();
+//		input=p.Parse("D:\\FM-Index\\source\\fasta.txt");
+//		//input.string = getBytesFromFile(new File("D:\\FM-Index\\source\\dna\\dna10.txt"));
+//		text = null;
+//		System.gc();
+//		//sc.next();
+//		/*StringWrapper output = new StringWrapper();
+//		long startTime = System.currentTimeMillis();
+//		ConcreteAlphabet a = new ConcreteAlphabet(input); 
+//		Character c[] = a.getAllCharacters();
+//		PrefixSumTable sum = new DictionaryPrefixSumTable(a);
+//		for(Character ca : c){
+//			System.out.println(ca + " " + sum.getCharacterPrefixSum(ca));
+//		}
+//		BWT.performBTW(input, output);
+//		long stopTime = System.currentTimeMillis();
+//	    long elapsedTime = stopTime - startTime;
+//	    System.out.println(elapsedTime);*/
+//
+//		//StringWrapper sw = new StringWrapper();
+//		//sw.string = "$matootootooteaimatortu";
+//		StringWrapper sw1 = new StringWrapper();
+//		//BWT.performBWT(input, );
+//		//System.out.println(new String(input.string));
+//		long startTime = System.currentTimeMillis();
+//		FMIndex fmindex = new FMIndex(input);
+//		long stopTime = System.currentTimeMillis();
+//	    long elapsedTime = stopTime - startTime;
+//	    System.out.println("TOTAL Time:" + elapsedTime);
+//		sw1.string = "TAT".getBytes("US-ASCII");
+//	    startTime = System.currentTimeMillis();
+//		int count = fmindex.Count(sw1);
+//		stopTime = System.currentTimeMillis();
+//		elapsedTime = stopTime - startTime;
+//		System.out.println("Time:" + elapsedTime);
+//		System.out.println("Count: "+count);
+//		//input = null;
+//		
+//		Random rand = new Random();
+//		int upper;
+		
+//		Testcoubnt(fmindex,input, sw1, rand);
 //		
 		
 
@@ -175,20 +230,20 @@ public class Test {
 //		System.out.println("Time:" + elapsedTime);
 //		System.out.println("Count: "+count);
 		
-		System.gc();
+//		System.gc();
+//		
+//	    Runtime runtime = Runtime.getRuntime();
+//	    // Run the garbage collector
+//	    runtime.gc();
+//	    // Calculate the used memory
+//	    runtime.freeMemory();
+//	    long memory = runtime.totalMemory() - runtime.freeMemory();
+//	    System.out.println("Used memory is bytes: " + runtime.totalMemory());
+//	    System.out.println("Used memory is megabytes: "
+//	        + bytesToMegabytes(runtime.totalMemory()));
+//		sc.next();
 		
-	    Runtime runtime = Runtime.getRuntime();
-	    // Run the garbage collector
-	    runtime.gc();
-	    // Calculate the used memory
-	    runtime.freeMemory();
-	    long memory = runtime.totalMemory() - runtime.freeMemory();
-	    System.out.println("Used memory is bytes: " + runtime.totalMemory());
-	    System.out.println("Used memory is megabytes: "
-	        + bytesToMegabytes(runtime.totalMemory()));
-		sc.next();
-		
-		return;
+
 	}
 	private static void Testcoubnt(FMIndex fm,StringWrapper input, StringWrapper sw1,
 			Random rand) {
