@@ -36,7 +36,7 @@ public class PlainTextParser implements Parser {
         InputStream inputStream = new FileInputStream(file);
         try {
             while (offset < intLength && (inputStream.read(bytes, offset, 1)) >= 0) {
-            	if(bytes[offset] < 3 || bytes[offset] > 127)
+            	if(bytes[offset] < 4 || bytes[offset] > 127)
             		throw new IOException("Invalid character: " + bytes[offset] + "in file " + file.getName());
                 offset += 1;
             }
