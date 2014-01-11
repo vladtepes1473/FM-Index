@@ -54,8 +54,8 @@ public class FASTAParser implements Parser {
             		}
             		while(controlLineChar[0] != (byte)newLineChar);
             		if(isMultiFasta){
-            			bytes[offset] = (byte) 3;
-            			offset += 1;
+            			//bytes[offset] = (byte) 3;
+            			//offset += 1;
             			bytes[offset] = (byte) '_';
             			offset +=1;
             		}
