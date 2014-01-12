@@ -14,7 +14,7 @@
 \BOOKMARK [2][-]{subsection.2.3.2}{Izracunavanje broja jedinica u nizu}{section.2.3}% 14
 \BOOKMARK [0][-]{chapter.3}{FM-indeks}{}% 15
 \BOOKMARK [1][-]{section.3.1}{Originalna implementacija}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.2}{Na\235a implementacija}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.2}{Implementacija FM-indeksa}{chapter.3}% 17
 \BOOKMARK [2][-]{subsection.3.2.1}{Nedostaci implementacije u programskom jeziku Java}{section.3.2}% 18
 \BOOKMARK [0][-]{chapter.4}{Testiranja}{}% 19
 \BOOKMARK [1][-]{section.4.1}{Vrijeme izgradnje FM-Indexa}{chapter.4}% 20

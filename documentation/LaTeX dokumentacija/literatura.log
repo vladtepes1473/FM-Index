@@ -1,0 +1,14 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdftex 2014.1.8)  12 JAN 2014 18:29
+entering extended mode
+**D:/FM-Index/FM-Index/documentation/LaTeX*dokumentacija/literatura.bib
+("D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/literatura.bib"
+! Undefined control sequence.
+l.104 howpublished={\url
+                         = {http://pizzachili.dcc.uchile.cl/texts.html}}
+? 
+! Emergency stop.
+l.104 howpublished={\url
+                         = {http://pizzachili.dcc.uchile.cl/texts.html}}
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!
