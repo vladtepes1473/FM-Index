@@ -147,9 +147,11 @@ public class WaveletNode implements Node{
 		/*
 		 * Creating child nodes
 		 */
+		//if(splittedAlphabets[0].size()>1)
 		left = new WaveletNode(zeros, splittedAlphabets[0]);
 		zeros = null;
 		System.gc();
+		//if(splittedAlphabets[1].size()>1)
 		right = new WaveletNode(ones, splittedAlphabets[1]);
 		ones = null;
 		System.gc();
