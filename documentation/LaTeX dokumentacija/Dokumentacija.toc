@@ -21,4 +21,5 @@
 \contentsline {section}{\numberline {4.1}Vrijeme izgradnje FM-Indexa}{22}{section.4.1}
 \contentsline {section}{\numberline {4.2}Vrijeme obavljanja \textit {count} upita}{27}{section.4.2}
 \contentsline {section}{\numberline {4.3}Memorijsko zauze\IeC {\'c}e FM-indexa}{29}{section.4.3}
-\contentsline {chapter}{\numberline {5}Literatura}{35}{chapter.5}
+\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{35}{chapter.5}
+\contentsline {chapter}{\numberline {6}Literatura}{36}{chapter.6}
