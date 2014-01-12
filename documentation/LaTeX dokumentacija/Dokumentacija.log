@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.25)  12 JAN 2014 20:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.12.25)  12 JAN 2014 20:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1089,42 +1089,42 @@ Poglavlje 4.
 (./testiranja.tex [22
 
 ]
-<./pictures/test_nukl.png, id=323, 662.475pt x 362.85562pt>
+<./pictures/test_nukl.png, id=322, 662.475pt x 362.85562pt>
 File: ./pictures/test_nukl.png Graphic file (type png)
 
 <use ./pictures/test_nukl.png>
 Package pdftex.def Info: ./pictures/test_nukl.png used on input line 48.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
  [23 <./pictures/test_nukl.png>]
-<./pictures/test_proteini.png, id=332, 662.475pt x 362.85562pt>
+<./pictures/test_proteini.png, id=331, 662.475pt x 362.85562pt>
 File: ./pictures/test_proteini.png Graphic file (type png)
 
 <use ./pictures/test_proteini.png>
 Package pdftex.def Info: ./pictures/test_proteini.png used on input line 83.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
  [24 <./pictures/test_proteini.png>]
-<./pictures/test_ascii.png, id=343, 662.475pt x 362.85562pt>
+<./pictures/test_ascii.png, id=342, 662.475pt x 362.85562pt>
 File: ./pictures/test_ascii.png Graphic file (type png)
 
 <use ./pictures/test_ascii.png>
 Package pdftex.def Info: ./pictures/test_ascii.png used on input line 115.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
  [25 <./pictures/test_ascii.png>]
-<./pictures/test_bwt.png, id=356, 662.475pt x 362.85562pt>
+<./pictures/test_bwt.png, id=355, 662.475pt x 362.85562pt>
 File: ./pictures/test_bwt.png Graphic file (type png)
 
 <use ./pictures/test_bwt.png>
 Package pdftex.def Info: ./pictures/test_bwt.png used on input line 126.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
 
-<./pictures/test_wavelet.png, id=357, 662.475pt x 362.85562pt>
+<./pictures/test_wavelet.png, id=356, 662.475pt x 362.85562pt>
 File: ./pictures/test_wavelet.png Graphic file (type png)
 
 <use ./pictures/test_wavelet.png>
 Package pdftex.def Info: ./pictures/test_wavelet.png used on input line 133.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
 
-<./pictures/test_fm.png, id=358, 662.475pt x 362.85562pt>
+<./pictures/test_fm.png, id=357, 662.475pt x 362.85562pt>
 File: ./pictures/test_fm.png Graphic file (type png)
 
 <use ./pictures/test_fm.png>
@@ -1205,11 +1205,11 @@ Package rerunfilecheck Info: File `Dokumentacija.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
  ) 
 Here is how much of TeX's memory you used:
- 16987 strings out of 493315
- 283340 string characters out of 6137903
+ 16986 strings out of 493315
+ 283324 string characters out of 6137903
  381300 words of memory out of 5000000
- 19960 multiletter control sequences out of 15000+600000
- 11290 words of font info for 39 fonts, out of 8000000 for 9000
+ 19959 multiletter control sequences out of 15000+600000
+ 10931 words of font info for 38 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  49i,9n,53p,2241b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
@@ -1223,7 +1223,7 @@ ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/lo
 cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
 al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
 l/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Dokumentacija.pdf (36 pages, 1901657 bytes).
+Output written on Dokumentacija.pdf (36 pages, 1898099 bytes).
 PDF statistics:
  506 PDF objects out of 1000 (max. 8388607)
  422 compressed objects within 5 object streams
