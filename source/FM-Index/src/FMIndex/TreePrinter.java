@@ -18,7 +18,6 @@ public class TreePrinter {
 	}
 	
 	public static void print(Node root){
-		System.out.println("Hello there :)");
 		List<Node> nodes = new ArrayList<Node>();
 		nodes.add(root);
 		printInternal(nodes, 1, maxDepth(root));

@@ -22,22 +22,8 @@ public class FMIndex {
 		
 		System.out.println("Alphabet size: "+alphabet.size());
 		
-		/*for(byte b : alphabet.getAllCharacters()){
-			System.out.println(((char)b)+": "+alphabet.getOccurancesForCharacter(b));
-		}
-		*/
-		
-//		System.out.println(string.length());
-//		char[] c = string.string.toCharArray();
-//		ByteBuffer bb = Charset.forName("UTF-8").encode(CharBuffer.wrap(c));
-//		byte[] b = new byte[bb.remaining()];
-//		bb.get(b);
 		StringWrapper sw = new StringWrapper();
-		//byte[] bwt = new byte[string.length()];
-		//sw.string = bwt;
-		//new sais().bwtransform(b, bwt, new int[b.length], b.length);
 		SaisBWT.PerformBWT(string, sw);
-		//(new BWT()).performBWT(string, sw);
 		
 		string = null;
 		System.gc();
@@ -50,9 +36,7 @@ public class FMIndex {
 		stopTime = System.currentTimeMillis();
 		elapsedTime = stopTime - startTime;
 		System.out.println("Time wavelet:" + elapsedTime);
-		
-		//TreePrinter.print(occTable.getRoot());
-		}
+	}
 	
 	/**
 	 * Performs the count algorithm on the index

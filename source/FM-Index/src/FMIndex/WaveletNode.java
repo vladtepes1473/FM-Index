@@ -1,12 +1,5 @@
 package FMIndex;
 
-
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-
 /**
  * Class that represents a single wavelet tree node.
  */
@@ -53,10 +46,6 @@ public class WaveletNode implements Node{
 		}
 		
 		int half = totalNumberOfCharacters/2;
-//		if(alphabetSize % 2 == 0)
-//			half = alphabet.size() / 2 - 1;
-//		else
-//			half = alphabetSize / 2;
 		
 		/*
 		 * Finding the pivot.
@@ -69,9 +58,7 @@ public class WaveletNode implements Node{
 		 */
 		int totalOccurencesSoFar = 0;
 		int pivotIndex = half;
-		int counter = 0;
 		for(pivotIndex = 0; totalOccurencesSoFar < half; pivotIndex++){
-			counter = totalOccurencesSoFar;
 			totalOccurencesSoFar += alphabet.getOccurancesForCharacter(allCharacters[pivotIndex]);
 		}
 		/*
@@ -83,13 +70,11 @@ public class WaveletNode implements Node{
 				
 				pivotIndex--;
 		}
-
 		
 		/*
 		 * Building the RRR structure.
 		 */
 		this.pivot = allCharacters[pivotIndex];
-		//System.out.println("Pivot: "+(char)(byte)pivot);
 		bitContent = new RRR(pivot, string);
 		
 		/*
@@ -97,38 +82,18 @@ public class WaveletNode implements Node{
 		 */
 		StringWrapper zeros = new StringWrapper();
 		StringWrapper ones = new StringWrapper();
-		/*StringBuilder buildZeros = new StringBuilder();
-		StringBuilder buildOnes = new StringBuilder();
-		*/
-		
-
 		
 		int index1=0;
 		int index2= 0;
-		
 		int count = 0;
 		
 		for(byte b : alphabet.getAllCharacters()){
-			//System.out.println((char)b+": " +alphabet.getOccurancesForCharacter(b));
-			//System.out.println(count);
 			if(b==pivot){break;}
 			count+=alphabet.getOccurancesForCharacter(b);
 		}
-		//System.out.println(count);
-
-		
-
-		//System.out.println(count);
 		
 		zeros.string = new byte[count];
 		ones.string = new byte[string.length()-count];
-		
-		//System.out.println("Count: "+count);
-		
-		//System.out.println("pivot:" +allCharacters[pivotIndex].toString());
-		
-		
-		//System.out.println(new String(string.string));
 		
 		for(int i = 0; i < string.length(); i++){
 			if(string.charAt(i) < pivot)
@@ -139,20 +104,17 @@ public class WaveletNode implements Node{
 		
 		string = null;
 		System.gc();
-		
-
-		
 		Alphabet[] splittedAlphabets = alphabet.splitAlphabet(pivot);
 
 		/*
 		 * Creating child nodes
 		 */
-		//if(splittedAlphabets[0].size()>1)
-		left = new WaveletNode(zeros, splittedAlphabets[0]);
+		if(splittedAlphabets[0].size()>1)
+			left = new WaveletNode(zeros, splittedAlphabets[0]);
 		zeros = null;
 		System.gc();
-		//if(splittedAlphabets[1].size()>1)
-		right = new WaveletNode(ones, splittedAlphabets[1]);
+		if(splittedAlphabets[1].size()>1)
+			right = new WaveletNode(ones, splittedAlphabets[1]);
 		ones = null;
 		System.gc();
 	}
