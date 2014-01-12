@@ -57,10 +57,12 @@ Paolo Ferragina;~Giovanni Manzini.
 
 \bibitem{fm3}
 Jochen Singer.
-\newblock A wavelet tree based fm-index for biological sequences in seqan.
+\newblock A wavelet tree based {FM}-index for biological sequences in {SeqAn}.
 \newblock {\em Freie Universitat Berlin - Bioinformatik, Master Thesis}, 2012.
 
 \bibitem{corpus}
-Paolo Ferragina;~Giovanni Manzini, December 2013.
+Paolo Ferragina;~Giovanni Manzini.
+\newblock Pizza\&{C}hili {C}orpus, {C}ompressed indexes and their testbeds.
+\newblock \url{http://pizzachili.dcc.uchile.cl/texts.html}, December 2013.
 
 \end{thebibliography}
