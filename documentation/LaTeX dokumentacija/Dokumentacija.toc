@@ -19,6 +19,6 @@
 \contentsline {subsection}{\numberline {3.2.1}Nedostaci implementacije u programskom jeziku Java}{21}{subsection.3.2.1}
 \contentsline {chapter}{\numberline {4}Testiranja}{22}{chapter.4}
 \contentsline {section}{\numberline {4.1}Vrijeme izgradnje FM-Indexa}{22}{section.4.1}
-\contentsline {section}{\numberline {4.2}Vrijeme obavljanja \textit {count} upita}{24}{section.4.2}
-\contentsline {section}{\numberline {4.3}Memorijsko zauze\IeC {\'c}e FM-indexa}{25}{section.4.3}
-\contentsline {chapter}{\numberline {5}Literatura}{34}{chapter.5}
+\contentsline {section}{\numberline {4.2}Vrijeme obavljanja \textit {count} upita}{27}{section.4.2}
+\contentsline {section}{\numberline {4.3}Memorijsko zauze\IeC {\'c}e FM-indexa}{29}{section.4.3}
+\contentsline {chapter}{\numberline {5}Literatura}{35}{chapter.5}

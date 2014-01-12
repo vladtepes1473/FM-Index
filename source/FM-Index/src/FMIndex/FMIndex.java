@@ -20,6 +20,8 @@ public class FMIndex {
 		this.cTable = new DictionaryPrefixSumTable(this.alphabet);
 		long startTime = System.currentTimeMillis();
 		
+		System.out.println("Alphabet size: "+alphabet.size());
+		
 		/*for(byte b : alphabet.getAllCharacters()){
 			System.out.println(((char)b)+": "+alphabet.getOccurancesForCharacter(b));
 		}
