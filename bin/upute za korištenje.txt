@@ -1,0 +1,13 @@
+Potrebno: JRE 7, ne radi na JRE 6
+
+program se pokreæe:
+
+java -jar fmindex.jar ime_datoteke
+
+ime_datoteke - datoteka (obièna) nad kojom se indeks izgraðuje
+
+ili s
+
+java -jar fmindex.jar -f mi.txt
+
+za izgradnju indeksa nad FASTA datotekama
