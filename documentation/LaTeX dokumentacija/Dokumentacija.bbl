@@ -1,7 +1,7 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{bwt1}
-David~J. Burrows, Michael;~Wheeler.
+Michael Burrows; David~J. Wheeler.
 \newblock A block sorting lossless data compression algorithm.
 \newblock {\em Technical Report 124, Digital Equipment Corporation}, 1994.
 
@@ -12,12 +12,12 @@ Jon L. Bentley;~Robert Sedgewick.
   Discrete algorithms}, 1997.
 
 \bibitem{sais1}
-Ge~Nong; Sen Zhang ; Wai~Hong Chan.
+Ge~Nong; Sen Zhang; Wai~Hong Chan.
 \newblock Linear suffix array construction by almost pure induced-sorting.
 \newblock {\em Data Compression Conference, 2009. DCC '09}, 2009.
 
 \bibitem{sais2}
-Ge~Nong; Sen Zhang ; Wai~Hong Chan.
+Ge~Nong; Sen Zhang; Wai~Hong Chan.
 \newblock Two efficient algorithms for linear time suffix array construction.
 \newblock {\em Computers, IEEE Transactions on}, 2011.
 
@@ -27,26 +27,37 @@ Pang Ko;~Srinivas Aluru.
 \newblock {\em Journal of Discrete Algorithms}, 2003.
 
 \bibitem{wavelet}
-J.~Vitter R.~Grossi, A.~Gupta.
+R.~Grossi; A. Gupta;~J. Vitter.
 \newblock High-order entropy-compressed text indexes.
 \newblock {\em In Proceedings of the 14th annual ACM-SIAM symposium on Discrete
   algorithms}, pages 841--850, 2003.
 
 \bibitem{rrr1}
-S.~Srinivasa~Rao R.~Raman, V.~Raman.
+R.~Raman; V. Raman; S.~Srinivasa Rao.
 \newblock Succinct indexable dictionaries with applications to encoding k-ary
   trees and multisets.
 \newblock {\em SODA}, pages 233--242, 2002.
 
 \bibitem{rrr2}
-Gonzalo~Navarro Francisco~Claude.
+Francisco Claude;~Gonzalo Navarro.
 \newblock Practical rank/select queries over arbitrary sequences.
-\newblock 2009.
+\newblock {\em In Proc. 15th SPIRE, LNCS 5280}, pages 176--187, 2008.
 
 \bibitem{fm1}
-Giovanni~Manzini Paolo~Ferragina.
+Paolo Ferragina;~Giovanni Manzini.
 \newblock Opportunistic data structures with applications.
 \newblock {\em Foundations of Computer Science, 2000. Proceedings. 41st Annual
   Symposium on Foundations of Computer Science}, pages 390--398, 2000.
+
+\bibitem{fm2}
+Paolo Ferragina;~Giovanni Manzini.
+\newblock Indexing compressed text.
+\newblock {\em Journal of the ACM (JACM), Volume 52, Issue 4, July 2005}, pages
+  552--581, 2005.
+
+\bibitem{fm3}
+Jochen Singer.
+\newblock A wavelet tree based fm-index for biological sequences in seqan.
+\newblock {\em Freie Universitat Berlin - Bioinformatik, Master Thesis}, 2012.
 
 \end{thebibliography}
