@@ -38,10 +38,20 @@ R.~Raman; V. Raman; S.~Srinivasa Rao.
   trees and multisets.
 \newblock {\em SODA}, pages 233--242, 2002.
 
+\bibitem{alexRRR}
+Alex Bowe.
+\newblock {RRR} – a succinct rank/select index for bit vectors.
+\newblock \url{http://alexbowe.com/rrr}, November 2013.
+
 \bibitem{rrr2}
 Francisco Claude;~Gonzalo Navarro.
 \newblock Practical rank/select queries over arbitrary sequences.
 \newblock {\em In Proc. 15th SPIRE, LNCS 5280}, pages 176--187, 2008.
+
+\bibitem{fm3}
+Jochen Singer.
+\newblock A wavelet tree based {FM}-index for biological sequences in {SeqAn}.
+\newblock {\em Freie Universitat Berlin - Bioinformatik, Master Thesis}, 2012.
 
 \bibitem{fm1}
 Paolo Ferragina;~Giovanni Manzini.
@@ -54,11 +64,6 @@ Paolo Ferragina;~Giovanni Manzini.
 \newblock Indexing compressed text.
 \newblock {\em Journal of the ACM (JACM), Volume 52, Issue 4, July 2005}, pages
   552--581, 2005.
-
-\bibitem{fm3}
-Jochen Singer.
-\newblock A wavelet tree based {FM}-index for biological sequences in {SeqAn}.
-\newblock {\em Freie Universitat Berlin - Bioinformatik, Master Thesis}, 2012.
 
 \bibitem{corpus}
 Paolo Ferragina;~Giovanni Manzini.
