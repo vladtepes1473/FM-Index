@@ -4,6 +4,8 @@ FM-Index
 FM-Index
 
 Raspored datoteka po repozitoriju:
+
+
 1. algorithms - neke slike algoritama (zanemariti)
 2. bin- izvrsna datoteke s uputama za pokretanje
 3. documentation - latex datoteke i slike koristene za izradu dokumentacije
