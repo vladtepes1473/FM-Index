@@ -2,17 +2,21 @@ Testiranja su obavljena na računalu s procesorom Intel Core i7 920 @ 2.66 GHz, 
 
 Za obavljanje testiranja korištena su tri tipa tekstualnih datoteka. Prvi tip tekstualnih datoteka se sastojao od nizova nukleotida i dodatnih znakova koji se još mogu pojaviti u takvim nizovima. Drugi tip tekstualnih datoteka sastojao se od nizova znakova koji predstavljaju proteine. Posljednji tip tekstualnih datoteka koje su korištene sastojale su se od nizova slučajno generiranih znakova iz osnovnog ASCII skupa znakova i to od znakova koji se mogu ispisati (dakle ne od specijalnih znakova). Prvi i drugi tip datoteka su preuzeti s \cite{corpus} te su ponešto prilagođene za obavljanje testiranja. Treći tip datoteka je bio generiran uz pomoć posebnog programa. Spomenute datoteke se razlikuju po tome koliko se različitih znakova može pojaviti u njima, odnosno koje su veličine abeceda iz kojih su te datoteke generirane. Tablica \ref{tbl:alphabetsize} prikazuje veličinu abeceda iz kojih su generirane određene datoteke, odnosno koliko najviše različitih znakova mogu sadržavati. 
 
+\vspace{3 mm}
+
 \begin{table}[h]
 \caption{Maksimalna veličina abecede pojedinih datoteka}
 \label{tbl:alphabetsize}
 \centering\begin{tabular}{c|c|c|c|}
  \hline
-\multicolumn{1}{ |c| } {Vrsta niza} & Broj različitih znakova   \\ \hline
+\multicolumn{1}{ |c| } {vrsta niza} & broj različitih znakova   \\ \hline
 \multicolumn{1}{ |c| } {   DNK   }		&	15		\\ \hline
 \multicolumn{1}{ |c| } {   Proteini   }	&	25		\\ \hline
 \multicolumn{1}{ |c| } {   ASCII   }	&	95		\\ \hline
 \end{tabular}
 \end{table}
+
+\vspace{3 mm}
 
 
 U ovom poglavlju pogledat ćemo performanse koje pruža implementirani FM-indeks i to u tri kategorije: brzina izgradnje, brzina obavljanja \textit{count} upita i memorijska potrošnja.
@@ -20,7 +24,13 @@ U ovom poglavlju pogledat ćemo performanse koje pruža implementirani FM-indeks
 \section{Vrijeme izgradnje FM-indeksa}
 Pogledajmo prvo performanse izgradnje FM-indeksa. Ovo je možda i jedan od najbitnijih faktora prilikom ocjene koliko je neka implementacija dobra, pošto je izgradnja samog indeksa računalno veoma zahtjevna operacija. Kako bi rezultati koji će biti prikazani u ovom poglavlju bili što relevantniji, vrijednosti koje su prikazane u tablicama izračunate su kao prosjek od deset izgradnji FM-indeksa za svaku pojedinu veličinu datoteka. Osim toga, prilikom provođenja ovih eksperimenata nije bio pokrenut alat za profiliranje, jer on dodatno usporava izvođenje programa, stoga su mjerenja za memorijsku potrošnju obavljena zasebno. Eksperimenti su obavljeni za svaki tip datoteke koji bio ranije spomenut i to za 9 različitih veličina takvih datoteka, od manjih (1MB) pa sve do većih (500MB). Osim toga, posebno su izdvojena vremena izgradnje BWT transformacije i wavelet stabla, koji ipak sačinjavaju glavne građevne blokove FM-indeksa, pa je iz tog razloga dobro vidjeti koliko se mijenja i vrijeme izgradnje ovih struktura s promjenom veličine ulazne datoteke.
 
+\vspace{3 mm}
+
 Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizove nukleotida. Tablica \ref{tbl:tablNukleotidi} prikazuje vremena izgradnje FM-indeksa nad tipom datoteka koje sadrže nukleotide. Osim toga iscrtan je graf, prikazan na \ref{fig:test_nukl}, koji predočava kako se mijenjaju vremena potrebna za izgradnju FM-indeksa, za izgradnju wavelet stabla i za izračunavanje BWT transformacije u ovisnosti o veličini ulazne datoteke.
+
+
+\vspace{3 mm}
+
 
 \begin{table}[h]
 \caption{Testiranje na DNK}
@@ -42,6 +52,11 @@ Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizov
 \end{tabular}
 \end{table}
 
+\vspace{5 mm}
+
+Ukoliko malo proučimo podatke iz tablice i grafova, možemo vidjeti kako je složenost izgradnje indeksa linearno ovisna o veličini ulaznog niza. To je svojstvo koje smo i željeli postići, odnosno htjeli smo da nam je složenost izgradnje indeksa linearna. Iz priložene tablice i grafa vidimo kako je proces izgradnje FM-indeksa za veće ulazne datoteke veoma zahtjevan i dugotrajan proces, koji može potrajati i do nekoliko minuta. Upravo iz tog razloga javlja se potreba za pronalaskom što efikasnijih algoritama koji bi se mogli koristiti u postupku izgradnje FM-indeksa.
+
+
 
 \begin{figure}[H]
    \centering
@@ -51,11 +66,12 @@ Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizov
 \end{figure}
 
 
+\vspace{5 mm}
 
-Ukoliko malo proučimo podatke iz tablice i grafova, možemo vidjeti kako je složenost izgradnje indeksa linearno ovisna o veličini ulaznog niza. To je svojstvo koje smo i željeli postići, odnosno htjeli smo da nam je složenost izgradnje indeksa linearna. Iz priložene tablice i grafa vidimo kako je proces izgradnje FM-indeksa za veće ulazne datoteke veoma zahtjevan i dugotrajan proces, koji može potrajati i do nekoliko minuta. Upravo iz tog razloga javlja se potreba za pronalaskom što efikasnijih algoritama koji bi se mogli koristiti u postupku izgradnje FM-indeksa.
 
 Pogledajmo sada vrijeme potrebno za izgradnju FM-indeksa nad proteinskim nizovima. U tablici \ref{tbl:tablProteini} prikazani su rezultati koji su dobiveni za datoteke koje su sadržavale proteinske nizove. Slika \ref{fig:test_proteini} prikazuje ovisnost izgradnje pojedinih dijelova FM-indeksa, kao i samog FM-indeksa u ovisnosti o veličini ulaznog niza, odnosno ulazne datoteke.
 
+\vspace{3 mm}
 
 \begin{table}[H]
 \caption{Testiranje na proteinima}
@@ -85,9 +101,11 @@ Pogledajmo sada vrijeme potrebno za izgradnju FM-indeksa nad proteinskim nizovim
  \label{fig:test_proteini}
 \end{figure}
 
+\vspace{15 mm}
 
 Konačno, u tablici \ref{tbl:tablRand} je prikazana i ovisnost izgradnje FM-indeksa o veličini ulaznog niza za treću vrstu datoteka. Ovisnost izgradnje FM-indeksa, provođenja BWT transformacije, kao i izgradnju wavelet stabla, u odnosu na veličinu ulaznog niza prikazana je na slici \ref{fig:test_ascii}.
 
+\vspace{3 mm}
 
 \begin{table}[H]
 \caption{Testiranje na ASCII znakovima}
@@ -148,8 +166,6 @@ Razmotrimo još za kraj ovog poglavlja vremenske ovisnosti izgradnje pojedinih s
 \section{Vrijeme obavljanja \textit{count} upita}
 
 Drugi važan parametar pomoću kojeg se može ocijeniti uspješnost implementacije FM-indeksa jest obavljanje \textit{count} upita nad izgrađenim nizom. Dakle, sada kada je izgrađen FM-indeks želimo vidjeti koliko brzo se može izračunati pojavljivanje nekog podniza u nizu nad kojim je indeks izgrađen. Osim toga, želimo vidjeti i kako veličina niza nad kojim je izgrađen indeks utječe na trajanje prebrojavanja. Krenimo dakle redom. Tablice \ref{tbl:tablCountNukl}, \ref{tbl:tablCountProt} i \ref{tbl:tablCountRand} prikazuju trajanje prebrojavanja pojavljivanja nekog podniza u indeksu. Iz tablica se mogu izvesti neki veoma važni zaključci. Kao prvo, vidi se da trajanje prebrojavanja raste otprilike linearno s porastom duljine uzorka koji se traži. Nadalje, kroz sve tablice vidi se kako vrijeme prebrojavanja nekog uzorka ne ovisi o veličini ulaznog niza nad kojim je indeks izgrađen (u tablici \ref{tbl:tablCountNukl} se može uočiti jedna mala anomalija, odnosno skok u trajanju prebrojavanja između datoteke od 20MB i 50MB, no to je iz razloga što je uočeno kako u datoteci od 20MB i manje postoji samo 6 različitih znakova, dok u onima od 50MB naviše postoji 16 različitih znakova). Konačno, uspoređujući tablice možemo vidjeti kako trajanje obavljanja prebrojavanja ovisi o veličini abecede nad kojom je ulazni niz izgeneriran. To je iz razloga što se za obavljanje prebrojavanja koristi wavelet stablo čija veličina ovisi upravo o veličini abecede. 
-
-
 
 
 \begin{table}[H]
@@ -232,7 +248,7 @@ Za kraj pogledajmo još sliku \ref{fig:test_count} na kojoj je prikazan graf gdj
 
 \section{Memorijsko zauzeće FM-indeksa}
 
-Posljednji parametar kojeg možemo promatrati tijekom izrade FM-indeksa jest memorijsko zauzeće programa. U ovom poglavlju istaknut ćemo koliko je memorijsko zauzeće tokom izgradnje indeksa, kao i na kraju kada je indeks u potpunosti izgrađen. Osim toga, u ovom poglavlju pokazat će se kako Java virtualni stroj zauzima mnogo više memorije nego što je zaista potrebno za samo izvođenje algoritma, što predstavlja jedan veliki nedostatak. Ovdje će se razmotriti memorijska zauzeća za sve tipove datoteka, no promatrat će se samo veličine datoteka od 50MB nadalje. U tablicama \ref{tbl:tablMemNukl}, \ref{tbl:tablMemProt} i \ref{tbl:tablMemRand} je prikazana potrošnja memorije FM-indeksa za sve tri vrste datoteka i različite veličine datoteka. Izdvojena su tri stupca u tablicama, od kojih prvi stupac predstavlja maksimalnu memoriju koju je cijeli proces zauzeo. Drugi stupac predstavlja maksimalnu količinu memorije koju je algoritam u nekom trenutku koristio, dok treći stupac predstavlja stvarno zauzeće memorije (dakle količinu memorije koju stvarno zauzimaju izgrađene strukture) od strane izgrađenog indeksa. Iz tablica se vidi kako je maksimalna memorija koja je zauzeta od strane Java virtualnog stroja puno veća nego li je za rad algoritma potrebno. To je ogroman nedostatak, jer ispada da su memorijski zahtjevi mnogo veći nego što oni uistinu jesu.
+Posljednji parametar kojeg možemo promatrati tijekom izrade FM-indeksa jest memorijsko zauzeće programa. U ovom poglavlju istaknut ćemo koliko je memorijsko zauzeće tokom izgradnje indeksa, kao i na kraju kada je indeks u potpunosti izgrađen. Osim toga, u ovom poglavlju pokazat će se kako Java virtualni stroj zauzima mnogo više memorije nego što je zaista potrebno za samo izvođenje algoritma, što predstavlja jedan veliki nedostatak. Ovdje će se razmotriti memorijska zauzeća za sve tipove datoteka, no promatrat će se samo veličine datoteka od 50MB nadalje. U tablicama \ref{tbl:tablMemNukl}, \ref{tbl:tablMemProt} i \ref{tbl:tablMemRand} je prikazana potrošnja memorije FM-indeksa za sve tri vrste datoteka i različite veličine datoteka. Izdvojena su tri stupca u tablicama, od kojih prvi stupac predstavlja maksimalnu memoriju koju je cijeli proces zauzeo. Drugi stupac predstavlja maksimalnu količinu memorije koju je algoritam u nekom trenutku koristio, dok treći stupac predstavlja stvarno zauzeće memorije (dakle količinu memorije koju stvarno zauzimaju izgrađene strukture) od strane izgrađenog indeksa. Iz tablica se vidi kako je maksimalna memorija zauzeta od strane Java virtualnog stroja puno veća nego li je za rad algoritma potrebno. To je ogroman nedostatak, jer ispada da su memorijski zahtjevi mnogo veći nego što oni uistinu jesu.
 
 
 \begin{table}[h]
@@ -282,45 +298,47 @@ Posljednji parametar kojeg možemo promatrati tijekom izrade FM-indeksa jest mem
 \end{tabular}
 \end{table}
 
+\vspace{3 mm}
+
 Slike \ref{fig:test_mem_nukl}, \ref{fig:test_mem_proteini} i \ref{fig:test_mem_ascii} prikazuju grafičke prikaze prethodno navedenih tablica radi boljeg pregleda. Iz tablica i slika se može vidjeti kako prosječno memorijsko zauzeće izgradnje FM-indeksa za sve inačice iznosi otprilike $6n$ (ovdje se misli na memoriju koju algoritam stvarno koristi) pri čemu je $n$ veličina ulaznog niza. U tablici \ref{fig:test_mem_ascii} se može vidjeti kako je u 2 slučaja bilo potrebno i nešto više memorije od toga. Razlog tome nije direktno poznat, no vjerojatno se radi o većem broju rekurzivnih poziva prilikom konstrukcije sufiksnog polje, jer se u tom postupku koriste dodatne strukture koje mogu povećati memorijsku potrošnju. Osim toga, te su datoteke izgenerirane u potpunosti nasumično, bez ikakvih pravilnosti i nad većim abecedama. Vidimo da se kod ostalih datoteka algoritam ponaša očekivano. Nakon izgradnje vidimo da FM-indeks zauzima mnogo manje memorija nego je bilo potrebno za izgradnju. Koliko točno memorije će zauzimat će opet ovisiti o tome kolika je veličina abecede nad kojom je indeks izgrađen. Vidimo da za nukleotidne nizove FM-indeks zauzima otprilike istu količinu memorije kao i originalni niz. Kako se veličina abecede povećava, tako se i povećava količina memorije koju FM-indeks zauzima nakon izgradnje.
 
 
 \begin{figure}[H]
    \centering
-       \includegraphics[width=\textwidth]{./pictures/test_mem_nukl.png}
+       \includegraphics[scale=0.55]{./pictures/test_mem_nukl.png}
  \caption{Memorijska ovisnost stvaranja FM-indeksa algoritama o veličini datoteke koja sadrži nukleotide}
  \label{fig:test_mem_nukl}
 \end{figure}
 
 \begin{figure}[H]
    \centering
-       \includegraphics[width=\textwidth]{./pictures/test_mem_proteini.png}
+       \includegraphics[scale=0.55]{./pictures/test_mem_proteini.png}
  \caption{Memorijska ovisnost stvaranja FM-indeksa algoritama o veličini datoteke koja sadrži proteine}
  \label{fig:test_mem_proteini}
 \end{figure}
 
 \begin{figure}[H]
    \centering
-       \includegraphics[width=\textwidth]{./pictures/test_mem_ascii.png}
+       \includegraphics[scale=0.5]{./pictures/test_mem_ascii.png}
  \caption{Memorijska ovisnost stvaranja FM-indeksa algoritama o veličini datoteke koja sadrži ASCII znakove}
  \label{fig:test_mem_ascii}
 \end{figure}
 
-Slika  \ref{fig:test_mem_pravo} prikazuje maksimalnu memorijsku potrošnju algoritma. Ovo je zapravo veličina koja nas najviše zanima. Vidimo kako je memorijska potrošnja za sve datoteke u istim veličinama gotovo podjednaka (osim onih dviju datoteka koje ponešto odstupaju). Vidimo kako se algoritam ponaša veoma poželjno i kako otprilike znamo koliku memorijsku potrošnju možemo očekivati s obzirom na ulazni niz.
+Slika  \ref{fig:test_mem_max} prikazuje maksimalnu memorijsku potrošnju algoritma. Ovo je zapravo veličina koja nas najviše zanima. Vidimo kako je memorijska potrošnja za sve datoteke u istim veličinama gotovo podjednaka (osim onih dviju datoteka koje ponešto odstupaju). Vidimo kako se algoritam ponaša veoma poželjno i kako otprilike znamo koliku memorijsku potrošnju možemo očekivati s obzirom na ulazni niz.
 
 \begin{figure}[H]
    \centering
-       \includegraphics[width=\textwidth]{./pictures/test_mem_pravo.png}
+       \includegraphics[scale=0.5]{./pictures/test_mem_pravo.png}
  \caption{Memorijska (maksimalna) ovisnost stvaranja FM-indeksa o veličini datoteke određenog tipa}
  \label{fig:test_mem_pravo}
 \end{figure}
 
-Slika \ref{fig:test_mem_max} prikazuje maksimalnu memoriju koju je program zauzeo tijekom izgradnje indeksa za svaki tip datoteke po različitim veličinama. Ovaj graf se neće posebno komentirati jer on zapravo ni ne predstavlja pravu memorijsku potrošnju algoritma.
+Slika \ref{fig:test_mem_pravo} prikazuje maksimalnu memoriju koju je program zauzeo tijekom izgradnje indeksa za svaki tip datoteke po različitim veličinama. Ovaj graf se neće posebno komentirati jer on zapravo ni ne predstavlja pravu memorijsku potrošnju algoritma.
 
 
 \begin{figure}[H]
    \centering
-       \includegraphics[width=\textwidth]{./pictures/test_mem_max.png}
+       \includegraphics[scale=0.5]{./pictures/test_mem_max.png}
  \caption{Memorijska (realno maksimalna) ovisnost stvaranja FM-indeksa o veličini datoteke određenog tipa}
  \label{fig:test_mem_max}
 \end{figure}
@@ -329,7 +347,7 @@ Slika \ref{fig:test_mem_kon} prikazuje memorijska zauzeća FM-indeksa nakon što
 
 \begin{figure}[H]
    \centering
-       \includegraphics[width=\textwidth]{./pictures/test_mem_kon.png}
+       \includegraphics[scale=0.5]{./pictures/test_mem_kon.png}
  \caption{Memorijska (konačna) ovisnost stvaranja FM-indeksa o veličini datoteke određenog tipa}
  \label{fig:test_mem_kon}
 \end{figure}
@@ -338,6 +356,8 @@ Slika \ref{fig:test_mem_kon} prikazuje memorijska zauzeća FM-indeksa nakon što
 
 
 Pogledajmo sada sliku \ref{fig:profiler}, preuzetu iz alata Jprofiler, koje predstavlja memorijsko zauzeće algoritma kroz vrijeme. Plavom bojom označena je memorija koju program, odnosno algoritam stvarno koristi za spremanje struktura, dok je zelenom bojom označena slobodna memorija koju je Java virtualni stroj dodatno zauzeo. Vidimo da cijelo vrijeme Java virtualni stroj zauzima mnogo više memorije nego što mu doista treba za rad. To je ogroman nedostatak pri izradi memorijski zahtjevnih algoritama kao što je ovaj, jer Java programski jezik ne omogućuje efikasno rukovanje memorijom. Stoga je prilikom korištenja ovog programa potrebno imati na umu kako će realno zauzeće memorije zapravo biti veće od onog što algoritam zaista koristi.
+
+\vspace{5 mm}
 
 \begin{figure}[H]
    \centering
