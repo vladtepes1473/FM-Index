@@ -21,8 +21,8 @@ public class FMIndex {
 		long startTime = System.currentTimeMillis();
 		
 		StringWrapper sw = new StringWrapper();
-		//SaisBWT.PerformBWT(string, sw);
-		BWT.performBWT(string, sw);
+		SaisBWT.PerformBWT(string, sw);
+		
 		
 		string = null;
 		System.gc();
