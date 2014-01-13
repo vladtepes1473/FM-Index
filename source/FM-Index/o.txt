@@ -1,0 +1,8 @@
+Building index...
+Time BWT:9
+Time wavelet:55
+Index built...
+Enter a pattern to search for
+Pattern a count: 5
+Pattern a count: 5
+Pattern a count: 5

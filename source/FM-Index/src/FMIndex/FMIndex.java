@@ -53,6 +53,9 @@ public class FMIndex {
 		catch(AlphabetException e){
 			return 0;
 		}
+		
+		//performs teh backward search over all the characters in
+		//the input array
 		int startPosition = cTable.getCharacterPrefixSum(characterIndex)+1;
 		int endPosition = cTable.getCharacterPrefixSum(characterIndex+1);
 		for(position = position-1; position>=0; position--){
