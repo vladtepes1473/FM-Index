@@ -11,14 +11,14 @@
 \BOOKMARK [2][-]{subsection.2.2.2}{Upiti nad wavelet stablom}{section.2.2}% 11
 \BOOKMARK [1][-]{section.2.3}{RRR struktura}{chapter.2}% 12
 \BOOKMARK [2][-]{subsection.2.3.1}{Konstruiranje RRR strukture}{section.2.3}% 13
-\BOOKMARK [2][-]{subsection.2.3.2}{Izracunavanje broja jedinica u nizu}{section.2.3}% 14
+\BOOKMARK [2][-]{subsection.2.3.2}{Izracunavanje broja jedinica u nizu - rang niza}{section.2.3}% 14
 \BOOKMARK [0][-]{chapter.3}{FM-indeks}{}% 15
 \BOOKMARK [1][-]{section.3.1}{Originalna implementacija}{chapter.3}% 16
 \BOOKMARK [1][-]{section.3.2}{Implementacija FM-indeksa}{chapter.3}% 17
 \BOOKMARK [1][-]{section.3.3}{Nedostaci implementacije u programskom jeziku Java}{chapter.3}% 18
-\BOOKMARK [0][-]{chapter.4}{Testiranja}{}% 19
-\BOOKMARK [1][-]{section.4.1}{Vrijeme izgradnje FM-Indexa}{chapter.4}% 20
+\BOOKMARK [0][-]{chapter.4}{Testiranje}{}% 19
+\BOOKMARK [1][-]{section.4.1}{Vrijeme izgradnje FM-indeksa}{chapter.4}% 20
 \BOOKMARK [1][-]{section.4.2}{Vrijeme obavljanja count upita}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.3}{Memorijsko zauzece FM-indexa}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.3}{Memorijsko zauzece FM-indeksa}{chapter.4}% 22
 \BOOKMARK [0][-]{chapter.5}{Zakljucak}{}% 23
 \BOOKMARK [0][-]{chapter.6}{Literatura}{}% 24

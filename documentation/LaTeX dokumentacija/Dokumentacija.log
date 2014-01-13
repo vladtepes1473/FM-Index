@@ -1,7 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.2)  13 JAN 2014 00:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.2)  13 JAN 2014 03:37
 entering extended mode
 **Dokumentacija.tex
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.tex"
+
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\Do
+kumentacija.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -849,7 +851,8 @@ File: listings.cfg 2013/08/26 1.5b listings configuration
 ))
 Package: listings 2013/08/26 1.5b (Carsten Heinz)
 
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.aux"
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\Do
+kumentacija.aux"
 
 ! Package natbib Error: Bibliography not compatible with author-year citations.
 
@@ -860,7 +863,7 @@ See the natbib package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.167 ...and\NAT@force@numbers{}\NAT@force@numbers
+l.168 ...and\NAT@force@numbers{}\NAT@force@numbers
                                                   
 ? 
 )
@@ -913,15 +916,19 @@ LaTeX Info: Redefining \ref on input line 37.
 LaTeX Info: Redefining \pageref on input line 37.
 LaTeX Info: Redefining \nameref on input line 37.
 
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.out")
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.out")
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\Do
+kumentacija.out")
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\Do
+kumentacija.out")
 \@outlinefile=\write4
 \c@lstlisting=\count156
 
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\naslovna.tex" [1
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\na
+slovna.tex" [1
 
 {C:/Users/Matea/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.toc")
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\Do
+kumentacija.toc")
 \tf@toc=\write5
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
@@ -932,12 +939,15 @@ l.43 \chapter
 
 ]
 Poglavlje 1.
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\uvod.tex") [2
+
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\uv
+od.tex") [2
 
 ]
 Poglavlje 2.
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\pomocniAlgoritmi.tex"
-<./pictures/bwt.jpg, id=144, 1588.93625pt x 771.88374pt>
+
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\po
+mocniAlgoritmi.tex" <./pictures/bwt.jpg, id=144, 1588.93625pt x 771.88374pt>
 File: ./pictures/bwt.jpg Graphic file (type jpg)
 
 <use ./pictures/bwt.jpg>
@@ -946,15 +956,16 @@ Package pdftex.def Info: ./pictures/bwt.jpg used on input line 23.
  [3
 
 ]
-<./pictures/reverseBWT.jpg, id=156, 838.13126pt x 771.88374pt>
+<./pictures/reverseBWT.jpg, id=157, 838.13126pt x 771.88374pt>
 File: ./pictures/reverseBWT.jpg Graphic file (type jpg)
 
 <use ./pictures/reverseBWT.jpg>
 Package pdftex.def Info: ./pictures/reverseBWT.jpg used on input line 32.
 (pdftex.def)             Requested size: 167.62328pt x 154.37401pt.
- [4 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/bwt.jpg> <C:/Users/Mat
-ea/Desktop/LaTeX dokumentacija/pictures/reverseBWT.jpg>] <./pictures/MKQS.jpg, 
-id=165, 450.18187pt x 282.30469pt>
+ [4 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacija
+/pictures/bwt.jpg> <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTe
+X dokumentacija/pictures/reverseBWT.jpg>]
+<./pictures/MKQS.jpg, id=166, 450.18187pt x 282.30469pt>
 File: ./pictures/MKQS.jpg Graphic file (type jpg)
 
 <use ./pictures/MKQS.jpg>
@@ -964,7 +975,8 @@ Package pdftex.def Info: ./pictures/MKQS.jpg used on input line 45.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5] [6 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/MKQS.jpg>]
+[5] [6 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentac
+ija/pictures/MKQS.jpg>]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -975,13 +987,14 @@ Type  H <return>  for immediate help.
 l.62 
      
 ? 
-<./pictures/charactertypes.jpg, id=184, 233.37187pt x 235.63031pt>
+<./pictures/charactertypes.jpg, id=185, 233.37187pt x 235.63031pt>
 File: ./pictures/charactertypes.jpg Graphic file (type jpg)
 
 <use ./pictures/charactertypes.jpg>
 Package pdftex.def Info: ./pictures/charactertypes.jpg used on input line 65.
 (pdftex.def)             Requested size: 233.37129pt x 235.62973pt.
- [7 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/charactertypes.jpg>]
+ [7 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacija
+/pictures/charactertypes.jpg>]
 <./pictures/SAISstep1.jpg, id=195, 158.09062pt x 536.0025pt>
 File: ./pictures/SAISstep1.jpg Graphic file (type jpg)
 
@@ -989,75 +1002,82 @@ File: ./pictures/SAISstep1.jpg Graphic file (type jpg)
 Package pdftex.def Info: ./pictures/SAISstep1.jpg used on input line 83.
 (pdftex.def)             Requested size: 158.09023pt x 536.00119pt.
  [8]
-<./pictures/SAISstep2.jpg, id=200, 161.85469pt x 629.35126pt>
+<./pictures/SAISstep2.jpg, id=201, 161.85469pt x 629.35126pt>
 File: ./pictures/SAISstep2.jpg Graphic file (type jpg)
 
 <use ./pictures/SAISstep2.jpg>
 Package pdftex.def Info: ./pictures/SAISstep2.jpg used on input line 92.
 (pdftex.def)             Requested size: 161.85428pt x 629.34972pt.
- [9 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/SAISstep1.jpg>] [10 <C
-:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/SAISstep2.jpg>]
-<./pictures/SAISstep3.jpg, id=210, 203.25937pt x 408.77719pt>
+ [9 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacija
+/pictures/SAISstep1.jpg>] [10 <C:/Users/Matea/Documents/GitHub/FM-Index/documen
+tation/LaTeX dokumentacija/pictures/SAISstep2.jpg>] <./pictures/SAISstep3.jpg, 
+id=211, 203.25937pt x 408.77719pt>
 File: ./pictures/SAISstep3.jpg Graphic file (type jpg)
 
 <use ./pictures/SAISstep3.jpg>
 Package pdftex.def Info: ./pictures/SAISstep3.jpg used on input line 101.
 (pdftex.def)             Requested size: 203.25887pt x 408.77618pt.
- [11 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/SAISstep3.jpg>]
-<./pictures/leksvrij.jpg, id=217, 268.00125pt x 238.64156pt>
+ [11 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/SAISstep3.jpg>]
+<./pictures/leksvrij.jpg, id=218, 268.00125pt x 238.64156pt>
 File: ./pictures/leksvrij.jpg Graphic file (type jpg)
 
 <use ./pictures/leksvrij.jpg>
 Package pdftex.def Info: ./pictures/leksvrij.jpg used on input line 110.
 (pdftex.def)             Requested size: 268.00058pt x 238.64096pt.
- [12 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/leksvrij.jpg>] [13]
-<./pictures/Waveletusporedba.jpg, id=231, 1664.2175pt x 1856.9375pt>
+ [12 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/leksvrij.jpg>] [13]
+<./pictures/Waveletusporedba.jpg, id=232, 1664.2175pt x 1856.9375pt>
 File: ./pictures/Waveletusporedba.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletusporedba.jpg>
 Package pdftex.def Info: ./pictures/Waveletusporedba.jpg used on input line 138
 .
 (pdftex.def)             Requested size: 332.8376pt x 371.38092pt.
- [14 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/Waveletusporedba.jpg>
-]
-<./pictures/Waveletquery.jpg, id=239, 1890.06125pt x 1074.0125pt>
+ [14 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/Waveletusporedba.jpg>]
+<./pictures/Waveletquery.jpg, id=240, 1890.06125pt x 1074.0125pt>
 File: ./pictures/Waveletquery.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletquery.jpg>
 Package pdftex.def Info: ./pictures/Waveletquery.jpg used on input line 149.
 (pdftex.def)             Requested size: 452.9679pt x 257.39134pt.
- [15 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/Waveletquery.jpg>]
-<./pictures/rrr1.png, id=253, 800.9925pt x 132.495pt>
+ [15 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/Waveletquery.jpg>]
+<./pictures/rrr1.png, id=254, 800.9925pt x 132.495pt>
 File: ./pictures/rrr1.png Graphic file (type png)
 
 <use ./pictures/rrr1.png>
-Package pdftex.def Info: ./pictures/rrr1.png used on input line 169.
+Package pdftex.def Info: ./pictures/rrr1.png used on input line 168.
 (pdftex.def)             Requested size: 452.9679pt x 74.92854pt.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 176.
+(hyperref)                removing `\textasciicaron' on input line 175.
 
-[16 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr1.png>]
-<./pictures/rrr2.png, id=265, 800.9925pt x 132.495pt>
+[16 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacija
+/pictures/rrr1.png>] <./pictures/rrr2.png, id=266, 800.9925pt x 132.495pt>
 File: ./pictures/rrr2.png Graphic file (type png)
 
 <use ./pictures/rrr2.png>
-Package pdftex.def Info: ./pictures/rrr2.png used on input line 183.
+Package pdftex.def Info: ./pictures/rrr2.png used on input line 182.
 (pdftex.def)             Requested size: 452.9679pt x 74.92854pt.
-) [17 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/rrr2.png>]
+) [17 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentaci
+ja/pictures/rrr2.png>]
 Poglavlje 3.
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\FMindeks.tex" [18
 
-]
-<./pictures/fmStablo.png, id=284, 898.85812pt x 358.33875pt>
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\FM
+indeks.tex" [18
+
+] <./pictures/fmStablo.png, id=285, 898.85812pt x 358.33875pt>
 File: ./pictures/fmStablo.png Graphic file (type png)
 
 <use ./pictures/fmStablo.png>
 Package pdftex.def Info: ./pictures/fmStablo.png used on input line 34.
 (pdftex.def)             Requested size: 452.9679pt x 180.57962pt.
- [19 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/fmStablo.png>]
+ [19 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/fmStablo.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 44.
 
@@ -1077,30 +1097,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--93
 
 [20]) [21]
 Poglavlje 4.
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\testiranja.tex" [22
 
-]
-<./pictures/test_nukl.png, id=331, 662.475pt x 362.85562pt>
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\te
+stiranja.tex" [22
+
+] <./pictures/test_nukl.png, id=331, 662.475pt x 362.85562pt>
 File: ./pictures/test_nukl.png Graphic file (type png)
 
 <use ./pictures/test_nukl.png>
 Package pdftex.def Info: ./pictures/test_nukl.png used on input line 48.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
- [23 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_nukl.png>]
+ [23 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/test_nukl.png>]
 <./pictures/test_proteini.png, id=340, 662.475pt x 362.85562pt>
 File: ./pictures/test_proteini.png Graphic file (type png)
 
 <use ./pictures/test_proteini.png>
 Package pdftex.def Info: ./pictures/test_proteini.png used on input line 83.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
- [24 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_proteini.png>]
+ [24 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/test_proteini.png>]
 <./pictures/test_ascii.png, id=351, 662.475pt x 362.85562pt>
 File: ./pictures/test_ascii.png Graphic file (type png)
 
 <use ./pictures/test_ascii.png>
 Package pdftex.def Info: ./pictures/test_ascii.png used on input line 115.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
- [25 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_ascii.png>]
+ [25 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/test_ascii.png>]
 <./pictures/test_bwt.png, id=364, 662.475pt x 362.85562pt>
 File: ./pictures/test_bwt.png Graphic file (type png)
 
@@ -1121,16 +1145,19 @@ File: ./pictures/test_fm.png Graphic file (type png)
 <use ./pictures/test_fm.png>
 Package pdftex.def Info: ./pictures/test_fm.png used on input line 140.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
- [26 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_bwt.png> <C:/Use
-rs/Matea/Desktop/LaTeX dokumentacija/pictures/test_wavelet.png>] [27 <C:/Users/
-Matea/Desktop/LaTeX dokumentacija/pictures/test_fm.png>] [28] <./pictures/test_
-count.png, id=388, 662.475pt x 362.85562pt>
+ [26 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/test_bwt.png> <C:/Users/Matea/Documents/GitHub/FM-Index/documentatio
+n/LaTeX dokumentacija/pictures/test_wavelet.png>]
+[27 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacija
+/pictures/test_fm.png>] [28]
+<./pictures/test_count.png, id=388, 662.475pt x 362.85562pt>
 File: ./pictures/test_count.png Graphic file (type png)
 
 <use ./pictures/test_count.png>
 Package pdftex.def Info: ./pictures/test_count.png used on input line 227.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
- [29 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_count.png>]
+ [29 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/test_count.png>]
 <./pictures/test_mem_nukl.png, id=404, 662.475pt x 362.85562pt>
 File: ./pictures/test_mem_nukl.png Graphic file (type png)
 
@@ -1152,17 +1179,19 @@ File: ./pictures/test_mem_ascii.png Graphic file (type png)
 <use ./pictures/test_mem_ascii.png>
 Package pdftex.def Info: ./pictures/test_mem_ascii.png used on input line 304.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
- [31 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_mem_nukl.png> <C
-:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_mem_proteini.png>]
-<./pictures/test_mem_max.png, id=420, 662.475pt x 362.85562pt>
+ [31 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/test_mem_nukl.png> <C:/Users/Matea/Documents/GitHub/FM-Index/documen
+tation/LaTeX dokumentacija/pictures/test_mem_proteini.png>] <./pictures/test_me
+m_max.png, id=420, 662.475pt x 362.85562pt>
 File: ./pictures/test_mem_max.png Graphic file (type png)
 
 <use ./pictures/test_mem_max.png>
 Package pdftex.def Info: ./pictures/test_mem_max.png used on input line 313.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
- [32 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_mem_ascii.png> <
-C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_mem_max.png>]
-<./pictures/test_mem_realmax.png, id=428, 662.475pt x 362.85562pt>
+ [32 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/test_mem_ascii.png> <C:/Users/Matea/Documents/GitHub/FM-Index/docume
+ntation/LaTeX dokumentacija/pictures/test_mem_max.png>] <./pictures/test_mem_re
+almax.png, id=428, 662.475pt x 362.85562pt>
 File: ./pictures/test_mem_realmax.png Graphic file (type png)
 
 <use ./pictures/test_mem_realmax.png>
@@ -1176,47 +1205,54 @@ File: ./pictures/test_mem_kon.png Graphic file (type png)
 <use ./pictures/test_mem_kon.png>
 Package pdftex.def Info: ./pictures/test_mem_kon.png used on input line 332.
 (pdftex.def)             Requested size: 452.9679pt x 248.10059pt.
- [33 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_mem_realmax.png>
- <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/test_mem_kon.png>]
-<./pictures/profiler.jpg, id=437, 1114.1625pt x 602.25pt>
+ [33 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentacij
+a/pictures/test_mem_realmax.png> <C:/Users/Matea/Documents/GitHub/FM-Index/docu
+mentation/LaTeX dokumentacija/pictures/test_mem_kon.png>] <./pictures/profiler.
+jpg, id=437, 1114.1625pt x 602.25pt>
 File: ./pictures/profiler.jpg Graphic file (type jpg)
 
 <use ./pictures/profiler.jpg>
 Package pdftex.def Info: ./pictures/profiler.jpg used on input line 344.
 (pdftex.def)             Requested size: 452.9679pt x 244.84724pt.
-) [34 <C:/Users/Matea/Desktop/LaTeX dokumentacija/pictures/profiler.jpg>]
+) [34 <C:/Users/Matea/Documents/GitHub/FM-Index/documentation/LaTeX dokumentaci
+ja/pictures/profiler.jpg>]
 Poglavlje 5.
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 55.
 
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\zakljucak.tex") [35
+
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\za
+kljucak.tex") [35
 
 ]
 Poglavlje 6.
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.bbl")
+
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\Do
+kumentacija.bbl")
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
  [36
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 63.
 
-("C:\Users\Matea\Desktop\LaTeX dokumentacija\Dokumentacija.aux")
+("C:\Users\Matea\Documents\GitHub\FM-Index\documentation\LaTeX dokumentacija\Do
+kumentacija.aux")
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 63.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 63.
 Package rerunfilecheck Info: File `Dokumentacija.out' has not changed.
-(rerunfilecheck)             Checksum: 7605DA51C2B538547A03297D37320BE7;1699.
+(rerunfilecheck)             Checksum: D8C6D62CB7935F1882FDF62A8F33FE9A;1713.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 63.
  ) 
 Here is how much of TeX's memory you used:
  16822 strings out of 493921
- 280195 string characters out of 3146481
- 370927 words of memory out of 3000000
+ 281059 string characters out of 3146481
+ 371933 words of memory out of 3000000
  19640 multiletter control sequences out of 15000+200000
  11100 words of font info for 39 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 49i,9n,53p,2241b,600s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,9n,53p,2239b,600s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/
 Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Prog
 ram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Fi
@@ -1229,7 +1265,7 @@ c/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmti12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt
 12.pfb>
-Output written on Dokumentacija.pdf (37 pages, 1957183 bytes).
+Output written on Dokumentacija.pdf (37 pages, 1957461 bytes).
 PDF statistics:
  526 PDF objects out of 1000 (max. 8388607)
  134 named destinations out of 1000 (max. 500000)

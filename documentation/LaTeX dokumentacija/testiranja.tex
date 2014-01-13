@@ -1,6 +1,6 @@
-Testiranja su obavljena na računalu s procesorom Intel Core i7 920 @ 2.66 GHz, s 6 GB RAM memorije i na operacijskom sustavu Windows 7. Razlog zašto testiranja nisu bila obavljena na Biolinuxu (ili nekoj drugoj Linux distribuciji) je taj što se Biolinux, na računalu koje se je koristilo za testiranja, pokreće u virtualnom stroju, pa je upitno kako bi to utjecalo na performanse izvođenja samog programa. Za mjerenje vremena izvođenja korištena je metoda \textit{currentTimeMillis} razreda \textit{System}, dok je za mjerenje potrošnje memorije korišten alat \textit{Jprofiler}.
+Testiranja su obavljena na računalu s procesorom Intel Core i7 920 @ 2.66 GHz, s 6 GB RAM memorije i na operacijskom sustavu Windows 7. Razlog zašto testiranja nisu bila obavljena na Biolinuxu (ili nekoj drugoj Linux distribuciji) je taj što se Biolinux, na računalu koje se koristilo za testiranja, pokreće u virtualnom stroju, pa je upitno kako bi to utjecalo na performanse izvođenja samog programa. Za mjerenje vremena izvođenja korištena je metoda \textit{currentTimeMillis} razreda \textit{System}, dok je za mjerenje potrošnje memorije korišten alat \textit{Jprofiler}.
 
-Za obavljanje ovih testiranja korištena su tri tipa tekstualnih datoteka. Prvi tip tekstualnih datoteka se je sastojao od nizova nukleotida i dodatnih znakova koji se još mogu pojaviti u takvim nizovima. Drugi tip tekstualnih datoteka sastojao se je od nizova znakova koji predstavljaju proteine. Posljednji tip tekstualnih datoteka koje su korištene sastojale su se od nizova slučajno generiranih znakova iz osnovnog ASCII skupa znakova i to od znakova koji se mogu ispisati (dakle ne od specijalnih znakova). Prvi i drugi tip datoteka su preuzeti s \cite{corpus} te su ponešto prilagođene za obavljanje testiranja. Treći tip datoteka je bio generiran uz pomoć posebnog programa. Te datoteke se razlikuju po tome koliko se različitih znakova može pojaviti u njima, odnosno koje su veličine abeceda iz kojih su te datoteke generirane. Tablica \ref{tbl:alphabetsize} prikazuje veličinu abeceda iz kojih su generirane te datoteke, odnosno koliko najviše različitih znakova mogu sadržavati. 
+Za obavljanje testiranja korištena su tri tipa tekstualnih datoteka. Prvi tip tekstualnih datoteka se sastojao od nizova nukleotida i dodatnih znakova koji se još mogu pojaviti u takvim nizovima. Drugi tip tekstualnih datoteka sastojao se od nizova znakova koji predstavljaju proteine. Posljednji tip tekstualnih datoteka koje su korištene sastojale su se od nizova slučajno generiranih znakova iz osnovnog ASCII skupa znakova i to od znakova koji se mogu ispisati (dakle ne od specijalnih znakova). Prvi i drugi tip datoteka su preuzeti s \cite{corpus} te su ponešto prilagođene za obavljanje testiranja. Treći tip datoteka je bio generiran uz pomoć posebnog programa. Spomenute datoteke se razlikuju po tome koliko se različitih znakova može pojaviti u njima, odnosno koje su veličine abeceda iz kojih su te datoteke generirane. Tablica \ref{tbl:alphabetsize} prikazuje veličinu abeceda iz kojih su generirane određene datoteke, odnosno koliko najviše različitih znakova mogu sadržavati. 
 
 \begin{table}[h]
 \caption{Maksimalna veličina abecede pojedinih datoteka}
@@ -8,22 +8,22 @@ Za obavljanje ovih testiranja korištena su tri tipa tekstualnih datoteka. Prvi 
 \centering\begin{tabular}{c|c|c|c|}
  \hline
 \multicolumn{1}{ |c| } {Vrsta niza} & Broj različitih znakova   \\ \hline
-\multicolumn{1}{ |c| } {   DNA   }		&	15		\\ \hline
+\multicolumn{1}{ |c| } {   DNK   }		&	15		\\ \hline
 \multicolumn{1}{ |c| } {   Proteini   }	&	25		\\ \hline
 \multicolumn{1}{ |c| } {   ASCII   }	&	95		\\ \hline
 \end{tabular}
 \end{table}
 
 
-U ovom poglavlju pogledat ćemo performanse koje pruža implementirani FM-Indeks i to u tri kategorije: brzina izgradnje, brzina obavljanja \textit{count} upita i memorijska potrošnja.
+U ovom poglavlju pogledat ćemo performanse koje pruža implementirani FM-indeks i to u tri kategorije: brzina izgradnje, brzina obavljanja \textit{count} upita i memorijska potrošnja.
 
-\section{Vrijeme izgradnje FM-Indexa}
-Pogledajmo prvo performanse izgradnje FM-indexa. Ovo je možda i jedan od najbitnijih faktora prilikom ocjene koliko je neka implementacija dobra, pošto je izgradnja samog indeksa računalno veoma zahtjevna operacija. Kako bi rezultati koji će biti prikazani u ovom poglavlju bili što relevantniji, vrijednosti koje su prikazane u tablicama izračunate su kao prosjek od deset izgradnji FM-indeksa za svaku pojedinu veličinu datoteka. Osim toga, prilikom provođenja ovih eksperimenata nije bio pokrenut alat za profiliranje, jer on dodatno usporava izvođenje programa, stoga su mjerenja za memorijsku potrošnju obavljena zasebno. Eksperimenti su obavljeni za svaki tip datoteke koji bio ranije spomenut i to za 9 različitih veličina takvih datoteka, od manjih (1MB), pa sve do većih (500MB). Osim toga, posebno su izdvojena vremena izgradnje BWT transformacije i Wavelet stabla, koji ipak sačinjavaju glavne građevne blokove FM-Indexa, pa je iz tog razloga dobro vidjeti koliko se mijenja i vrijeme izgradnje ovih struktura s promjenom veličine ulazne datoteke.
+\section{Vrijeme izgradnje FM-indeksa}
+Pogledajmo prvo performanse izgradnje FM-indeksa. Ovo je možda i jedan od najbitnijih faktora prilikom ocjene koliko je neka implementacija dobra, pošto je izgradnja samog indeksa računalno veoma zahtjevna operacija. Kako bi rezultati koji će biti prikazani u ovom poglavlju bili što relevantniji, vrijednosti koje su prikazane u tablicama izračunate su kao prosjek od deset izgradnji FM-indeksa za svaku pojedinu veličinu datoteka. Osim toga, prilikom provođenja ovih eksperimenata nije bio pokrenut alat za profiliranje, jer on dodatno usporava izvođenje programa, stoga su mjerenja za memorijsku potrošnju obavljena zasebno. Eksperimenti su obavljeni za svaki tip datoteke koji bio ranije spomenut i to za 9 različitih veličina takvih datoteka, od manjih (1MB) pa sve do većih (500MB). Osim toga, posebno su izdvojena vremena izgradnje BWT transformacije i wavelet stabla, koji ipak sačinjavaju glavne građevne blokove FM-indeksa, pa je iz tog razloga dobro vidjeti koliko se mijenja i vrijeme izgradnje ovih struktura s promjenom veličine ulazne datoteke.
 
-Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizove nukleotida. Tablica \ref{tbl:tablNukleotidi} prikazuje vremena izgradnje FM-Indexa nad tipom datoteka koje sadrže nukleotide. Osim toga iscrtan je graf, prikazan na \ref{fig:test_nukl}, koji predočava kako se mijenjaju vremena potrebna za izgradnju FM-indeksa, za izgradnju Wavelet stabla i za izračunavanje BWT transformacije u ovisnosti o veličini ulazne datoteke.
+Pogledajmo prvo rezultate koji su dobiveni za datoteke koje su sadržavale nizove nukleotida. Tablica \ref{tbl:tablNukleotidi} prikazuje vremena izgradnje FM-indeksa nad tipom datoteka koje sadrže nukleotide. Osim toga iscrtan je graf, prikazan na \ref{fig:test_nukl}, koji predočava kako se mijenjaju vremena potrebna za izgradnju FM-indeksa, za izgradnju wavelet stabla i za izračunavanje BWT transformacije u ovisnosti o veličini ulazne datoteke.
 
 \begin{table}[h]
-\caption{Testiranje na nizu nukleotida}
+\caption{Testiranje na DNK}
 \label{tbl:tablNukleotidi}
 \centering
 \begin{tabular}{c|c|c|c|}
@@ -86,11 +86,11 @@ Pogledajmo sada vrijeme potrebno za izgradnju FM-indeksa nad proteinskim nizovim
 \end{figure}
 
 
-Konačno, u tablici \ref{tbl:tablRand} je prikazana i ovisnost izgradnje FM-Indexa o veličini ulaznog niza za treću vrstu datoteka. Ovisnost izgradnje FM-Indexa, provođenja BWT transformacije, kao i izgradnju Wavelet stabla, u odnosu na veličinu ulaznog niza prikazana je na slici \ref{fig:test_ascii}.
+Konačno, u tablici \ref{tbl:tablRand} je prikazana i ovisnost izgradnje FM-indeksa o veličini ulaznog niza za treću vrstu datoteka. Ovisnost izgradnje FM-indeksa, provođenja BWT transformacije, kao i izgradnju wavelet stabla, u odnosu na veličinu ulaznog niza prikazana je na slici \ref{fig:test_ascii}.
 
 
 \begin{table}[H]
-\caption{Testiranje na rand}
+\caption{Testiranje na ASCII znakovima}
 \label{tbl:tablRand}
 \centering
 \begin{tabular}{c|c|c|c|}
@@ -118,7 +118,7 @@ Konačno, u tablici \ref{tbl:tablRand} je prikazana i ovisnost izgradnje FM-Inde
 \end{figure}
 
 
-Razmotrimo još za kraj ovog poglavlja vremenske ovisnosti izgradnje pojedinih struktura u ovisnosti o veličini ulazne datoteke, ali i o vrsti ulazne datoteke. Slike \ref{fig:test_bwt}, \ref{fig:test_wavelet}, \ref{fig:test_fm} prikazuju te ovisnosti za BWT transformaciju, izgradnju Wavelet stabla i izgradnju FM-indeksa respektivno. Možemo vidjeti kako su za sve tri vrste datoteka te ovisnosti linearne za izgradnju svake od struktura (kao što je i prethodno bilo spomenuto). Također možemo vidjeti kako trajanje izgradnje indeksa ovisi o vrsti datoteke nad kojom se indeks izgrađuje. Iz slika se vidi kako se trajanje izgradnje indeksa za nizove nukleotida i proteina ne razlikuje jako puno, dok je vrijeme potrebno za izgradnju indeksa nad datotekama s ASCII znakovima značajno veće. Ukoliko se vratimo na tablicu \ref{tbl:alphabetsize} možemo vidjeti kako se ti nizovi razlikuju po veličini njihovih abeceda. Odatle možemo zaključiti kako trajanje izgradnje FM-indeksa uvelike ovisi i o veličini abecede nad kojom su ti nizovi izgrađeni,odnosno da će trajanje izgradnje biti veće što je veličina abecede ulaznog niza veća.
+Razmotrimo još za kraj ovog poglavlja vremenske ovisnosti izgradnje pojedinih struktura u ovisnosti o veličini ulazne datoteke, ali i o vrsti ulazne datoteke. Slike \ref{fig:test_bwt}, \ref{fig:test_wavelet}, \ref{fig:test_fm} prikazuju te ovisnosti za BWT transformaciju, izgradnju wavelet stabla i izgradnju FM-indeksa respektivno. Možemo vidjeti kako su za sve tri vrste datoteka te ovisnosti linearne za izgradnju svake od struktura (kao što je i prethodno bilo spomenuto). Također možemo vidjeti kako trajanje izgradnje indeksa ovisi o vrsti datoteke nad kojom se indeks izgrađuje. Iz slika se vidi kako se trajanje izgradnje indeksa za nizove nukleotida i proteina ne razlikuje jako puno, dok je vrijeme potrebno za izgradnju indeksa nad datotekama s ASCII znakovima značajno veće. Ukoliko se vratimo na tablicu \ref{tbl:alphabetsize} možemo vidjeti kako se ti nizovi razlikuju po veličini njihovih abeceda. Odatle možemo zaključiti kako trajanje izgradnje FM-indeksa uvelike ovisi i o veličini abecede nad kojom su ti nizovi izgrađeni, odnosno da će trajanje izgradnje biti veće što je veličina abecede ulaznog niza veća.
 
 
 \begin{figure}[H]
@@ -138,7 +138,7 @@ Razmotrimo još za kraj ovog poglavlja vremenske ovisnosti izgradnje pojedinih s
 \begin{figure}[H]
    \centering
        \includegraphics[width=\textwidth]{./pictures/test_fm.png}
- \caption{Vremenska ovisnost trajanja stvaranja FM-indexa o veličini datoteke određenog tipa}
+ \caption{Vremenska ovisnost trajanja stvaranja FM-indeksa o veličini datoteke određenog tipa}
  \label{fig:test_fm}
 \end{figure}
 
@@ -147,13 +147,13 @@ Razmotrimo još za kraj ovog poglavlja vremenske ovisnosti izgradnje pojedinih s
 
 \section{Vrijeme obavljanja \textit{count} upita}
 
-Drugi važan parametar pomoću kojeg se može ocijeniti uspješnost implementacije FM-Indeksa jest obavljanje \textit{count} upita nad izgrađenim nizom. Dakle sada kada je izgrađen FM-indeks želimo vidjeti koliko brzo se može izračunati pojavljivanje nekog podniza u nizu nad kojim je indeks izgrađen. Osim toga, želimo vidjeti i kako veličina niza nad kojim je izgrađen indeks utječe na trajanje prebrojavanja. Krenimo dakle redom. Tablice \ref{tbl:tablCountNukl}, \ref{tbl:tablCountProt} i \ref{tbl:tablCountRand} prikazuju trajanje prebrojavanja pojavljivanja nekog podniza u indeksu. Iz tablica se mogu izvesti neki veoma važni zaključci. Kao prvo vidi se da trajanje prebrojavanja raste otprilike linearno s porastom duljine uzorka koji se traži. Nadalje, kroz sve tablice vidi se kako vrijeme prebrojavanja nekog uzorka ne ovisi o veličini ulaznog niza nad kojim je indeks izgrađen (u tablici \ref{tbl:tablCountNukl} se može uočiti jedna mala anomalija, odnosno skok u trajanju prebrojavanja između datoteke od 20MB i 50MB, no to je iz razloga što je uočeno kako u datoteci od 20MB i manje postoji samo 6 različitih znakova, dok u onima od 50MB naviše postoji 16 različitih znakova). Konačno uspoređujući tablice možemo vidjeti kako trajanje obavljanja prebrojavanja ovisi o veličini abecede nad kojom je ulazni niz izgeneriran. To je iz razloga što se za obavljanje prebrojavanja koristi Wavelet stablo čija veličina ovisi upravo o veličini abecede. 
+Drugi važan parametar pomoću kojeg se može ocijeniti uspješnost implementacije FM-indeksa jest obavljanje \textit{count} upita nad izgrađenim nizom. Dakle, sada kada je izgrađen FM-indeks želimo vidjeti koliko brzo se može izračunati pojavljivanje nekog podniza u nizu nad kojim je indeks izgrađen. Osim toga, želimo vidjeti i kako veličina niza nad kojim je izgrađen indeks utječe na trajanje prebrojavanja. Krenimo dakle redom. Tablice \ref{tbl:tablCountNukl}, \ref{tbl:tablCountProt} i \ref{tbl:tablCountRand} prikazuju trajanje prebrojavanja pojavljivanja nekog podniza u indeksu. Iz tablica se mogu izvesti neki veoma važni zaključci. Kao prvo, vidi se da trajanje prebrojavanja raste otprilike linearno s porastom duljine uzorka koji se traži. Nadalje, kroz sve tablice vidi se kako vrijeme prebrojavanja nekog uzorka ne ovisi o veličini ulaznog niza nad kojim je indeks izgrađen (u tablici \ref{tbl:tablCountNukl} se može uočiti jedna mala anomalija, odnosno skok u trajanju prebrojavanja između datoteke od 20MB i 50MB, no to je iz razloga što je uočeno kako u datoteci od 20MB i manje postoji samo 6 različitih znakova, dok u onima od 50MB naviše postoji 16 različitih znakova). Konačno, uspoređujući tablice možemo vidjeti kako trajanje obavljanja prebrojavanja ovisi o veličini abecede nad kojom je ulazni niz izgeneriran. To je iz razloga što se za obavljanje prebrojavanja koristi wavelet stablo čija veličina ovisi upravo o veličini abecede. 
 
 
 
 
 \begin{table}[H]
-\caption{Count upit nad nizom nukleotida}
+\caption{\emph{count} upit nad DNK}
 \label{tbl:tablCountNukl}
 \centering
 \begin{tabular}{c|c|c|c|c|c|c|}
@@ -176,7 +176,7 @@ Drugi važan parametar pomoću kojeg se može ocijeniti uspješnost implementaci
 
 
 \begin{table}[H]
-\caption{Count upit nad proteinima}
+\caption{\emph{count} upit nad proteinima}
 \label{tbl:tablCountProt}
 \centering
 \begin{tabular}{c|c|c|c|c|c|c|}
@@ -198,7 +198,7 @@ Drugi važan parametar pomoću kojeg se može ocijeniti uspješnost implementaci
 
 
 \begin{table}[H]
-\caption{Count upit nad rand}
+\caption{\emph{count} upit nad ASCII znakovima}
 \label{tbl:tablCountRand}
 \centering
 \begin{tabular}{c|c|c|c|c|c|c|}
@@ -220,7 +220,7 @@ Drugi važan parametar pomoću kojeg se može ocijeniti uspješnost implementaci
 
 Potrebno je napomenuti kako izrada mjerenja u milisekundama naravno nije najbolja praksa, no nažalost ovako su ipak dobiveni najuvjerljiviji rezultati, jer je uočeno da prilikom obavljanja više uzastopnih upita dolazi do anomalije da se vremena obavljanja upita znaju smanjiti. Uzrok tomu je vjerojatno što se određeni podaci spreme u priručnu memoriju, pa se onda mogu puno brže dohvatiti prilikom ponovnog obavljanja prebrojavanja nekog niza.
 
-Za kraj pogledajmo još sliku \ref{fig:test_count} na kojoj je prikazan graf gdje su iscrtane ovisnosti obavljanja prebrojavanja nekog uzorka u ovisnosti o duljini tog uzorka i u ovisnosti o veličini abecede niza nad kojim je izgrađen indeks (veličina datoteke nad kojom su se obavljali ovi eksperimenti bila je 500MB). Možemo vidjeti kako vrijeme prebrojavanja nekog uzorka linearno raste s veličinom uzorka kojeg se pretražuje (što je već ranije u tekstu utvrđeno). Također se na ovom grafu lijepo može vidjeti kako je obavljanje prebrojavanja također ovisno i o veličini abecede niza nad kojim je indeks izgrađen.
+Za kraj pogledajmo još sliku \ref{fig:test_count} na kojoj je prikazan graf gdje su iscrtane ovisnosti obavljanja prebrojavanja nekog uzorka u ovisnosti o duljini tog uzorka i u ovisnosti o veličini abecede niza nad kojim je izgrađen indeks (veličina datoteke nad kojom su se obavljali ovi eksperimenti bila je 500MB). Možemo vidjeti kako vrijeme prebrojavanja nekog uzorka raste  linearno s veličinom uzorka kojeg se pretražuje (što je već ranije u tekstu utvrđeno). Također se na ovom grafu lijepo može vidjeti kako je obavljanje prebrojavanja također ovisno i o veličini abecede niza nad kojim je indeks izgrađen.
 
 \begin{figure}[H]
    \centering
@@ -230,13 +230,13 @@ Za kraj pogledajmo još sliku \ref{fig:test_count} na kojoj je prikazan graf gdj
 \end{figure}
 
 
-\section{Memorijsko zauzeće FM-indexa}
+\section{Memorijsko zauzeće FM-indeksa}
 
 Posljednji parametar kojeg možemo promatrati tijekom izrade FM-indeksa jest memorijsko zauzeće programa. U ovom poglavlju istaknut ćemo koliko je memorijsko zauzeće tokom izgradnje indeksa, kao i na kraju kada je indeks u potpunosti izgrađen. Osim toga, u ovom poglavlju pokazat će se kako Java virtualni stroj zauzima mnogo više memorije nego što je zaista potrebno za samo izvođenje algoritma, što predstavlja jedan veliki nedostatak. Ovdje će se razmotriti memorijska zauzeća za sve tipove datoteka, no promatrat će se samo veličine datoteka od 50MB nadalje. U tablicama \ref{tbl:tablMemNukl}, \ref{tbl:tablMemProt} i \ref{tbl:tablMemRand} je prikazana potrošnja memorije FM-indeksa za sve tri vrste datoteka i različite veličine datoteka. Izdvojena su tri stupca u tablicama, od kojih prvi stupac predstavlja maksimalnu memoriju koju je cijeli proces zauzeo. Drugi stupac predstavlja maksimalnu količinu memorije koju je algoritam u nekom trenutku koristio, dok treći stupac predstavlja stvarno zauzeće memorije (dakle količinu memorije koju stvarno zauzimaju izgrađene strukture) od strane izgrađenog indeksa. Iz tablica se vidi kako je maksimalna memorija koja je zauzeta od strane Java virtualnog stroja puno veća nego li je za rad algoritma potrebno. To je ogroman nedostatak, jer ispada da su memorijski zahtjevi mnogo veći nego što oni uistinu jesu.
 
 
 \begin{table}[h]
-\caption{Memorijsko zauzeće - niz nukleotida}
+\caption{Memorijsko zauzeće - DNK}
 \label{tbl:tablMemNukl}
 \centering
 \begin{tabular}{c|c|c|c|}
@@ -269,7 +269,7 @@ Posljednji parametar kojeg možemo promatrati tijekom izrade FM-indeksa jest mem
 
 
 \begin{table}[h]
-\caption{Memorijsko zauzeće - rand}
+\caption{Memorijsko zauzeće - ASCII znakovi}
 \label{tbl:tablMemRand}
 \centering\begin{tabular}{c|c|c|c|}
 \cline{2-4}
