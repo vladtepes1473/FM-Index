@@ -20,10 +20,9 @@ public class FMIndex {
 		this.cTable = new DictionaryPrefixSumTable(this.alphabet);
 		long startTime = System.currentTimeMillis();
 		
-		System.out.println("Alphabet size: "+alphabet.size());
-		
 		StringWrapper sw = new StringWrapper();
-		SaisBWT.PerformBWT(string, sw);
+		//SaisBWT.PerformBWT(string, sw);
+		BWT.performBWT(string, sw);
 		
 		string = null;
 		System.gc();

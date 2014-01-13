@@ -11,17 +11,18 @@ public class FASTAParser implements Parser {
 	private static final int MAX_MULTIFASTA_COUNT = 30;
 	
 	@Override
-	public StringWrapper Parse(String path) throws IOException {
+	public StringWrapper Parse(String path) throws Exception {
 		File file = new File(path);
 		// Get the size of the file
-        long length = file.length();
+        
+		if(!file.exists()){
+			throw new Exception("No such file exists!");
+		}
+		
+		long length = file.length();
     	char newLineChar = System.lineSeparator().charAt(0);
 
-        /* You cannot create an array using a long type.
-         * It needs to be an int type.
-         * Before converting to an int type, check
-      	 * to ensure that file is not larger than Integer.MAX_VALUE.
-      	 */
+      
         if (length > Integer.MAX_VALUE) {
             // File is too large
             throw new IOException("File is too large!");

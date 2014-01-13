@@ -63,6 +63,7 @@ public class Test {
 		//Invalid number of parameters, print usage
 		if(args.length!=2&&args.length!=1){
 			System.out.println("fmindex filetype filepath");
+			return;
 		}
 		
 		Parser parser = null;
@@ -85,8 +86,14 @@ public class Test {
 			}
 			path = args[1];
 		}
-		
-		StringWrapper input = parser.Parse(path);
+		StringWrapper input;
+		try{
+		input = parser.Parse(path);
+		}
+		catch(Exception e){
+			System.out.println("An error occurred: "+e.getMessage());
+			return;
+		}
 		
 		System.out.println("Building index...");
 		FMIndex fmindex;

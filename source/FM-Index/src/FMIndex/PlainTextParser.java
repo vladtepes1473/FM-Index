@@ -8,16 +8,15 @@ import java.io.InputStream;
 public class PlainTextParser implements Parser {
 
 	@Override
-	public StringWrapper Parse(String path) throws IOException {
+	public StringWrapper Parse(String path) throws Exception {
 		File file = new File(path);
 		// Get the size of the file
         long length = file.length();
 
-        /* You cannot create an array using a long type.
-         * It needs to be an int type.
-         * Before converting to an int type, check
-      	 * to ensure that file is not larger than Integer.MAX_VALUE.
-      	 */
+		if(!file.exists()){
+			throw new Exception("No such file exists!");
+		}
+        
         if (length > Integer.MAX_VALUE) {
             // File is too large
             throw new IOException("File is too large!");

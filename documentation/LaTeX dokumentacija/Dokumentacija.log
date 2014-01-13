@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.1)  13 JAN 2014 16:10
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.1)  13 JAN 2014 17:25
 entering extended mode
 **D:/FM-Index/FM-Index/documentation/LaTeX*dokumentacija/Dokumentacija.tex
 ("D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/Dokumentacija.tex"
@@ -868,20 +868,20 @@ l.168 ...and\NAT@force@numbers{}\NAT@force@numbers
                                                   
 ? 
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count149
@@ -903,7 +903,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box41
-Package hyperref Info: Link coloring OFF on input line 37.
+Package hyperref Info: Link coloring OFF on input line 39.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -913,9 +913,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count155
 )
-LaTeX Info: Redefining \ref on input line 37.
-LaTeX Info: Redefining \pageref on input line 37.
-LaTeX Info: Redefining \nameref on input line 37.
+LaTeX Info: Redefining \ref on input line 39.
+LaTeX Info: Redefining \pageref on input line 39.
+LaTeX Info: Redefining \nameref on input line 39.
 
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.out")
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.out")
@@ -931,7 +931,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.43 \chapter
+l.45 \chapter
              {Uvod} [1
 
 ]
@@ -1013,15 +1013,15 @@ Package pdftex.def Info: ./pictures/SAISstep3.jpg used on input line 101.
 (pdftex.def)             Requested size: 203.25887pt x 408.77618pt.
  [11 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/SAISstep3
 .jpg>]
-<./pictures/leksvrij.jpg, id=218, 264.23718pt x 216.05719pt>
+<./pictures/leksvrij.jpg, id=218, 276.28218pt x 225.84375pt>
 File: ./pictures/leksvrij.jpg Graphic file (type jpg)
 
 <use ./pictures/leksvrij.jpg>
 Package pdftex.def Info: ./pictures/leksvrij.jpg used on input line 110.
-(pdftex.def)             Requested size: 264.23653pt x 216.05664pt.
+(pdftex.def)             Requested size: 276.2815pt x 225.84319pt.
  [12 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/leksvrij.
 jpg>] [13]
-<./pictures/Waveletusporedba.jpg, id=233, 1664.2175pt x 1856.9375pt>
+<./pictures/Waveletusporedba.jpg, id=232, 1664.2175pt x 1856.9375pt>
 File: ./pictures/Waveletusporedba.jpg Graphic file (type jpg)
 
 <use ./pictures/Waveletusporedba.jpg>
@@ -1097,154 +1097,151 @@ Poglavlje 4.
 File: ./pictures/test_nukl.png Graphic file (type png)
 
 <use ./pictures/test_nukl.png>
-Package pdftex.def Info: ./pictures/test_nukl.png used on input line 48.
+Package pdftex.def Info: ./pictures/test_nukl.png used on input line 63.
 (pdftex.def)             Requested size: 452.9679pt x 293.99294pt.
- [23] [24 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test
-_nukl.png>]
-<./pictures/test_proteini.png, id=347, 767.86874pt x 498.36188pt>
+ [23]
+<./pictures/test_proteini.png, id=340, 767.86874pt x 498.36188pt>
 File: ./pictures/test_proteini.png Graphic file (type png)
 
 <use ./pictures/test_proteini.png>
-Package pdftex.def Info: ./pictures/test_proteini.png used on input line 83.
+Package pdftex.def Info: ./pictures/test_proteini.png used on input line 99.
 (pdftex.def)             Requested size: 452.9679pt x 293.99294pt.
- [25 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_prot
-eini.png>]
-<./pictures/test_ascii.png, id=356, 767.86874pt x 498.36188pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[24 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_nukl.
+png>] <./pictures/test_ascii.png, id=350, 767.86874pt x 498.36188pt>
 File: ./pictures/test_ascii.png Graphic file (type png)
 
 <use ./pictures/test_ascii.png>
-Package pdftex.def Info: ./pictures/test_ascii.png used on input line 115.
+Package pdftex.def Info: ./pictures/test_ascii.png used on input line 133.
 (pdftex.def)             Requested size: 452.9679pt x 293.99294pt.
- [26 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_asci
-i.png>]
-<./pictures/test_bwt.png, id=368, 767.86874pt x 498.36188pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[25 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_prote
+ini.png>] <./pictures/test_bwt.png, id=364, 767.86874pt x 498.36188pt>
 File: ./pictures/test_bwt.png Graphic file (type png)
 
 <use ./pictures/test_bwt.png>
-Package pdftex.def Info: ./pictures/test_bwt.png used on input line 126.
+Package pdftex.def Info: ./pictures/test_bwt.png used on input line 144.
 (pdftex.def)             Requested size: 452.9679pt x 293.99294pt.
-
+ [26 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_asci
+i.png>]
 <./pictures/test_wavelet.png, id=369, 767.86874pt x 498.36188pt>
 File: ./pictures/test_wavelet.png Graphic file (type png)
 
 <use ./pictures/test_wavelet.png>
-Package pdftex.def Info: ./pictures/test_wavelet.png used on input line 133.
+Package pdftex.def Info: ./pictures/test_wavelet.png used on input line 151.
 (pdftex.def)             Requested size: 452.9679pt x 293.99294pt.
- [27 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_bwt.
-png>]
-<./pictures/test_fm.png, id=374, 767.86874pt x 498.36188pt>
+
+<./pictures/test_fm.png, id=370, 767.86874pt x 498.36188pt>
 File: ./pictures/test_fm.png Graphic file (type png)
 
 <use ./pictures/test_fm.png>
-Package pdftex.def Info: ./pictures/test_fm.png used on input line 140.
+Package pdftex.def Info: ./pictures/test_fm.png used on input line 158.
 (pdftex.def)             Requested size: 452.9679pt x 293.99294pt.
- [28 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_wave
-let.png> <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_
-fm.png>] [29]
+ [27 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_bwt.
+png> <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_wave
+let.png>] [28 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/
+test_fm.png>] [29]
 <./pictures/test_count.png, id=392, 767.86874pt x 498.36188pt>
 File: ./pictures/test_count.png Graphic file (type png)
 
 <use ./pictures/test_count.png>
-Package pdftex.def Info: ./pictures/test_count.png used on input line 227.
+Package pdftex.def Info: ./pictures/test_count.png used on input line 243.
 (pdftex.def)             Requested size: 452.9679pt x 293.99294pt.
- [30]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[31 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_count
-.png>] <./pictures/test_mem_nukl.png, id=416, 775.39688pt x 498.36188pt>
+ [30 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_coun
+t.png>] [31]
+<./pictures/test_mem_nukl.png, id=416, 775.39688pt x 498.36188pt>
 File: ./pictures/test_mem_nukl.png Graphic file (type png)
 
 <use ./pictures/test_mem_nukl.png>
-Package pdftex.def Info: ./pictures/test_mem_nukl.png used on input line 290.
-(pdftex.def)             Requested size: 452.9679pt x 291.13368pt.
- [32]
-<./pictures/test_mem_proteini.png, id=421, 775.39688pt x 498.36188pt>
+Package pdftex.def Info: ./pictures/test_mem_nukl.png used on input line 308.
+(pdftex.def)             Requested size: 426.4696pt x 274.09987pt.
+
+<./pictures/test_mem_proteini.png, id=417, 775.39688pt x 498.36188pt>
 File: ./pictures/test_mem_proteini.png Graphic file (type png)
 
 <use ./pictures/test_mem_proteini.png>
-Package pdftex.def Info: ./pictures/test_mem_proteini.png used on input line 29
-7.
-(pdftex.def)             Requested size: 452.9679pt x 291.13368pt.
- [33 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_mem_
-nukl.png>]
-<./pictures/test_mem_ascii.png, id=426, 775.39688pt x 498.36188pt>
+Package pdftex.def Info: ./pictures/test_mem_proteini.png used on input line 31
+5.
+(pdftex.def)             Requested size: 426.4696pt x 274.09987pt.
+
+<./pictures/test_mem_ascii.png, id=418, 775.39688pt x 498.36188pt>
 File: ./pictures/test_mem_ascii.png Graphic file (type png)
 
 <use ./pictures/test_mem_ascii.png>
-Package pdftex.def Info: ./pictures/test_mem_ascii.png used on input line 304.
-(pdftex.def)             Requested size: 452.9679pt x 291.13368pt.
- [34 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_mem_
-proteini.png> <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/
-test_mem_ascii.png>]
-<./pictures/test_mem_pravo.png, id=432, 775.39688pt x 498.36188pt>
+Package pdftex.def Info: ./pictures/test_mem_ascii.png used on input line 322.
+(pdftex.def)             Requested size: 387.6975pt x 249.18033pt.
+ [32 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_mem_
+nukl.png> <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test
+_mem_proteini.png>]
+<./pictures/test_mem_pravo.png, id=424, 775.39688pt x 498.36188pt>
 File: ./pictures/test_mem_pravo.png Graphic file (type png)
 
 <use ./pictures/test_mem_pravo.png>
-Package pdftex.def Info: ./pictures/test_mem_pravo.png used on input line 313.
-(pdftex.def)             Requested size: 452.9679pt x 291.13368pt.
-
-<./pictures/test_mem_max.png, id=434, 775.39688pt x 498.36188pt>
+Package pdftex.def Info: ./pictures/test_mem_pravo.png used on input line 331.
+(pdftex.def)             Requested size: 387.6975pt x 249.18033pt.
+ [33 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_mem_
+ascii.png> <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/tes
+t_mem_pravo.png>]
+<./pictures/test_mem_max.png, id=431, 775.39688pt x 498.36188pt>
 File: ./pictures/test_mem_max.png Graphic file (type png)
 
 <use ./pictures/test_mem_max.png>
-Package pdftex.def Info: ./pictures/test_mem_max.png used on input line 323.
-(pdftex.def)             Requested size: 452.9679pt x 291.13368pt.
- [35 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_mem_
-pravo.png>]
-<./pictures/test_mem_kon.png, id=442, 767.86874pt x 498.36188pt>
+Package pdftex.def Info: ./pictures/test_mem_max.png used on input line 341.
+(pdftex.def)             Requested size: 387.6975pt x 249.18033pt.
+
+<./pictures/test_mem_kon.png, id=433, 767.86874pt x 498.36188pt>
 File: ./pictures/test_mem_kon.png Graphic file (type png)
 
 <use ./pictures/test_mem_kon.png>
-Package pdftex.def Info: ./pictures/test_mem_kon.png used on input line 332.
-(pdftex.def)             Requested size: 452.9679pt x 293.99294pt.
- [36 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_mem_
-max.png>]
-<./pictures/profiler.jpg, id=450, 1114.1625pt x 602.25pt>
+Package pdftex.def Info: ./pictures/test_mem_kon.png used on input line 350.
+(pdftex.def)             Requested size: 383.93343pt x 249.18033pt.
+ [34 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_mem_
+max.png> <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_
+mem_kon.png>]
+<./pictures/profiler.jpg, id=441, 1114.1625pt x 602.25pt>
 File: ./pictures/profiler.jpg Graphic file (type jpg)
 
 <use ./pictures/profiler.jpg>
-Package pdftex.def Info: ./pictures/profiler.jpg used on input line 344.
+Package pdftex.def Info: ./pictures/profiler.jpg used on input line 364.
 (pdftex.def)             Requested size: 452.9679pt x 244.84724pt.
-) [37 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/test_mem
-_kon.png>] [38 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures
-/profiler.jpg>]
+) [35 <D:/FM-Index/FM-Index/documentation/LaTeX dokumentacija/pictures/profiler
+.jpg>]
 Poglavlje 5.
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 55.
+(hyperref)                removing `\textasciicaron' on input line 57.
 
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\zakljucak.tex")
-[39
+[36
 
 ]
 Poglavlje 6.
 ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 65.
 
-[40
+[37
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 63.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 65.
  ("D:\FM-Index\FM-Index\documentation\LaTeX dokumentacija\Dokumentacija.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 63.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 63.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 65.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 65.
 Package rerunfilecheck Info: File `Dokumentacija.out' has not changed.
-(rerunfilecheck)             Checksum: D8C6D62CB7935F1882FDF62A8F33FE9A;1713.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 63.
+(rerunfilecheck)             Checksum: 5B4762D9C2AA381BDECC0CFD7A9C32DA;1733.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 65.
  ) 
 Here is how much of TeX's memory you used:
- 16825 strings out of 493921
- 281495 string characters out of 3144876
- 366934 words of memory out of 3000000
- 19640 multiletter control sequences out of 15000+200000
+ 16829 strings out of 493921
+ 281630 string characters out of 3144876
+ 371934 words of memory out of 3000000
+ 19647 multiletter control sequences out of 15000+200000
  11100 words of font info for 39 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  49i,9n,53p,2294b,600s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1260,9 +1257,9 @@ s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
 (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86
 )/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Dokumentacija.pdf (41 pages, 1991543 bytes).
+Output written on Dokumentacija.pdf (38 pages, 1988654 bytes).
 PDF statistics:
- 542 PDF objects out of 1000 (max. 8388607)
- 138 named destinations out of 1000 (max. 500000)
+ 530 PDF objects out of 1000 (max. 8388607)
+ 135 named destinations out of 1000 (max. 500000)
  340 words of extra memory for PDF output out of 10000 (max. 10000000)
 
