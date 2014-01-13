@@ -11,5 +11,5 @@ Raspored datoteka po repozitoriju:
 3. datoteke za testiranje - par datoteka nad kojima se može testirati rad FM-indexa
 4. documentation - latex datoteke i slike korištene za izradu dokumentacije
 5. readings - većina literature koja je korištena prilikom izrade projekta
-6. rezultati - excel datoteke s razultatima pojedinih mjerenja
+6. rezultati - excel datoteke s rezultatima pojedinih mjerenja
 7. source - izvorni kod projekta
