@@ -10,8 +10,8 @@ import org.junit.Test;
 public class BWTTests {
 
 	@Test
-	public void BWTTest1() {
-		String input = "#abracadabra";
+	public void BWTTest1() throws UnsupportedEncodingException {
+		String input = "abracadabra#";
 		String expectedOutput = "ard#rcaaaabb";
 		
 		StringWrapper inputString = new StringWrapper();
@@ -22,15 +22,21 @@ public class BWTTests {
 			e.printStackTrace();
 		}
 		StringWrapper outputString = new StringWrapper();
-		BWT.performBWT(inputString, outputString);
+		new SaisBWT().PerformBWT(inputString, outputString);
 		
 		
-		Assert.assertEquals(outputString.string, expectedOutput);
+		byte[] o= expectedOutput.getBytes("US-ASCII");
 		
-	}
+		for(int i=0;i<outputString.length();i++){
+			Assert.assertEquals(outputString.string[i], o[i]);
+		}
+		
+		}
+		
+	
 	@Test
-	public void BWTTest2() {
-		String input = "#mississippi";
+	public void BWTTest2() throws UnsupportedEncodingException {
+		String input = "mississippi#";
 		String expectedOutput = "ipssm#pissii";
 		
 		StringWrapper inputString = new StringWrapper();
@@ -41,16 +47,22 @@ public class BWTTests {
 			e.printStackTrace();
 		}
 		StringWrapper outputString = new StringWrapper();
-		BWT.performBWT(inputString, outputString);
+		new SaisBWT().PerformBWT(inputString, outputString);
 		
 		
-		Assert.assertEquals(outputString.string, expectedOutput);
+		
+		byte[] o= expectedOutput.getBytes("US-ASCII");
+		
+		for(int i=0;i<outputString.length();i++){
+			Assert.assertEquals(outputString.string[i], o[i]);
+		}
+		
 		
 	}
 	
 	@Test
-	public void BWTTest3() {
-		String input = "#ananas";
+	public void BWTTest3() throws UnsupportedEncodingException {
+		String input = "ananas#";
 		String expectedOutput = "s#nnaaa";
 		
 		StringWrapper inputString = new StringWrapper();
@@ -61,10 +73,16 @@ public class BWTTests {
 			e.printStackTrace();
 		}
 		StringWrapper outputString = new StringWrapper();
-		BWT.performBWT(inputString, outputString);
+		new SaisBWT().PerformBWT(inputString, outputString);
 		
 		
-		Assert.assertEquals(outputString.string, expectedOutput);
+		
+		byte[] o= expectedOutput.getBytes("US-ASCII");
+		
+		for(int i=0;i<outputString.length();i++){
+			Assert.assertEquals(outputString.string[i], o[i]);
+		}
+		
 		
 	}
 }
