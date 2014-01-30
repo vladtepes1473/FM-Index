@@ -1,0 +1,39 @@
+1. Nacin
+
+Ucitati citavi projekt u Eclipse (File->Import->General->Existing Projects Into Workspace) i  onda odabrati
+korijenski direktorij source/FM-Index i ucitati ga.
+
+Nakon toga odabrati export i pod Java odabrati opciju "Runnable JAR File"
+
+Nakon toga samo odabrati ime JAR datoteke i Main metodu.
+
+-----------------------------------------------------------------------------------------
+
+2. Nacin (kompliciranije)
+
+pozicionirati se s komandnom linijom u direktorij "FM-Index\source\FM-Index\src\FMIndex" i izvrsiti
+nardbu:
+
+javac *
+
+Sto ce kompajlirati sve datoteke.
+
+Nakon toga pozicionirati se u prethodni direktorij i pokrenuti program s:
+
+"java FMIndex.Test parametri"
+
+-----------------------------------------------------------------------------------------
+
+3.Nacin
+
+pozicionirati se s komandnom linijom u direktorij "FM-Index\source\FM-Index\src\FMIndex" i izvrsiti
+nardbu:
+
+javac *
+
+Sto ce kompajlirati sve datoteke.
+
+Nakon toga pozicionirati se u prethodni direktorij i izvrsiti naredbu:
+"jar cvfm fmindex.jar Manifest.txt *"
+
+Nakon toga program je moguce pokrenuti po uputama za izvrsavanje

@@ -70,16 +70,20 @@ public class Test {
 		System.gc();
 		System.out.println("Index built...");
 		
-		System.out.println("Enter a pattern to search for");
+		System.out.println("Enter a pattern to search for or enter \"\\END\" to quit program:");
 		Scanner sc = new Scanner(System.in);
 		
 		while(true){
 			String pattern = sc.nextLine();
 			if(pattern.length()<1)
 				continue;
+			if(pattern.equals("\\END")){
+				return;
+			}
 			StringWrapper p = new StringWrapper(pattern.getBytes("US-ASCII"));
 			int count = fmindex.Count(p);
 			System.out.println("Pattern "+pattern+" count: "+count);
+			System.out.println("Enter a pattern to search for or enter \"\\END\" to quit program:");
 		}
 		
 
